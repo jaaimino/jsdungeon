@@ -28,18 +28,36 @@ function startGame(dungeon){
     }
     output("<b>{0}</b>".format(currentDungeon.name));
     output(currentDungeon.intro_text);
-    output(currentRoom.description);
+    outputRoom();
 }
 
 function gameloop(text){
     parseInput(text);
 }
 
+function outputRoom(){
+    var outputString = "";
+    outputString += currentRoom.description + " ";
+    for (var key in currentRoom.objects){
+        if(currentRoom.objects.hasOwnProperty(key)){
+            var objectState = currentRoom.objects[key].current_state;
+            outputString += currentRoom.objects[key].states[objectState].description + " ";
+        }
+    }
+    for (var key in currentRoom.exits){
+        if(currentRoom.exits.hasOwnProperty(key)){
+            var roomState = currentRoom.exits[key].current_state;
+            outputString += currentRoom.exits[key].states[roomState].description + " ";
+        }
+    }
+    output(outputString);
+}
+
 /* Interaction Stuff */
 function move(direction){
     if(currentRoom.exits[direction] && currentRoom.exits[direction].destination){
         currentRoom = currentDungeon.rooms[currentRoom.exits[direction].destination];
-        output(currentRoom.description);
+        outputRoom();
     } else {
         output("You can't go {0}!".format(direction));
     }

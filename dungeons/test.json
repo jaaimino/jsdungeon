@@ -14,7 +14,7 @@
                     "current_state" : "default",
                     "states" : {
                         "default" : {
-                            "description" : "It's just sitting there... menacingly.."
+                            "description" : "There is a lamp, sitting there... menacingly.."
                         }
                     }
                 }
@@ -32,14 +32,24 @@
             }
         },
         "mainhall" : {
-            "description" : "You enter a large hall with multiple doors. There's a door to the south.",
+            "description" : "You enter a large hall with multiple doors.",
+            "objects" : {
+                "bookshelf" : {
+                    "current_state" : "default",
+                    "states" : {
+                        "default" : {
+                            "description" : "There's a large bookshelf on in the corner of the room."
+                        }
+                    }
+                }
+            },
             "exits" : {
                 "south" : {
                     "destination" : "entrance",
                     "current_state" : "default",
                     "states" : {
                         "default" : {
-                            "description" : "There's a door to the north."
+                            "description" : "There's a door to the south."
                         }
                     }
                 }
