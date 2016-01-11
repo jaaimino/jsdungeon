@@ -37,8 +37,8 @@ function gameloop(text){
 
 /* Interaction Stuff */
 function move(direction){
-    if(currentRoom[direction] && currentRoom[direction].destination){
-        currentRoom = currentDungeon.rooms[currentRoom[direction].destination];
+    if(currentRoom.exits[direction] && currentRoom.exits[direction].destination){
+        currentRoom = currentDungeon.rooms[currentRoom.exits[direction].destination];
         output(currentRoom.description);
     } else {
         output("You can't go {0}!".format(direction));
