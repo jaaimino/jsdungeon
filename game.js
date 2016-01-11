@@ -44,6 +44,13 @@ function outputRoom(){
             outputString += currentRoom.objects[key].states[objectState].description + " ";
         }
     }
+    for (var i=0;i<currentRoom.items.length;i++){
+        var item = currentRoom.items[i];
+        var itemState = currentDungeon.items[item].current_state;
+        if(currentDungeon.items[item].states[itemState].visible){
+            outputString += currentDungeon.items[item].states[itemState].description + " ";
+        }
+    }
     for (var key in currentRoom.exits){
         if(currentRoom.exits.hasOwnProperty(key)){
             var roomState = currentRoom.exits[key].current_state;

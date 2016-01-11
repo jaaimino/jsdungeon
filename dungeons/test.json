@@ -8,24 +8,25 @@
     },
     "rooms" : {
         "entrance" : {
-            "description" : "You're in the cool room. You can see nothing except cool.",
+            "description" : "You're in the cool room.",
             "objects" : {
                 "lamp" : {
                     "current_state" : "default",
                     "states" : {
                         "default" : {
-                            "description" : "There is a lamp, sitting there... menacingly.."
+                            "description" : "There is a <i>lamp</i>, sitting there... menacingly.."
                         }
                     }
                 }
             },
+            "items" : ["blue key"],
             "exits" : {
                 "north" : {
                     "destination" : "mainhall",
                     "current_state" : "default",
                     "states" : {
                         "default" : {
-                            "description" : "There's a door to the north."
+                            "description" : "There's a door to the <i>north</i>."
                         }
                     }
                 }
@@ -38,7 +39,7 @@
                     "current_state" : "default",
                     "states" : {
                         "default" : {
-                            "description" : "There's a large bookshelf on in the corner of the room."
+                            "description" : "There's a large <i>bookshelf</i> in the corner of the room."
                         }
                     }
                 }
@@ -49,8 +50,25 @@
                     "current_state" : "default",
                     "states" : {
                         "default" : {
-                            "description" : "There's a door to the south."
+                            "description" : "There's a door to the <i>south</i>."
                         }
+                    }
+                }
+            }
+        }
+    },
+    "items" : {
+        "blue key": {
+            "current_state" : "default",
+            "states" : {
+                "default" : {
+                    "description" : "On the floor there is a blue key.",
+                    "visible" : true,
+                    "on_use" : {
+                        
+                    },
+                    "on_pickup" : {
+                        
                     }
                 }
             }
