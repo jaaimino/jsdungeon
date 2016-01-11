@@ -19,6 +19,7 @@
                     }
                 }
             },
+            "items" : ["blue key"],
             "exits" : {
                 "north" : {
                     "destination" : "mainhall",
@@ -61,7 +62,14 @@
             "current_state" : "default",
             "states" : {
                 "default" : {
-                    "description" : "A blue key."
+                    "description" : "On the floor there is a blue key.",
+                    "visible" : true,
+                    "on_use" : {
+                        
+                    },
+                    "on_pickup" : {
+                        
+                    }
                 }
             }
         }
