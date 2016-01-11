@@ -87,10 +87,13 @@ function look(){
 function examine(item){
     if(currentRoom.objects[item]){
         var currentState = currentRoom.objects[item].current_state;
+        output("You look at {0}".format(item));
         output(currentRoom.objects[item].states[currentState].description);
     }
-    else if(currentPlayer.inventory.indexOf(item) != -1){
-        output("You got it!");
+    else if(currentPlayer.inventory.indexOf(item) != -1 || currentRoom.items.indexOf(item) != -1){
+        var currentState = currentDungeon.items[item].current_state;
+        output("You look at {0}".format(item));
+        output(currentDungeon.items[item].states[currentState].description);
     }
     else{
         output("There's nothing in this room like that!");

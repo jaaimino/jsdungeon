@@ -72,6 +72,21 @@
                     }
                 }
             }
+        },
+        "banana": {
+            "current_state" : "default",
+            "states" : {
+                "default" : {
+                    "description" : "Bright and yellow, a herbvaceous fruit. It's actually technically a berry.",
+                    "visible" : true,
+                    "on_use" : {
+                        
+                    },
+                    "on_pickup" : {
+                        
+                    }
+                }
+            }
         }
     }
 }
