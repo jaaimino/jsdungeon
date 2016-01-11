@@ -62,7 +62,7 @@
             "current_state" : "default",
             "states" : {
                 "default" : {
-                    "description" : "On the floor there is a blue key.",
+                    "description" : "On the floor there is a <i>blue key</i>.",
                     "visible" : true,
                     "on_use" : {
                         
