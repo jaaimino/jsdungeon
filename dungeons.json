@@ -1,0 +1,8 @@
+{
+    "dungeons" : [
+        {
+            "name" : "Test",
+            "filename" : "dungeons/test.json"
+        }
+    ]
+}

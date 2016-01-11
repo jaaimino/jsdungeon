@@ -1,0 +1,36 @@
+body{
+    background-color: #2C3133;
+    /*background: url(http://orig02.deviantart.net/13ca/f/2006/121/d/6/wall_10.gif); */
+}
+
+.page-title{
+    color: white;
+    margin-left:auto;
+    margin-right: auto;
+    width: 600px;
+}
+
+#inputForm{
+    width: 100%;
+    margin-bottom: 0px;
+}
+
+#inputBox{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#output{
+    height: 400px;
+    overflow-y: scroll;
+    margin-top: 0px;
+}
+
+.output-box{
+    padding: 8px;
+    background-color: white;
+    margin-left: auto;
+    margin-right: auto;
+    width: 600px;
+}
