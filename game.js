@@ -78,6 +78,16 @@ function look(){
 }
 
 function examine(item){
-    
+    if(currentRoom.objects[item]){
+        var currentState = currentRoom.objects[item].current_state;
+        output(currentRoom.objects[item].states[currentState].description);
+    }
+    else if(currentPlayer.inventory.indexOf(item) != -1){
+        output("You got it!");
+    }
+    else{
+        output("There's nothing in this room like that!");
+    }
 }
+
 
