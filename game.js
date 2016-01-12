@@ -65,8 +65,13 @@ function outputRoom(){
 /* Interaction Stuff */
 function move(direction){
     if(currentRoom.exits[direction] && currentRoom.exits[direction].destination){
-        currentRoom = currentDungeon.rooms[currentRoom.exits[direction].destination];
-        outputRoom();
+        var roomState = currentRoom.exits[direction].current_state;
+        if(currentRoom.exits[direction].states[roomState].open){
+            currentRoom = currentDungeon.rooms[currentRoom.exits[direction].destination];
+            outputRoom();
+        } else {
+            output(currentRoom.exits[direction].states[roomState].description + " ");
+        }
     } else {
         output("You can't go {0}!".format(direction));
     }

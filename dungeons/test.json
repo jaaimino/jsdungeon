@@ -26,7 +26,8 @@
                     "current_state" : "default",
                     "states" : {
                         "default" : {
-                            "description" : "There's a door to the <i>north</i>."
+                            "description" : "There's a door to the <i>north</i>, it appears to be locked.",
+                            "open" : false
                         }
                     }
                 }
