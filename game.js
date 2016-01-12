@@ -64,7 +64,7 @@ function outputRoom(){
 
 /* Interaction Stuff */
 function move(direction){
-    if(currentRoom.exits[direction] && currentRoom.exits[direction].destination){
+    if(currentRoom.exits && currentRoom.exits[direction] && currentRoom.exits[direction].destination){
         var roomState = currentRoom.exits[direction].current_state;
         if(currentRoom.exits[direction].states[roomState].open && currentRoom.exits[direction].states[roomState].open === "true"){
             currentRoom = currentDungeon.rooms[currentRoom.exits[direction].destination];
