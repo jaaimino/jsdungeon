@@ -1,11 +1,10 @@
 function parseInput(text){
     
    
-    var reg_move = /move (.*)/i;
-    var reg_go = /go (.*)/i;
-    var reg_talk = /talk (.*)/i;
+    var reg_move = /move|go (.*)/i;
+    var reg_talk = /talk|chat (.*)/i;
     var reg_examine = /examine (.*)/i;
-    var reg_take = /take (.*)/i;
+    var reg_take = /take|grab|snatch (.*)/i;
     var reg_look = /look/i;
     var reg_inventory = /inventory/i;
     var reg_help = /help/i;
@@ -19,12 +18,7 @@ function parseInput(text){
         return;
     }
     
-    if(reg_go.test(text)){
-        var match = reg_go.exec(text);
-        move(match[1]);
-        
-        return;
-    }
+
     
     if(reg_talk.test(text)){
         var match = reg_talk.exec(text);

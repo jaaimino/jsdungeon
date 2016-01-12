@@ -4,7 +4,7 @@
     "start_room" : "entrance",
     "player" : {
         "name" : "Joseph",
-        "inventory" : []
+        "inventory" : ["banana"]
     },
     "rooms" : {
         "entrance" : {
@@ -64,6 +64,21 @@
             "states" : {
                 "default" : {
                     "description" : "On the floor there is a <i>blue key</i>.",
+                    "visible" : true,
+                    "on_use" : {
+                        
+                    },
+                    "on_pickup" : {
+                        
+                    }
+                }
+            }
+        },
+        "banana": {
+            "current_state" : "default",
+            "states" : {
+                "default" : {
+                    "description" : "Bright and yellow, a herbvaceous fruit. It's actually technically a berry.",
                     "visible" : true,
                     "on_use" : {
                         
