@@ -1,10 +1,10 @@
 function parseInput(text){
     
    
-    var reg_move = /move|go (.*)/i;
-    var reg_talk = /talk|chat (.*)/i;
+    var reg_move = /move (.*)/i;
+    var reg_talk = /talk (.*)/i;
     var reg_examine = /examine (.*)/i;
-    var reg_take = /take|grab|snatch (.*)/i;
+    var reg_take = /take (.*)/i;
     var reg_look = /look/i;
     var reg_inventory = /inventory/i;
     var reg_help = /help/i;
@@ -13,6 +13,7 @@ function parseInput(text){
     
     if(reg_move.test(text)){
         var match = reg_move.exec(text);
+        output(match);
         move(match[1]);
         
         return;
