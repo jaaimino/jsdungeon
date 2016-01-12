@@ -159,6 +159,8 @@ function help(){
     output("examine <object> - examines an object");
     output("take <object> - attempts to take an object");
     output("talk <thing> - talks to the thing");
+    output("inventory - checks your current items");
+    output("help - displays this message!");
 }
 
 
