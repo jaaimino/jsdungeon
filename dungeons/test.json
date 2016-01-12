@@ -33,6 +33,17 @@
                             "open" : "true"
                         }
                     }
+                },
+                "east" : {
+                    "destination" : "closet",
+                    "current_state" : "default",
+                    "states" : {
+                        "default" : {
+                            "description" : "There's a door to the <i>east</i>.",
+                            "examination" : "The door appears to be open.",
+                            "open" : "true"
+                        }
+                    }
                 }
             }
         },
@@ -55,6 +66,22 @@
                     "states" : {
                         "default" : {
                             "description" : "There's a door to the <i>south</i>.",
+                            "examination" : "The door appears to be open.",
+                            "open" : "true"
+                        }
+                    }
+                }
+            }
+        },
+        "closet" : {
+            "description" : "You enter a small broom closet.",
+            "exits" : {
+                "west" : {
+                    "destination" : "entrance",
+                    "current_state" : "default",
+                    "states" : {
+                        "default" : {
+                            "description" : "There's a door to the <i>west</i>.",
                             "examination" : "The door appears to be open.",
                             "open" : "true"
                         }
