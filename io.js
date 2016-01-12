@@ -6,6 +6,8 @@ function myFunction() {
     }
     catch(err) {
         console.log(err);
+        output("Uh oh! There was an error!");
+        clearInputBox();
         return false;
     }
     return false;

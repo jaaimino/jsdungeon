@@ -27,7 +27,7 @@
                     "states" : {
                         "default" : {
                             "description" : "There's a door to the <i>north</i>.",
-                            "examination" : "The door appears to be locked.",
+                            "examination" : "The door appears to be open.",
                             "open" : "true"
                         }
                     }
@@ -53,7 +53,7 @@
                     "states" : {
                         "default" : {
                             "description" : "There's a door to the <i>south</i>.",
-                            "examination" : "The door appears to be locked.",
+                            "examination" : "The door appears to be open.",
                             "open" : "true"
                         }
                     }
