@@ -1,10 +1,10 @@
 function parseInput(text){
     
    
-    var reg_move = /move (.*)/i;
-    var reg_talk = /talk (.*)/i;
+    var reg_move = /move (.*)|go (.*)/i;
+    var reg_talk = /talk (.*)|chat (.*)/i;
     var reg_examine = /examine (.*)/i;
-    var reg_take = /take (.*)/i;
+    var reg_take = /take (.*)|grab (.*)/i;
     var reg_look = /look/i;
     var reg_inventory = /inventory/i;
     var reg_help = /help/i;
