@@ -49,7 +49,7 @@
             }
         },
         "mainhall" : {
-            "description" : "You enter a large hall.",
+            "description" : "You're in a large hall.",
             "objects" : {
                 "bookshelf" : {
                     "current_state" : "default",
