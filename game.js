@@ -93,6 +93,17 @@ function look(){
     }
 }
 
+function take(item){
+    if(currentRoom.items && currentRoom.items.indexOf(item) != -1){
+        currentPlayer.inventory.push(item);
+        currentRoom.items.splice(currentRoom.items.indexOf(item));
+        output("You picked up {0}!".format(item));
+    }
+    else{
+        output("You fumbled around but only found air.");
+    }
+}
+
 function examine(item){
     if(currentRoom.objects && currentRoom.objects[item]){
         var currentState = currentRoom.objects[item].current_state;
