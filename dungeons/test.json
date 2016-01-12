@@ -14,7 +14,9 @@
                     "current_state" : "default",
                     "states" : {
                         "default" : {
-                            "description" : "There is a <i>lamp</i>, sitting there... menacingly.."
+                            "description" : "There is a <i>lamp</i>, sitting there... menacingly..",
+                            "fail_pickup" : "You attempt to grab the lamp, but it wobbles so much you reluctantly put it back down."
+                            
                         }
                     }
                 }
