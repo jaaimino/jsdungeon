@@ -113,12 +113,20 @@ function examine(item){
     if(currentRoom.objects && currentRoom.objects[item]){
         var currentState = currentRoom.objects[item].current_state;
         //output("You look at {0}".format(item));
-        output(currentRoom.objects[item].states[currentState].description);
+        output(currentRoom.objects[item].states[currentState].examination);
     }
     else if(currentPlayer.inventory.indexOf(item) != -1 || currentRoom.items && currentRoom.items.indexOf(item) != -1){
         var currentState = currentDungeon.items[item].current_state;
         //output("You look at {0}".format(item));
-        output(currentDungeon.items[item].states[currentState].description);
+        if(currentDungeon.items[item].states[currentState].examination){
+            output(currentDungeon.items[item].states[currentState].examination);
+        } else {
+            if(currentDungeon.items[item].states[currentState].description){
+                output(currentDungeon.items[item].states[currentState].description);
+            } else {
+                output("There doesn't seem to be anything interesting about that..");
+            } 
+        }
     }
     else{
         output("There's nothing in this room like that!");
