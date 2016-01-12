@@ -8,7 +8,7 @@
     },
     "rooms" : {
         "entrance" : {
-            "description" : "You're in the cool room.",
+            "description" : "You're not in the cool room.",
             "objects" : {
                 "lamp" : {
                     "current_state" : "default",
@@ -41,7 +41,8 @@
                         "default" : {
                             "description" : "There's a door to the <i>east</i>.",
                             "examination" : "The door appears to be open.",
-                            "open" : "true"
+                            "open" : "true",
+                            "on_enter": "You enter a small broom closet. It is cold."
                         }
                     }
                 }
@@ -78,14 +79,15 @@
                         "default" : {
                             "description" : "There's a rope you can climb <i>down</i>.",
                             "examination" : "The rope looks pretty old.",
-                            "open" : "true"
+                            "open" : "true",
+                            "on_enter":"You start climbing down the rope, only to find it can't bear your weight. It snaps and you fall down, way down."
                         }
                     }
                 }
             }
         },
         "closet" : {
-            "description" : "You enter a small broom closet.",
+            "description" : "You are in a small broom closet.",
             "exits" : {
                 "west" : {
                     "destination" : "entrance",

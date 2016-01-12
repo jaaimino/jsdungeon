@@ -67,6 +67,9 @@ function move(direction){
     if(currentRoom.exits && currentRoom.exits[direction] && currentRoom.exits[direction].destination){
         var roomState = getCurrentState(direction,"exit",currentRoom);
         if(currentRoom.exits[direction].states[roomState].open && currentRoom.exits[direction].states[roomState].open === "true"){
+            if(currentRoom.exits[direction].states[roomState].on_enter){
+                output(currentRoom.exits[direction].states[roomState].on_enter);//check for and display flavor text
+            }
             currentRoom = currentDungeon.rooms[currentRoom.exits[direction].destination];
             outputRoom();
         } else {
