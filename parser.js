@@ -5,6 +5,7 @@ function parseInput(text){
     var reg_talk = /(?:talk|chat) (.*)/i;
     var reg_examine = /(?:examine|check|scrutinize) (.*)/i;
     var reg_take = /(?:take|grab|snatch) (.*)/i;
+    var reg_use = /use (.*) on (.*)/i;
     var reg_look = /(?:look|review|survey)/i;
     var reg_inventory = /inventory/i;
     var reg_help = /help/i;
@@ -44,6 +45,12 @@ function parseInput(text){
         
         return;
     }
+    if(reg_use.test(text)){
+        var match = reg_use.exec(text);
+        use(match[1],match[2]);
+        return;
+    }
+    
     
     if(reg_look.test(text)){
         look();

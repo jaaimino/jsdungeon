@@ -79,6 +79,8 @@ function move(direction){
     }
 }
 
+
+
 function inventory(){
     if(currentPlayer.inventory.length > 0){
         outputString = "";
@@ -94,6 +96,11 @@ function inventory(){
 
 function look(){
     outputRoom();
+}
+
+function use(item_use, item_on){
+    output("You used {0} on {1} to no effect.".format(item_use, item_on));
+    return;
 }
 
 function take(item){
