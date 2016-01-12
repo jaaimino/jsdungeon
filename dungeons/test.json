@@ -70,6 +70,17 @@
                             "open" : "true"
                         }
                     }
+                },
+                "down" : {
+                    "destination" : "hole",
+                    "current_state" : "default",
+                    "states" : {
+                        "default" : {
+                            "description" : "There's a rope you can climb <i>down</i>.",
+                            "examination" : "The rope looks pretty old.",
+                            "open" : "true"
+                        }
+                    }
                 }
             }
         },
@@ -88,6 +99,9 @@
                     }
                 }
             }
+        },
+        "hole" : {
+            "description" : "You find yourself in a dark hole. There is no escape."
         }
     },
     "items" : {
