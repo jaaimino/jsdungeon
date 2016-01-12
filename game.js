@@ -81,7 +81,12 @@ function move(direction){
 
 function inventory(){
     if(currentPlayer.inventory.length > 0){
-        output("Inventory: {0}".format(currentPlayer.inventory.toString()));
+        outputString = "";
+        for(var i=0;i<currentPlayer.inventory.length-1;i++){
+            outputString += currentPlayer.inventory[i] + ", ";
+        }
+        outputString+= currentPlayer.inventory[currentPlayer.inventory.length-1];
+        output("Inventory: {0}".format(outputString));
     } else {
         output("Your inventory is empty!");
     }
