@@ -48,7 +48,7 @@
             }
         },
         "mainhall" : {
-            "description" : "You enter a large hall with multiple doors.",
+            "description" : "You enter a large hall.",
             "objects" : {
                 "bookshelf" : {
                     "current_state" : "default",
