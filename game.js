@@ -70,7 +70,7 @@ function move(direction){
             currentRoom = currentDungeon.rooms[currentRoom.exits[direction].destination];
             outputRoom();
         } else {
-            output(currentRoom.exits[direction].states[roomState].description + " ");
+            output(currentRoom.exits[direction].states[roomState].examination + " ");
         }
     } else {
         output("You can't go {0}!".format(direction));
