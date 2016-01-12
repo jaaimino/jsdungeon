@@ -69,6 +69,7 @@
             "states" : {
                 "default" : {
                     "description" : "On the floor there is a <i>blue key</i>.",
+                    "examination" : "It looks like a standard key, painted blue.",
                     "visible" : "true",
                     "on_use" : {
                         
