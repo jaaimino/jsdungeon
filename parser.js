@@ -13,7 +13,6 @@ function parseInput(text){
     
     if(reg_move.test(text)){
         var match = reg_move.exec(text);
-        output(match);
         move(match[1]);
         
         return;
