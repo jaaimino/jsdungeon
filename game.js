@@ -100,15 +100,15 @@ function take(item){
     if(currentRoom.items && currentRoom.items.indexOf(item) != -1){
         currentPlayer.inventory.push(item);
         currentRoom.items.splice(currentRoom.items.indexOf(item));
-        output("You picked up {0}!".format(item));
+        output("You picked up the {0}!".format(item));
     }
-    if(currentRoom.objects && currentRoom.objects[item]){
+    else if(currentRoom.objects && currentRoom.objects[item]){
         var currentState = currentRoom.objects[item].current_state;
         if(currentRoom.objects[item].states[currentState].fail_pickup){
             output(currentRoom.objects[item].states[currentState].fail_pickup);
         }
         else{
-            output("You can't carry {0}!".format(item));
+            output("You can't carry the {0}!".format(item));
         }
     }
     else{
