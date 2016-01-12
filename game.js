@@ -65,7 +65,7 @@ function outputRoom(){
 /* Interaction Stuff */
 function move(direction){
     if(currentRoom.exits && currentRoom.exits[direction] && currentRoom.exits[direction].destination){
-        var roomState = currentRoom.exits[direction].current_state;
+        var roomState = getCurrentState(direction,"exit",currentRoom);
         if(currentRoom.exits[direction].states[roomState].open && currentRoom.exits[direction].states[roomState].open === "true"){
             currentRoom = currentDungeon.rooms[currentRoom.exits[direction].destination];
             outputRoom();
@@ -112,7 +112,7 @@ function take(item){
 
     }
     else if(currentRoom.objects && currentRoom.objects[item]){
-        var currentState = currentRoom.objects[item].current_state;
+        var currentState = getCurrentState(item,"object",currentRoom);
         if(currentRoom.objects[item].states[currentState].fail_pickup){
             output(currentRoom.objects[item].states[currentState].fail_pickup);
             return;
@@ -128,7 +128,7 @@ function take(item){
 
 function examine(item){
     if(currentRoom.objects && currentRoom.objects[item]){
-        var currentState = currentRoom.objects[item].current_state;
+        var currentState = getCurrentState(item,"object",currentRoom);
         //output("You look at {0}".format(item));
         if(currentRoom.objects[item].states[currentState].examination){
             output(currentRoom.objects[item].states[currentState].examination);
@@ -141,7 +141,7 @@ function examine(item){
         }
     }
     else if(currentPlayer.inventory.indexOf(item) != -1 || currentRoom.items && currentRoom.items.indexOf(item) != -1){
-        var currentState = currentDungeon.items[item].current_state;
+        var currentState = getCurrentState(item,"item",currentDungeon);
         //output("You look at {0}".format(item));
         if(currentDungeon.items[item].states[currentState].examination){
             output(currentDungeon.items[item].states[currentState].examination);

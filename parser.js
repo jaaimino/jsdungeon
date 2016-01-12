@@ -1,7 +1,7 @@
 function parseInput(text){
     
    
-    var reg_move = /(?:move|go|skedaddle) (.*)/i;
+    var reg_move = /(?:move|go|skedaddle|sally forth|proceede) (.*)/i;
     var reg_talk = /(?:talk|chat) (.*)/i;
     var reg_examine = /(?:examine|check|scrutinize) (.*)/i;
     var reg_take = /(?:take|grab|snatch) (.*)/i;
