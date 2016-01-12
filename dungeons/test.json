@@ -28,7 +28,7 @@
                         "default" : {
                             "description" : "There's a door to the <i>north</i>.",
                             "examination" : "The door appears to be locked.",
-                            "open" : false
+                            "open" : "true"
                         }
                     }
                 }
@@ -41,7 +41,9 @@
                     "current_state" : "default",
                     "states" : {
                         "default" : {
-                            "description" : "There's a large <i>bookshelf</i> in the corner of the room."
+                            "description" : "There's a large <i>bookshelf</i> in the corner of the room.",
+                            "examination" : "The door appears to be locked.",
+                            "open" : "true"
                         }
                     }
                 }
@@ -65,7 +67,7 @@
             "states" : {
                 "default" : {
                     "description" : "On the floor there is a <i>blue key</i>.",
-                    "visible" : true,
+                    "visible" : "true",
                     "on_use" : {
                         
                     },

@@ -65,12 +65,15 @@ function outputRoom(){
 /* Interaction Stuff */
 function move(direction){
     if(currentRoom.exits[direction] && currentRoom.exits[direction].destination){
+        console.log("Found exit");
         var roomState = currentRoom.exits[direction].current_state;
-        if(currentRoom.exits[direction].states[roomState].open){
+        if(currentRoom.exits[direction].states[roomState].open && currentRoom.exits[direction].states[roomState].open === "true"){
             currentRoom = currentDungeon.rooms[currentRoom.exits[direction].destination];
             outputRoom();
         } else {
-            output(currentRoom.exits[direction].states[roomState].examination + " ");
+            console.log("Uh oh");
+            if(currentRoom.exits[direction].states[roomState].examination)
+                output(currentRoom.exits[direction].states[roomState].examination + " ");
         }
     } else {
         output("You can't go {0}!".format(direction));
