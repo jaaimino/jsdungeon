@@ -3,9 +3,9 @@ function parseInput(text){
    
     var reg_move = /(?:move|go|skedaddle|sally forth|proceede) (.*)/i;
     var reg_talk = /(?:talk|chat) (.*)/i;
-    var reg_examine = /(?:examine|check|scrutinize) (.*)/i;
+    var reg_examine = /(?:examine|check|scrutinize|look) (.*)/i;
     var reg_take = /(?:take|grab|snatch) (.*)/i;
-    var reg_use = /use (.*) on (.*)/i;
+    var reg_use = /(?:use|combine) (.*) (?:on|with) (.*)/i;
     var reg_look = /(?:look|review|survey)/i;
     var reg_inventory = /inventory/i;
     var reg_help = /help/i;
