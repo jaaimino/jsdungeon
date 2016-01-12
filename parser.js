@@ -71,7 +71,7 @@ function parseInput(text){
     
     
     /*global output*/
-     output("Invalid command {0}! (Type help to see commands)".format(text));    
+     output("I'm not sure how to {0}! (Type help to see commands)".format(text));    
     
     
    
