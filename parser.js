@@ -8,6 +8,7 @@ function parseInput(text){
     var reg_look = /look/i;
     var reg_inventory = /inventory/i;
     var reg_help = /help/i;
+    var whitespace = /.*\\w.*/;
     
 
     
@@ -61,6 +62,12 @@ function parseInput(text){
         
         return;
     }
+    
+    
+    if(!whitespace.test(text)){
+        return;
+    }
+    
     
     /*global output*/
      output("Invalid command {0}! (Type help to see commands)".format(text));    

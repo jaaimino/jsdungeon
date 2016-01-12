@@ -88,9 +88,7 @@ function inventory(){
 }
 
 function look(){
-    if(currentRoom.description){
-        output(currentRoom.description);
-    }
+    outputRoom();
 }
 
 function take(item){
@@ -98,6 +96,15 @@ function take(item){
         currentPlayer.inventory.push(item);
         currentRoom.items.splice(currentRoom.items.indexOf(item));
         output("You picked up {0}!".format(item));
+    }
+    if(currentRoom.objects && currentRoom.objects[item]){
+        var currentState = currentRoom.objects[item].current_state;
+        if(currentRoom.objects[item].states[currentState].fail_pickup){
+            output(currentRoom.objects[item].states[currentState].fail_pickup);
+        }
+        else{
+            output("You can't carry {0}!".format(item));
+        }
     }
     else{
         output("You fumbled around but only found air.");
@@ -118,6 +125,18 @@ function examine(item){
     else{
         output("There's nothing in this room like that!");
     }
+}
+
+
+function help(){
+    output("Your available actions are as follows:");
+    output("look - describes the room");
+    output("move <direction> - attempts to leave the room in that direction");
+    output("examine <object> - examines an object");
+    output("take <object> - attempts to take an object");
+    output("talk <thing> - talks to the thing");
+   
+    
 }
 
 
