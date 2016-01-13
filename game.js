@@ -59,16 +59,17 @@ function outputRoom(){
 function move(direction){
     if(currentRoom.exits && currentRoom.exits[direction] && currentRoom.exits[direction].destination){
         var roomState = getCurrentState(direction,"exit",currentRoom);
-        if(currentRoom.exits[direction].states[roomState].open && currentRoom.exits[direction].states[roomState].open === "true"){
-            if(currentRoom.exits[direction].states[roomState].on_enter){
-                output(currentRoom.exits[direction].states[roomState].on_enter);//check for and display flavor text
+        var currentExit = currentRoom.exits[direction].states[roomState];
+        if(currentExit.open && currentExit.open === "true"){
+            if(currentExit.on_enter){
+                output(currentExit.on_enter);//check for and display flavor text
             }
             currentRoom = currentDungeon.rooms[currentRoom.exits[direction].destination];
             outputRoom();
         } else {
             console.log("Uh oh");
-            if(currentRoom.exits[direction].states[roomState].examination)
-                output(currentRoom.exits[direction].states[roomState].examination + " ");
+            if(currentExit.examination)
+                output(currentExit.examination + " ");
         }
     } else {
         output("You can't go {0}!".format(direction));
@@ -155,8 +156,9 @@ function take(item){
     }
     else if(currentRoom.objects && currentRoom.objects[item]){
         var currentState = getCurrentState(item,"object",currentRoom);
-        if(currentRoom.objects[item].states[currentState].fail_pickup){
-            output(currentRoom.objects[item].states[currentState].fail_pickup);
+        var currentObject = currentRoom.objects[item].states[currentState];
+        if(currentObject.fail_pickup){
+            output(currentObject.fail_pickup);
             return;
         }
         else{
@@ -171,12 +173,13 @@ function take(item){
 function examine(item){
     if(currentRoom.objects && currentRoom.objects[item]){
         var currentState = getCurrentState(item,"object",currentRoom);
+        var currentObject = currentRoom.objects[item].states[currentState];
         //output("You look at {0}".format(item));
-        if(currentRoom.objects[item].states[currentState].examination){
-            output(currentRoom.objects[item].states[currentState].examination);
+        if(currentObject.examination){
+            output(currentObject.examination);
         } else {
-            if(currentRoom.objects[item].states[currentState].description){
-                output(currentRoom.objects[item].states[currentState].description);
+            if(currentObject.description){
+                output(currentObject.description);
             } else {
                 output("There doesn't seem to be anything interesting about that..");
             } 
@@ -184,12 +187,14 @@ function examine(item){
     }
     else if(currentPlayer.inventory.indexOf(item) != -1 || currentRoom.items && currentRoom.items.indexOf(item) != -1){
         var currentState = getCurrentState(item,"item",currentDungeon);
+        var currentItem = currentDungeon.items[item].states[currentState];
+        
         //output("You look at {0}".format(item));
-        if(currentDungeon.items[item].states[currentState].examination){
-            output(currentDungeon.items[item].states[currentState].examination);
+        if(currentItem.examination){
+            output(currentItem.examination);
         } else {
-            if(currentDungeon.items[item].states[currentState].description){
-                output(currentDungeon.items[item].states[currentState].description);
+            if(currentItem.description){
+                output(currentItem.description);
             } else {
                 output("There doesn't seem to be anything interesting about that..");
             } 
@@ -197,11 +202,13 @@ function examine(item){
     }
     else if(currentRoom.exits && currentRoom.exits[item]){
         var currentState = getCurrentState(item,"exit",currentRoom);
-        if(currentRoom.exits[item].states[currentState].examination){
-            output(currentRoom.exits[item].states[currentState].examination);
+        var currentExit = currentRoom.exits[item].states[currentState];
+        
+        if(currentExit.examination){
+            output(currentExit.examination);
         }else{
-            if(currentRoom.exits[item].states[currentState].description){
-                output(currentRoom.exits[item].states[currentState].description);
+            if(currentExit.description){
+                output(currentExit.description);
             }
             else{
                 output("It is certainly an exit to this room.");
