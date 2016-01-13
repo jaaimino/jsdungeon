@@ -99,16 +99,48 @@ function use(item_use, item_on){
         output("You used {0} on {1} to no effect.".format(item_use, item_on));
     } 
     else {
-        var currentState = getCurrentState(item_use, "item", currentDungeon);
-        var triggers = currentDungeon.items[item_use].states[currentState].on_use.triggers;
+        if(currentDungeon.items[item_use]){
+            var currentState = getCurrentState(item_use, "item", currentDungeon);
+            use_item(item_use, currentState);
+                
+    
 
-        for(var i = 0; i<triggers.length;i++){
-            output(triggers[i].target);
-            process_trigger(triggers[i]);
         }
+        else if(currentRoom.objects[item_use]){
+            var currentState = getCurrentState(item_use, "object", currentDungeon);
+            use_object(item_use, currentState);
+               
+        }
+        else{
+            output("You see no such thing.");
+        }
+
                 
     }
     return;
+}
+function use_item(item, currentState){
+    if(useable(item, currentState, "item", currentArea)){
+        var triggers = currentDungeon.items[item].states[currentState].on_use.triggers;
+        for(var i = 0; i<triggers.length;i++){
+            process_trigger(triggers[i]);
+        }
+    }
+    else{
+        output("Nothing interesting happened.")
+    }
+    
+}
+function use_object(item, currentState){
+    if(useable(item, currentState, "object", currentArea)){
+        var triggers = currentRoom.objects[item].states[currentState].on_use.triggers;
+        for(var i = 0; i<triggers.length;i++){
+            process_trigger(triggers[i]);
+        }
+    }
+    else{
+        output("Nothing interesting happened.")
+    }
 }
 
 function take(item){
