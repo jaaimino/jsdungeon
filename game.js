@@ -97,8 +97,15 @@ function look(){
 function use(item_use, item_on){
     if(item_on){
         output("You used {0} on {1} to no effect.".format(item_use, item_on));
-    } else {
-        
+    } 
+    else {
+        var currentState = getCurrentState(item_use, "item",currentDungeon);
+        var triggers = currentDungeon.items[item].states[currentState].triggers;
+        var i;
+        for(i = 0; i<trigger.length;i++){
+            process_trigger(triggers[i])
+        }
+                
     }
     return;
 }
