@@ -84,7 +84,7 @@ function inventory(){
             outputString += currentPlayer.inventory[i] + ", ";
         }
         outputString+= currentPlayer.inventory[currentPlayer.inventory.length-1];
-        output("Inventory: {0}".format(outputString));
+        output("items: {0}".format(outputString));
     } else {
         output("Your inventory is empty!");
     }
