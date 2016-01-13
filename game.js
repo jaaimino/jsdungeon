@@ -84,7 +84,7 @@ function inventory(){
             outputString += currentPlayer.inventory[i] + ", ";
         }
         outputString+= currentPlayer.inventory[currentPlayer.inventory.length-1];
-        output("Inventory: {0}".format(outputString));
+        output("items: {0}".format(outputString));
     } else {
         output("Your inventory is empty!");
     }
@@ -105,6 +105,7 @@ function use(item_use, item_on){
                 
     
 
+
         }
         else if(currentRoom.objects[item_use]){
             var currentState = getCurrentState(item_use, "object", currentDungeon);
@@ -116,6 +117,7 @@ function use(item_use, item_on){
         }
 
                 
+
     }
     return;
 }
