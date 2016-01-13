@@ -130,15 +130,15 @@
                     "description" : "Bright and yellow, a herbvaceous fruit. It's actually technically a berry.",
                     "visible" : "true",
                     "on_use" : {
-                        "triggers" : {[
-                                {
-                                    "type" : "state_change",
-                                    "target_type" : "item",
-                                    "target" : "banana",
-                                    "new_state" : "eaten",
-                                    "description" : "You eat the banana."
-                                }
-                            ]}
+                        "triggers" : [
+                            {
+                                "type" : "state_change",
+                                "target_type" : "item",
+                                "target" : "banana",
+                                "new_state" : "eaten",
+                                "description" : "You eat the banana."
+                            }
+                        ]
                     },
                     "on_pickup" : {
                         
