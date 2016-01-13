@@ -4,10 +4,13 @@ body{
 }
 
 .page-title{
-    color: white;
+    color: black;
     margin-left:auto;
     margin-right: auto;
     width: 600px;
+    box-shadow: 4px 4px 10px black;
+    padding: 8px;
+    background-color: white;
 }
 
 #inputForm{
@@ -35,6 +38,7 @@ body{
     margin-left: auto;
     margin-right: auto;
     width: 600px;
+    box-shadow: 4px 4px 10px black;
 }
 
 #chooseAdventureForm{
