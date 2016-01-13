@@ -3,14 +3,6 @@ var currentDungeon = null;
 var currentRoom = null;
 var currentPlayer = null;
 
-loadJSON("dungeons.json", function(response){
-   var response_json = JSON.parse(response);
-   loadJSON(response_json.dungeons[0].filename, function(response){
-       var new_response_json = JSON.parse(response);
-       startGame(new_response_json);
-    });
-});
-
 function startGame(dungeon){
     //Do some setup
     currentDungeon = dungeon;

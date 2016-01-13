@@ -17,12 +17,18 @@
 <body>
     <h1 class="page-title">JSDungeon</h1>
     <div class="output-box">
-        <p id="output"></p>
-        <form id="inputForm" onsubmit="return myFunction()">
+        <p id="output">Choose an adventure below to start!</p>
+        <form id="inputForm" onsubmit="return sendInput()">
             <input id="inputBox" type="text">
             <input id="inputButton" type="submit">
         </form>
+        <form id="chooseAdventureForm" onsubmit="return chooseAdventure()">
+            <select id="adventureSelect">
+            </select>
+            <input id="" type="submit" value="Start">
+        </form>
     </div>
-</body>
 
+</body>
+<script src="adventures.js"></script>
 </html>

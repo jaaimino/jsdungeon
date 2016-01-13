@@ -1,4 +1,4 @@
-function myFunction() {
+function sendInput() {
     try {
         gameloop(getInput());
         clearInputBox();
