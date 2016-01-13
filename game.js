@@ -195,6 +195,20 @@ function examine(item){
             } 
         }
     }
+    else if(currentRoom.exits && currentRoom.exits[item]){
+        var currentState = getCurrentState(item,"exit",currentRoom);
+        if(currentRoom.exits[item].states[currentState].examination){
+            output(currentRoom.exits[item].states[currentState].examination);
+        }else{
+            if(currentRoom.exits[item].states[currentState].description){
+                output(currentRoom.exits[item].states[currentState].description);
+            }
+            else{
+                output("It is certainly an exit to this room.");
+            }
+        }
+    }
+    
     else{
         output("There's nothing in this room like that!");
     }
