@@ -103,10 +103,8 @@ function use(item_use, item_on){
         var triggers = currentDungeon.items[item_use].states[currentState].on_use.triggers;
 
         for(var i = 0; i<triggers.length;i++){
-            output(triggers[i].target);
-            process_trigger(triggers[i]);
+            process_trigger(currentDungeon, triggers[i]);
         }
-                
     }
     return;
 }

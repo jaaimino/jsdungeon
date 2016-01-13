@@ -132,8 +132,8 @@
                     "on_use" : {
                         "triggers" : [
                             {
-                                "type" : "state_change",
-                                "target_type" : "item",
+                                "trigger_type" : "state_change",
+                                "target_type" : "items",
                                 "target" : "banana",
                                 "new_state" : "eaten",
                                 "description" : "You eat the banana."
