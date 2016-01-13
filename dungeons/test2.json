@@ -1,0 +1,14 @@
+{
+    "name" : "The Other Test Dungeon",
+    "intro_text" : "Welcome to the other test dungeon!",
+    "start_room" : "entrance",
+    "player" : {
+        "name" : "Joseph",
+        "inventory" : []
+    },
+    "rooms" : {
+        "entrance" : {
+            "description" : "You're not in the cool room."
+        }
+    }
+}
