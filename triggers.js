@@ -6,7 +6,8 @@ function process_trigger(currentDungeon, trigger){
 }
 
 function trigger_change_state(currentDungeon, trigger){
-    console.log(currentDungeon);
     currentDungeon[trigger.target_type][trigger.target].current_state = trigger.new_state;
-    output(trigger.description);
+    if(trigger.description){
+        output(trigger.description);
+    }
 }
