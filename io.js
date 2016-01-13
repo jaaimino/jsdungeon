@@ -30,6 +30,10 @@ function output(value) {
     document.getElementById("output").innerHTML += "<br>" + value;
 }
 
+function clearOutput(){
+    document.getElementById("output").innerHTML = "";
+}
+
 function loadJSON(file, callback) {
 
     var xobj = new XMLHttpRequest();

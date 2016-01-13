@@ -18,6 +18,7 @@ function startGame(dungeon){
             inventory : []
         }
     }
+    clearOutput();
     output("<b>{0}</b>".format(currentDungeon.name));
     output(currentDungeon.intro_text);
     outputRoom();
@@ -94,7 +95,11 @@ function look(){
 }
 
 function use(item_use, item_on){
-    output("You used {0} on {1} to no effect.".format(item_use, item_on));
+    if(item_on){
+        output("You used {0} on {1} to no effect.".format(item_use, item_on));
+    } else {
+        
+    }
     return;
 }
 
