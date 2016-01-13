@@ -108,7 +108,7 @@ function use(item_use, item_on){
 
         }
         else if(currentRoom.objects[item_use]){
-            var currentState = getCurrentState(item_use, "object", currentDungeon);
+            var currentState = getCurrentState(item_use, "object", currentRoom);
             use_object(item_use, currentState);
                
         }
@@ -122,10 +122,10 @@ function use(item_use, item_on){
     return;
 }
 function use_item(item, currentState){
-    if(useable(item, currentState, "item", currentArea)){
+    if(useable(item, currentState, "item", currentDungeon)){
         var triggers = currentDungeon.items[item].states[currentState].on_use.triggers;
         for(var i = 0; i<triggers.length;i++){
-            process_trigger(triggers[i]);
+            process_trigger(currentDungeon, triggers[i]);
         }
     }
     else{
@@ -134,10 +134,10 @@ function use_item(item, currentState){
     
 }
 function use_object(item, currentState){
-    if(useable(item, currentState, "object", currentArea)){
+    if(useable(item, currentState, "object", currentRoom)){
         var triggers = currentRoom.objects[item].states[currentState].on_use.triggers;
         for(var i = 0; i<triggers.length;i++){
-            process_trigger(triggers[i]);
+            process_trigger(currentDungeon, triggers[i]);
         }
     }
     else{
