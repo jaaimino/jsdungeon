@@ -24,6 +24,14 @@ body {
     margin-bottom:0.5em;
     margin-right:0.5em;
     padding:0em;
+    
+}
+.break{
+    border:0px;
+    margin:0px;
+    margin-bottom:0.5em;
+    margin-right:0.5em;
+    padding:0em;
     border-top:1px;
     border-style:dotted;
     border-color:black;
