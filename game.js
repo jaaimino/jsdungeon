@@ -118,6 +118,21 @@ function look(){
     outputRoom();
 }
 
+function trigger_action(item_use,item_on,triggers){
+    var notUsed = true;
+    for(var i = 0; i<triggers.length;i++){
+        output(triggers[i].requires);
+        if(triggers[i].requires && triggers[i].requires === item_use){
+            process_trigger(currentDungeon, triggers[i]);
+            notUsed = false;
+        }
+    }
+    if(notUsed){
+        output("You used {0} on {1} to no effect.".format(item_use, item_on));
+    }
+}
+
+
 function use(item_use, item_on){
     if(item_on){
         if(currentDungeon.items[item_on]){//the target is an item
@@ -125,25 +140,49 @@ function use(item_use, item_on){
                 var currentState = getCurrentState(item_on, "item", currentDungeon);
                     if(useable(item_on, currentState, "item", currentDungeon)){
                         var triggers = currentDungeon.items[item_on].states[currentState].on_use.triggers;
-                        var notUsed = true;
-                        for(var i = 0; i<triggers.length;i++){
-                            if(triggers[i].requires && triggers[i].requires[item_use]){
-                                output("COMINBATION!");
-                            
-                                process_trigger(currentDungeon, triggers[i]);
-                                notUsed = false;
-                            }
-                        }
-                        if(notUsed){
-                            output("You used {0} on {1} to no effect.".format(item_use, item_on));
-                        }
+                        trigger_action(item_use,item_on,triggers);
                     }
                     else{
                         output("Nothing interesting happened.")
                     }
-                    
-                
             }
+            else{
+                output("You don't have that in your inventory.");
+            }
+        }
+        else if(currentRoom.exits[item_on]){//the target is an exit
+            if(currentPlayer.inventory.indexOf(item_use) != -1){
+                var currentState = getCurrentState(item_on, "exit", currentRoom);
+                    if(useable(item_on, currentState, "exit", currentRoom)){
+                        var triggers = currentRoom.exits[item_on].states[currentState].on_use.triggers;
+                        trigger_action(item_use,item_on,triggers);
+                    }
+                    else{
+                        output("You see nothing in the direction of {0} that you can do anything with {1}.".format(item_on, item_use));
+                    }
+            }
+            else{
+                output("You don't have {0} in your inventory.".format(item_use));
+            }
+        }
+        else if(currentRoom.objects[item_on]){//the target is an object
+            if(currentPlayer.inventory.indexOf(item_use) != -1){
+                var currentState = getCurrentState(item_on, "object", currentRoom);
+                    if(useable(item_on, currentState, "object", currentRoom)){
+                        var triggers = currentRoom.objects[item_on].states[currentState].on_use.triggers;
+                        trigger_action(item_use,item_on,triggers);
+                    }
+                    else{
+                        output("There doesn't appear to be a way for {0} to do anything with {1}.".format(item_use,item_on));
+                    }
+            }
+            else{
+                output("You don't have {0} in your inventory.".format(item_use));
+            }
+        }
+        else{
+            
+            output("You do nothing with {0} or {1}".format(item_use,item_on));
         }
         
         

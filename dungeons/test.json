@@ -1,6 +1,6 @@
 {
     "name" : "The Test Dungeon",
-    "intro_text" : "Welcome to the test dungeon!",
+    "intro_text" : "Welcome to the TEST dungeon!",
     "start_room" : "entrance",
     "player" : {
         "name" : "Joseph",
