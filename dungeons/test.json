@@ -16,7 +16,6 @@
                         "default" : {
                             "description" : "There is a <i>lamp</i>, sitting there... menacingly..",
                             "fail_pickup" : "You attempt to grab the lamp, but it wobbles so much you reluctantly put it back down."
-                            
                         }
                     }
                 }
@@ -135,6 +134,7 @@
                                 "trigger_type" : "state_change",
                                 "target_type" : "items",
                                 "target" : "banana",
+                                "requires" : "blue key",
                                 "new_state" : "eaten",
                                 "description" : "You eat the banana."
                             }

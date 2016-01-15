@@ -24,6 +24,27 @@ function startGame(dungeon){
     outputRoom();
 }
 
+function loadGameButton(){
+    var select = document.getElementById("adventureSelect");
+    var dungeonName = select.options[select.selectedIndex].text;
+    var save = loadGame(dungeonName);
+    if(save !== null){
+        startGame(save);
+        output("<i>Game loaded for {0}</i>".format(dungeonName));
+    } else {
+        output("Couldn't load save for dungeon " + dungeonName);
+    }
+    return false;
+}
+
+function saveGameButton(){
+    var select = document.getElementById("adventureSelect");
+    var dungeonName = select.options[select.selectedIndex].text;
+    saveGame(dungeonName, currentDungeon);
+    output("<i>Saved game for {0}</i>".format(dungeonName));
+    return false;
+}
+
 function gameloop(text){
     parseInput(text);
 }
