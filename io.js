@@ -27,7 +27,11 @@ function clearInputBox() {
 }
 
 function output(value) {
-    document.getElementById("output").innerHTML += "<br>" + value;
+    document.getElementById("output").innerHTML += "<p class='entry'>" + value + "</p>";
+}
+
+function output_break(value) {
+    document.getElementById("output").innerHTML += "<p class='break'/>";
 }
 
 function clearOutput(){

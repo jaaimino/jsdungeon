@@ -27,12 +27,21 @@ function useable(itemname, currentState, itemtype, currentArea){
     }
     
     else if(itemtype ==="object"){
-        if(currentArea.objects[itemname].states[currentState].on_use && currentArea.items[itemname].states[currentState].on_use.triggers){
+        if(currentArea.objects[itemname].states[currentState].on_use && currentArea.object[itemname].states[currentState].on_use.triggers){
             return true;
         }
         else{
             return false;
         }
+    }
+    else if(itemtype =="exit"){
+        if(currentArea.exits[itemname].states[currentState].on_use && currentArea.exits[itemname].states[currentState].on_use.triggers){
+            return true;
+        }
+        else{
+            return false;
+        }
+        
     }
     
 }

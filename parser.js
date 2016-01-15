@@ -1,21 +1,28 @@
+
+var reg= {
+
+ move: /(?:move|go|skedaddle|sally forth|proceede) (.*)/i,
+ talk : /(?:talk|chat) (.*)/i,
+ examine : /(?:examine|check|scrutinize|look) (.*)/i,
+ take : /(?:take|grab|snatch) (.*)/i,
+ use : /(?:use|combine) (.*)( (?:on|with) (.*))?/i,
+ look : /(?:look|review|survey)/i,
+ inventory : /inventory/i,
+ help : /help/i,
+ whitespace : /\S/
+
+}
+    
+
 function parseInput(text){
     
    
-    var reg_move = /(?:move|go|skedaddle|sally forth|proceede) (.*)/i;
-    var reg_talk = /(?:talk|chat) (.*)/i;
-    var reg_examine = /(?:examine|check|scrutinize|look) (.*)/i;
-    var reg_take = /(?:take|grab|snatch) (.*)/i;
-    var reg_use = /(?:use|combine) (.*)( (?:on|with) (.*))?/i;
-    var reg_look = /(?:look|review|survey)/i;
-    var reg_inventory = /inventory/i;
-    var reg_help = /help/i;
-    var whitespace = /\S/;
-    
+
 
     
-    if(reg_move.test(text)){
+    if(reg.move.test(text)){
         
-        var match = reg_move.exec(text);
+        var match = reg.move.exec(text);
         move(match[1]);
         
         return;
@@ -23,8 +30,8 @@ function parseInput(text){
     
 
     
-    if(reg_talk.test(text)){
-        var match = reg_talk.exec(text);
+    if(reg.talk.test(text)){
+        var match = reg.talk.exec(text);
         talk(match[1]);
         
         return;
@@ -32,46 +39,46 @@ function parseInput(text){
     
 
     
-    if(reg_examine.test(text)){
-        var match = reg_examine.exec(text);
+    if(reg.examine.test(text)){
+        var match = reg.examine.exec(text);
         examine(match[1]);
         
         return;
     }
     
-    if(reg_take.test(text)){
-        var match = reg_take.exec(text);
+    if(reg.take.test(text)){
+        var match = reg.take.exec(text);
         take(match[1]);
         
         return;
     }
-    if(reg_use.test(text)){
-        var match = reg_use.exec(text);
+    if(reg.use.test(text)){
+        var match = reg.use.exec(text);
         use(match[1],match[2]);
         return;
     }
     
     
-    if(reg_look.test(text)){
+    if(reg.look.test(text)){
         look();
         
         return;
     }
     
-    if(reg_inventory.test(text)){
+    if(reg.inventory.test(text)){
         inventory();
         
         
         return;
     }
-    if(reg_help.test(text)){
+    if(reg.help.test(text)){
         help();
         
         return;
     }
     
     
-    if(!whitespace.test(text)){
+    if(!reg.whitespace.test(text)){
         return;
     }
     
