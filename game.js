@@ -2,11 +2,27 @@
 var currentDungeon = null;
 var currentRoom = null;
 var currentPlayer = null;
+var game_over = false;
+
+
+function getCurrentDungeon(){
+    return currentDungeon;
+}
+
+function isGameOver(){
+    return game_over;
+}
+
+function endGame(){
+    game_over = true;
+}
 
 function startGame(dungeon){
     //Do some setup
+    game_over = false;
     currentDungeon = dungeon;
     currentRoom = currentDungeon.rooms[currentDungeon.start_room];
+    document.getElementById("page-title").innerHTML = currentDungeon.name;
     if(currentDungeon.player){
         currentPlayer = currentDungeon.player;
         if(!currentPlayer.inventory){
@@ -83,12 +99,19 @@ function move(direction){
         var currentExit = currentRoom.exits[direction].states[roomState];
         if(currentExit.open && currentExit.open === "true"){
             output_break();//for readability sake
-            if(currentExit.on_enter){
-                output(currentExit.on_enter);//check for and display flavor text
+            if(currentExit.on_enter && currentExit.on_enter.description){
+                output(currentExit.on_enter.description);//check for and display flavor text
+                if(currentExit.on_enter.triggers){
+                    var triggers = currentExit.on_enter.triggers;
+                    for(var i=0;i<triggers.length;i++){
+                        process_trigger(currentDungeon, triggers[i]);
+                        if(triggers[i].trigger_blocking && triggers[i].trigger_blocking === "true")
+                            return;
+                    }
+                }
             }
             currentRoom = currentDungeon.rooms[currentRoom.exits[direction].destination];
             outputRoom();
-            
         } else {
             console.log("Uh oh");
             if(currentExit.examination)

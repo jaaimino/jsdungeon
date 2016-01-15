@@ -41,7 +41,9 @@
                             "description" : "There's a door to the <i>east</i>.",
                             "examination" : "The door appears to be open.",
                             "open" : "true",
-                            "on_enter": "You enter a small broom closet. It is cold."
+                            "on_enter": {
+                                "description" : "You enter a small broom closet. It is cold."
+                            }
                         }
                     }
                 }
@@ -79,7 +81,15 @@
                             "description" : "There's a rope you can climb <i>down</i>.",
                             "examination" : "The rope looks pretty old.",
                             "open" : "true",
-                            "on_enter":"You start climbing down the rope, only to find it can't bear your weight. It snaps and you fall down, way down."
+                            "on_enter": {
+                                "description" : "You start climbing down the rope, only to find it can't bear your weight. It snaps and you fall down, way down.",
+                                "triggers" : [
+                                    {
+                                        "trigger_type" : "lose_game",
+                                        "trigger_blocking" : "true"
+                                    }
+                                ]
+                            }
                         }
                     }
                 }

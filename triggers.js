@@ -3,6 +3,9 @@ function process_trigger(currentDungeon, trigger){
     if(trigger.trigger_type === "state_change"){
         trigger_change_state(currentDungeon, trigger);
     }
+    if(trigger.trigger_type === "lose_game"){
+        trigger_lose_game();
+    }
 }
 
 function trigger_change_state(currentDungeon, trigger){
@@ -10,4 +13,9 @@ function trigger_change_state(currentDungeon, trigger){
     if(trigger.description){
         output(trigger.description);
     }
+}
+
+function trigger_lose_game(){
+    output("You have died. Choose a dungeon and start a new game below.");
+    endGame();
 }

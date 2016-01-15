@@ -1,5 +1,17 @@
 function sendInput() {
     try {
+        if(isGameOver()){
+            output("Game is over. Please start a new one.");
+            clearInputBox();
+            scrollToBottom();
+            return false;
+        }
+        if(getCurrentDungeon() === null){
+            output("Please start a dungeon below.");
+            clearInputBox();
+            scrollToBottom();
+            return false;
+        }
         gameloop(getInput());
         clearInputBox();
         scrollToBottom();
