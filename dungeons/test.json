@@ -145,9 +145,18 @@
                                 "target_type" : "items",
                                 "target" : "banana",
                                 "requires" : "blue key",
+                                "requires_state":"default",
+                                "new_state" : "eaten",
+                                "description" : "You unlock the banana."
+                            },
+                            {
+                                "trigger_type" : "state_change",
+                                "target_type" : "items",
+                                "target" : "banana",
                                 "new_state" : "eaten",
                                 "description" : "You eat the banana."
                             }
+                            
                         ]
                     },
                     "on_pickup" : {

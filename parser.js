@@ -4,7 +4,7 @@ var reg= {
  move: /(?:move|go|skedaddle|sally forth|proceede) (.*)/i,
  talk : /(?:talk|chat) (.*)/i,
  examine : /(?:examine|check|scrutinize|look) (.*)/i,
- take : /(?:take|grab|snatch) (.*)/i,
+ take : /(?:take|grab|snatch|get) (.*)/i,
  use : /(?:use|combine) (.+?)(?: (?:on|with) (.+?))?$/i,
  look : /(?:look|review|survey)/i,
  inventory : /inventory/i,
