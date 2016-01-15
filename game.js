@@ -99,16 +99,48 @@ function look(){
 
 function use(item_use, item_on){
     if(item_on){
-        output("You used {0} on {1} to no effect.".format(item_use, item_on));
+        if(currentDungeon.items[item_on]){//the target is an item
+            if(currentPlayer.inventory.indexOf(item_use) != -1 && currentPlayer.inventory.indexOf(item_on) != -1){
+                var currentState = getCurrentState(item_on, "item", currentDungeon);
+                    if(useable(item_on, currentState, "item", currentDungeon)){
+                        var triggers = currentDungeon.items[item_on].states[currentState].on_use.triggers;
+                        var notUsed = true;
+                        for(var i = 0; i<triggers.length;i++){
+                            if(triggers[i].requires && triggers[i].requires[item_use]){
+                                output("COMINBATION!");
+                            
+                                process_trigger(currentDungeon, triggers[i]);
+                                notUsed = false;
+                            }
+                        }
+                        if(notUsed){
+                            output("You used {0} on {1} to no effect.".format(item_use, item_on));
+                        }
+                    }
+                    else{
+                        output("Nothing interesting happened.")
+                    }
+                    
+                
+            }
+        }
+        
+        
+        
+        
+        
+        
+        
     } 
     else {
         if(currentDungeon.items[item_use]){
-            var currentState = getCurrentState(item_use, "item", currentDungeon);
-            use_item(item_use, currentState);
-                
-    
-
-
+            if(currentPlayer.inventory.indexOf(item_use) != -1){
+                var currentState = getCurrentState(item_use, "item", currentDungeon);
+                use_item(item_use, currentState);
+            }
+            else{
+                output("You don't have that!");
+            }
         }
         else if(currentRoom.objects[item_use]){
             var currentState = getCurrentState(item_use, "object", currentRoom);
