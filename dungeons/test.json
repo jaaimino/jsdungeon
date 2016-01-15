@@ -134,6 +134,7 @@
                                 "trigger_type" : "state_change",
                                 "target_type" : "items",
                                 "target" : "banana",
+                                "requires" : "blue key",
                                 "new_state" : "eaten",
                                 "description" : "You eat the banana."
                             }
