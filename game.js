@@ -61,7 +61,7 @@ function move(direction){
         var roomState = getCurrentState(direction,"exit",currentRoom);
         var currentExit = currentRoom.exits[direction].states[roomState];
         if(currentExit.open && currentExit.open === "true"){
-            output_break();
+            output_break();//for readability sake
             if(currentExit.on_enter){
                 output(currentExit.on_enter);//check for and display flavor text
             }
