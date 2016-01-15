@@ -5,16 +5,16 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    color: white;
 }
 
 .page-title {
     margin-top: 50px;
-    color: black;
     margin-left: auto;
     margin-right: auto;
     width: 600px;
     padding: 8px;
-    background-color: white;
+    background-color: #2C3133;
 }
 
 /*this is the thing editing the <p> tag*/
@@ -44,6 +44,10 @@ body {
 
 #inputBox {
     flex-grow: 10;
+    margin-right: 5px;
+    background-color: #2C3133;
+    color: white;
+    border: 1px solid white;
 }
 
 #inputButton {
@@ -58,7 +62,7 @@ body {
 
 .output-box {
     padding: 8px;
-    background-color: white;
+    background-color: #2C3133;
     margin-left: auto;
     margin-right: auto;
     width: 600px;

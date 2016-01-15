@@ -27,9 +27,17 @@
                     "current_state" : "default",
                     "states" : {
                         "default" : {
-                            "description" : "There's a door to the <i>north</i>.",
+                            "description" : "There's a small door to the <i>north</i>.",
                             "examination" : "The door appears to be open.",
-                            "open" : "true"
+                            "open" : "true",
+                            "on_enter" : {
+                                "triggers": [
+                                    {
+                                        "trigger_type" : "stuff",
+                                        "single_trigger" : "true"
+                                    }
+                                ]
+                            }
                         }
                     }
                 },
@@ -42,7 +50,7 @@
                             "examination" : "The door appears to be open.",
                             "open" : "true",
                             "on_enter": {
-                                "description" : "You enter a small broom closet. It is cold."
+                                "description" : "A face full of dusty air hits you as you enter."
                             }
                         }
                     }
@@ -86,6 +94,7 @@
                                 "triggers" : [
                                     {
                                         "trigger_type" : "lose_game",
+                                        "description" : "You died!",
                                         "trigger_blocking" : "true"
                                     }
                                 ]
@@ -96,7 +105,7 @@
             }
         },
         "closet" : {
-            "description" : "You are in a small broom closet.",
+            "description" : "You are in a small broom closet. It is cold.",
             "exits" : {
                 "west" : {
                     "destination" : "entrance",
