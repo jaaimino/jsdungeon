@@ -99,13 +99,20 @@ function move(direction){
         var currentExit = currentRoom.exits[direction].states[roomState];
         if(currentExit.open && currentExit.open === "true"){
             output_break();//for readability sake
-            if(currentExit.on_enter && currentExit.on_enter.description){
-                output(currentExit.on_enter.description);//check for and display flavor text
+            if(currentExit.on_enter){
+                if(currentExit.on_enter.description)
+                    output(currentExit.on_enter.description); //check for and display flavor text
                 if(currentExit.on_enter.triggers){
                     var triggers = currentExit.on_enter.triggers;
                     for(var i=0;i<triggers.length;i++){
+                        var shouldReturn = false;
                         process_trigger(currentDungeon, triggers[i]);
                         if(triggers[i].trigger_blocking && triggers[i].trigger_blocking === "true")
+                            shouldReturn = true;
+                        if(triggers[i].single_trigger && triggers[i].single_trigger === "true"){
+                            triggers.splice(i, 1);
+                        }
+                        if(shouldReturn)
                             return;
                     }
                 }
@@ -147,6 +154,9 @@ function trigger_action(item_use,item_on,triggers,currentState,currentArea){
         if(triggers[i].requires && triggers[i].requires === item_use && triggers[i].requires_state === currentState){
             process_trigger(currentArea, triggers[i]);
             notUsed = false;
+        }
+        if(triggers[i].single_trigger && triggers[i].single_trigger === "true"){
+            triggers.splice(i, 1);
         }
     }
     if(notUsed){
@@ -209,14 +219,10 @@ function use(item_use, item_on){
             
             output("You do nothing with {0} or {1}".format(item_use,item_on));
         }
-        
-        
-        
-        
-        
-        
-        
+
     } 
+    //End of USE X ON Y
+    //Start USE X
     else {
         if(currentDungeon.items[item_use]){
             if(currentPlayer.inventory.indexOf(item_use) != -1){
@@ -230,14 +236,10 @@ function use(item_use, item_on){
         else if(currentRoom.objects[item_use]){
             var currentState = getCurrentState(item_use, "object", currentRoom);
             use_object(item_use, currentState);
-               
         }
         else{
             output("You don't have {0}!".format(item_use));
         }
-
-                
-
     }
     return;
 }
@@ -247,6 +249,9 @@ function use_item(item, currentState){
         for(var i = 0; i<triggers.length;i++){
             if(!triggers[i].requires){
                 process_trigger(currentDungeon, triggers[i]);
+                if(triggers[i].single_trigger && triggers[i].single_trigger === "true"){
+                    triggers.splice(i, 1);
+                }
             }
         }
     }
@@ -260,7 +265,10 @@ function use_object(item, currentState){
         var triggers = currentRoom.objects[item].states[currentState].on_use.triggers;
         for(var i = 0; i<triggers.length;i++){
             if(!triggers[i].requires){
-             process_trigger(currentDungeon, triggers[i]);
+                process_trigger(currentDungeon, triggers[i]);
+                if(triggers[i].single_trigger && triggers[i].single_trigger === "true"){
+                    triggers.splice(i, 1);
+                }
             }
         }
     }

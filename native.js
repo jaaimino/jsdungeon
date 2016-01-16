@@ -10,3 +10,24 @@ if (!String.prototype.format) {
     });
   };
 }
+
+/*
+ * Array Remove - By John Resig (MIT Licensed)
+ */
+Array.prototype.remove = function(element) {
+  var index = this.indexOf(element);
+  if (index > -1){
+    this.splice(index, 1);
+  }
+};
+
+/*
+ * Array Remove - By John Resig (MIT Licensed)
+ */
+Array.prototype.removeAll = function(element) {
+  var index = this.indexOf(element);
+  while (index > -1){
+    this.splice(index, 1);
+    var index = this.indexOf(element);
+  }
+};
