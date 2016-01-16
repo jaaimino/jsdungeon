@@ -10,9 +10,24 @@ if (!String.prototype.format) {
     });
   };
 }
-// Array Remove - By John Resig (MIT Licensed)
-Array.prototype.remove = function(from, to) {
-  var rest = this.slice((to || from) + 1 || this.length);
-  this.length = from < 0 ? this.length + from : from;
-  return this.push.apply(this, rest);
+
+/*
+ * Array Remove - By John Resig (MIT Licensed)
+ */
+Array.prototype.remove = function(element) {
+  var index = this.indexOf(element);
+  if (index > -1){
+    this.splice(index, 1);
+  }
+};
+
+/*
+ * Array Remove - By John Resig (MIT Licensed)
+ */
+Array.prototype.removeAll = function(element) {
+  var index = this.indexOf(element);
+  while (index > -1){
+    this.splice(index, 1);
+    var index = this.indexOf(element);
+  }
 };

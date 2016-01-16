@@ -219,14 +219,10 @@ function use(item_use, item_on){
             
             output("You do nothing with {0} or {1}".format(item_use,item_on));
         }
-        
-        
-        
-        
-        
-        
-        
+
     } 
+    //End of USE X ON Y
+    //Start USE X
     else {
         if(currentDungeon.items[item_use]){
             if(currentPlayer.inventory.indexOf(item_use) != -1){
@@ -240,14 +236,10 @@ function use(item_use, item_on){
         else if(currentRoom.objects[item_use]){
             var currentState = getCurrentState(item_use, "object", currentRoom);
             use_object(item_use, currentState);
-               
         }
         else{
             output("You see no such thing.");
         }
-
-                
-
     }
     return;
 }

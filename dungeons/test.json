@@ -64,7 +64,18 @@
                     "current_state" : "default",
                     "states" : {
                         "default" : {
-                            "description" : "There's a large <i>bookshelf</i> in the corner of the room."
+                            "description" : "There's a large <i>bookshelf</i> in the corner of the room.",
+                            "examination" : "It looks like one of the books is loose.",
+                            "on_use" : {
+                                "triggers" : [
+                                    {
+                                        "trigger_type" : "add_item",
+                                        "target_item" : "old banana",
+                                        "single_trigger" : "true",
+                                        "description" : "You pull out a book and behind it, find an old banana."
+                                    }
+                                ]
+                            }
                         }
                     }
                 }
@@ -159,13 +170,47 @@
                                 "description" : "You unlock the banana."
                             },
                             {
+                                "trigger_type" : "remove_item",
+                                "target_item" : "banana",
+                                "description" : "You eat the banana, and dispose of the remains.",
+                                "single_trigger" : "true"
+                            }
+                        ]
+                    },
+                    "on_pickup" : {
+                        
+                    }
+                }
+            }
+        },
+        "old banana" :{
+            "current_state" : "default",
+            "states" : {
+                "default" : {
+                    "description" : "It's a pretty dank banana.",
+                    "visible" : "true",
+                    "on_use" : {
+                        "triggers" : [
+                            {
                                 "trigger_type" : "state_change",
                                 "target_type" : "items",
                                 "target" : "banana",
+                                "requires" : "blue key",
+                                "requires_state":"default",
                                 "new_state" : "eaten",
-                                "description" : "You eat the banana."
+                                "description" : "You unlock the banana."
+                            },
+                            {
+                                "trigger_type" : "remove_item",
+                                "target" : "banana",
+                                "description" : "You eat the banana, throw up a little in your mouth, and dispose of the remains."
+                            },
+                            {
+                                "trigger_type" : "state_change",
+                                "target_type" : "items",
+                                "target" : "banana",
+                                "new_state" : "eaten"
                             }
-                            
                         ]
                     },
                     "on_pickup" : {

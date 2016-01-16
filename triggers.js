@@ -9,10 +9,32 @@ function process_trigger(currentDungeon, trigger){
     if(trigger.trigger_type === "win_game"){
         trigger_win_game(trigger);
     }
+    if(trigger.trigger_type === "add_item"){
+        trigger_add_item(currentDungeon, trigger);
+    }
+    if(trigger.trigger_type === "remove_item"){
+        trigger_remove_item(currentDungeon, trigger);
+    }
 }
 
 function trigger_change_state(currentDungeon, trigger){
     currentDungeon[trigger.target_type][trigger.target].current_state = trigger.new_state;
+    if(trigger.description){
+        output(trigger.description);
+    }
+}
+
+function trigger_add_item(currentDungeon, trigger){
+    var item = trigger.target_item;
+    currentDungeon.player.inventory.push(item);
+    if(trigger.description){
+        output(trigger.description);
+    }
+}
+
+function trigger_remove_item(currentDungeon, trigger){
+    var item = trigger.target_item;
+    currentDungeon.player.inventory.remove(item);
     if(trigger.description){
         output(trigger.description);
     }
