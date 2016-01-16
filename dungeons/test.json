@@ -172,7 +172,7 @@
                             {
                                 "trigger_type" : "remove_item",
                                 "target_item" : "banana",
-                                "description" : "You eat the banana, and dispose of the remains.",
+                                "description" : "You eat the <i>banana</i>, and dispose of the remains.",
                                 "single_trigger" : "true"
                             }
                         ]
@@ -198,28 +198,18 @@
                                 "requires" : "blue key",
                                 "requires_state":"default",
                                 "new_state" : "eaten",
-                                "description" : "You unlock the banana."
+                                "description" : "You unlock the <i>old banana</i>."
                             },
                             {
                                 "trigger_type" : "remove_item",
-                                "target" : "banana",
-                                "description" : "You eat the banana, throw up a little in your mouth, and dispose of the remains."
-                            },
-                            {
-                                "trigger_type" : "state_change",
-                                "target_type" : "items",
-                                "target" : "banana",
-                                "new_state" : "eaten"
+                                "target_item" : "old banana",
+                                "description" : "You eat the <i>old banana</i>, throw up a little in your mouth, and dispose of the remains."
                             }
                         ]
                     },
                     "on_pickup" : {
                         
                     }
-                },
-                "eaten" : {
-                    "description" : "All that's left is the peel.",
-                    "visible" : "true"
                 }
             }
         }
