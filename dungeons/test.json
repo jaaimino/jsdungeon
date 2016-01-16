@@ -28,6 +28,27 @@
                     "states" : {
                         "default" : {
                             "description" : "There's a door to the <i>north</i>.",
+                            "examination" : "The door is adorned with bananas. It also appears to be locked.",
+                            "open" : "false",
+                            "on_use":
+                            {
+                                "triggers":
+                                [
+                                    {
+                                    "trigger_type" : "state_change",
+                                    "target_type" : "exits",
+                                    "target" : "north",
+                                    "requires" : "blue key",
+                                    "requires_state":"default",
+                                    "new_state" : "unlocked",
+                                    "description" : "You unlock the bananadoor."
+                                     }
+                                ]
+                            }
+                            
+                        },
+                        "unlocked" : {
+                            "description" : "There's a door to the <i>south</i>.",
                             "examination" : "The door appears to be open.",
                             "open" : "true"
                         }
@@ -68,8 +89,10 @@
                     "states" : {
                         "default" : {
                             "description" : "There's a door to the <i>south</i>.",
-                            "examination" : "The door appears to be open.",
+                            "examination" : "The door appears to be locked.",
                             "open" : "true"
+                            
+                            
                         }
                     }
                 },

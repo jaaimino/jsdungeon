@@ -141,11 +141,11 @@ function look(){
     outputRoom();
 }
 
-function trigger_action(item_use,item_on,triggers,currentState){
+function trigger_action(item_use,item_on,triggers,currentState,currentArea){
     var notUsed = true;
     for(var i = 0; i<triggers.length;i++){
         if(triggers[i].requires && triggers[i].requires === item_use && triggers[i].requires_state === currentState){
-            process_trigger(currentDungeon, triggers[i]);
+            process_trigger(currentArea, triggers[i]);
             notUsed = false;
         }
     }
@@ -163,7 +163,7 @@ function use(item_use, item_on){
                     if(useable(item_on, currentState, "item", currentDungeon)){
                         var triggers = currentDungeon.items[item_on].states[currentState].on_use.triggers;
                         var use_currentState = getCurrentState(item_use, "item", currentDungeon);
-                        trigger_action(item_use,item_on,triggers, use_currentState);
+                        trigger_action(item_use,item_on,triggers, use_currentState,currentDungeon);
                     }
                     else{
                         output("Nothing interesting happened.")
@@ -175,11 +175,11 @@ function use(item_use, item_on){
         }
         else if(currentRoom.exits[item_on]){//the target is an exit
             if(currentPlayer.inventory.indexOf(item_use) != -1){
-                var ocurrentState = getCurrentState(item_on, "exit", currentRoom);
+                var currentState = getCurrentState(item_on, "exit", currentRoom);
                     if(useable(item_on, currentState, "exit", currentRoom)){
                         var triggers = currentRoom.exits[item_on].states[currentState].on_use.triggers;
-                        var use_currentState = getCurrentState(item_use, "exit", currentRoom);
-                        trigger_action(item_use,item_on,triggers, use_currentState);
+                        var use_currentState = getCurrentState(item_use, "item", currentDungeon);
+                        trigger_action(item_use,item_on,triggers, use_currentState,currentRoom);
                     }
                     else{
                         output("You see nothing in the direction of {0} that you can do anything with {1}.".format(item_on, item_use));
@@ -195,7 +195,7 @@ function use(item_use, item_on){
                     if(useable(item_on, currentState, "object", currentRoom)){
                         var triggers = currentRoom.objects[item_on].states[currentState].on_use.triggers;
                         var use_currentState = getCurrentState(item_use, "item", currentDungeon);
-                        trigger_action(item_use,item_on,triggers, use_currentState);
+                        trigger_action(item_use,item_on,triggers, use_currentState,currentRoom);
                     }
                     else{
                         output("There doesn't appear to be a way for {0} to do anything with {1}.".format(item_use,item_on));
@@ -224,7 +224,7 @@ function use(item_use, item_on){
                 use_item(item_use, currentState);
             }
             else{
-                output("You don't have that!");
+                output("You don't have {0}!".format(item_use));
             }
         }
         else if(currentRoom.objects[item_use]){
@@ -233,7 +233,7 @@ function use(item_use, item_on){
                
         }
         else{
-            output("You see no such thing.");
+            output("You don't have {0}!".format(item_use));
         }
 
                 

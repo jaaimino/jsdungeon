@@ -1,7 +1,7 @@
 
 var reg= {
 
- move: /(?:move|go|skedaddle|sally forth|proceede) (.*)/i,
+ move: /(?:move|go|skedaddle|sally forth|proceed|exit(?: through)?) (.*)/i,
  talk : /(?:talk|chat) (.*)/i,
  examine : /(?:examine|check|scrutinize|look) (.*)/i,
  take : /(?:take|grab|snatch|get) (.*)/i,
@@ -16,7 +16,6 @@ var reg= {
 
 function parseInput(text){
     
-   
 
 
     
