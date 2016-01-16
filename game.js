@@ -367,10 +367,12 @@ function examine(item){
 function help(){
     output("Your available actions are as follows:");
     output("look - describes the room");
-    output("move <direction> - attempts to leave the room in that direction");
-    output("examine <object> - examines an object");
-    output("take <object> - attempts to take an object");
-    output("talk <thing> - talks to the thing");
+    output("move (direction) - attempts to leave the room in that direction");
+    output("examine (item, object, direction) - examines an object");
+    output("take (item) - attempts to take an object");
+    output("use (object, direction, item) - use something");
+    output("use (item) on (object, direction, item) - use something");
+    output("talk (thing) - talks to the thing");
     output("inventory - checks your current items");
     output("help - displays this message!");
 }
