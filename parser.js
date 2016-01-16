@@ -3,7 +3,7 @@ var reg= {
 
  move: /(?:move|go|skedaddle|sally forth|proceed|exit(?: through)?) (.*)/i,
  talk : /(?:talk|chat) (.*)/i,
- examine : /(?:examine|check|scrutinize|look) (.*)/i,
+ examine : /(?:examine|check|scrutinize|look|inspect) (.*)/i,
  take : /(?:take|grab|snatch|get|pick up) (.*)/i,
  use : /(?:use|combine|try) (.+?)(?: (?:on|with|and) (.+?))?$/i,
  look : /(?:look|review|survey)/i,
