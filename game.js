@@ -23,6 +23,8 @@ function startGame(dungeon) {
     currentDungeon = dungeon;
     currentRoom = currentDungeon.rooms[currentDungeon.start_room];
     document.getElementById("page-title").innerHTML = currentDungeon.name;
+    var page_title_inner = "<b>{0}</b>".format(currentDungeon.name);
+    document.getElementById("page-title-inner").innerHTML = page_title_inner;
     if (currentDungeon.player) {
         currentPlayer = currentDungeon.player;
         if (!currentPlayer.inventory) {
@@ -40,7 +42,6 @@ function startGame(dungeon) {
         }
     }
     clearOutput();
-    output("<b>{0}</b>".format(currentDungeon.name));
     output(currentDungeon.intro_text);
     outputRoom();
 }

@@ -1,12 +1,12 @@
 {
     "dungeons" : [
         {
-            "name" : "Test",
-            "filename" : "dungeons/test.json"
+            "name" : "The Mansion",
+            "filename" : "dungeons/mansion.json"
         },
         {
-            "name" : "Test 2",
-            "filename" : "dungeons/test2.json"
+            "name" : "Test",
+            "filename" : "dungeons/test.json"
         }
     ]
 }

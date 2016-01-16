@@ -1,0 +1,49 @@
+{
+    "name" : "The Mansion",
+    "author" : "Allison",
+    "intro_text" : "Nope!",
+    "start_room" : "driveway",
+    "player" : {
+        "name" : "Leonardo",
+        "inventory" : ["banana"],
+        "description": "I'm a guy who really likes bananas."
+    },
+    "rooms" : {
+        "driveway" : {
+            "description" : "Stuff"
+        },
+        "main hall" : {
+            
+        },
+        "billiards room" : {
+            
+        },
+        "tropy room" : {
+            
+        },
+        "stables" : {
+            
+        },
+        "sitting room" : {
+            
+        },
+        "sunroom" : {
+            
+        },
+        "garden" : {
+            
+        },
+        "portrait hall" : {
+            
+        },
+        "dining hall" : {
+            
+        },
+        "kitchens" : {
+            
+        },
+        "garden" : {
+            
+        }
+    }
+}
