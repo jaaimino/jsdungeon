@@ -28,9 +28,13 @@ function startGame(dungeon){
         if(!currentPlayer.inventory){
             currentPlayer.inventory = [];
         }
+        if(!currentPlayer.description){
+            currentPlayer.description = "A person.";
+        }
     } else {
         currentPlayer = {
             name : "Jim",
+            description: "A person",
             inventory : []
         }
     }
@@ -302,7 +306,14 @@ function take(item){
 }
 
 function examine(item){
-    if(currentRoom.objects && currentRoom.objects[item]){
+    
+    if(item === "self"){
+        output("My name is " + currentPlayer.name);
+        output(currentPlayer.description);
+    }
+    
+  
+    else if(currentRoom.objects && currentRoom.objects[item]){
         var currentState = getCurrentState(item,"object",currentRoom);
         var currentObject = currentRoom.objects[item].states[currentState];
         //output("You look at {0}".format(item));

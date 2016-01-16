@@ -4,11 +4,12 @@
     "start_room" : "entrance",
     "player" : {
         "name" : "Joseph",
-        "inventory" : ["banana"]
+        "inventory" : ["banana"],
+        "description": "I'm a guy who really likes bananas."
     },
     "rooms" : {
         "entrance" : {
-            "description" : "You're a giant loser in the cool room.",
+            "description" : "You're in the cool room.",
             "objects" : {
                 "lamp" : {
                     "current_state" : "default",
