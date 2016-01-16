@@ -72,7 +72,7 @@
                                         "trigger_type" : "add_item",
                                         "target_item" : "old banana",
                                         "single_trigger" : "true",
-                                        "description" : "You pull out a book and behind it, find an old banana."
+                                        "description" : "You pull out a book and behind it, find an <i>old banana</i>."
                                     }
                                 ]
                             }
