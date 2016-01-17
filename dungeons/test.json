@@ -16,6 +16,7 @@
                     "states" : {
                         "default" : {
                             "description" : "There is a <i>lamp</i>, sitting there... menacingly..",
+                            "examination" : "Something just doesn't feel right about this thing.",
                             "fail_pickup" : "You attempt to grab the lamp, but it wobbles so much you reluctantly put it back down."
                         }
                     }
