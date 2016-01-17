@@ -188,7 +188,7 @@ function leave_room(currentExit,direction){
         var triggers = currentExit.on_enter.triggers;
         for(var i=0;i<triggers.length;i++){
             var shouldReturn = false;
-            process_trigger(currentRoom, triggers[i]);
+            process_trigger(triggers[i]);
             if(triggers[i].trigger_blocking && triggers[i].trigger_blocking === "true")
                 shouldReturn = true;
             if(triggers[i].single_trigger && triggers[i].single_trigger === "true"){
@@ -221,21 +221,6 @@ function inventory() {
 
 
 
-function trigger_action(item_use, item_on, triggers, currentState, currentArea) {
-    var notUsed = true;
-    for (var i = 0; i < triggers.length; i++) {
-        if (triggers[i].requires && triggers[i].requires === item_use && triggers[i].requires_state === currentState) {
-            process_trigger(currentArea, triggers[i]);
-            notUsed = false;
-        }
-        if (triggers[i].single_trigger && triggers[i].single_trigger === "true") {
-            triggers.splice(i, 1);
-        }
-    }
-    if (notUsed) {
-        output("You used {0} on {1} to no effect.".format(item_use, item_on));
-    }
-}
 
 
 function use(item_use, item_on) {
@@ -297,7 +282,7 @@ function use_type(type, item_use,item_on, currentArea){
         if (useable(item_on, currentState, type, currentArea)) {
             var triggers = currentRoom.exits[item_on].states[currentState].on_use.triggers;
             var use_currentState = getCurrentState(item_use, "item", currentDungeon);
-            trigger_action(item_use, item_on, triggers, use_currentState, currentRoom);
+            trigger_action(item_use, item_on, triggers, use_currentState);
         }
         else {
             output("You see nothing in the direction of {0} that you can do anything with {1}.".format(item_on, item_use));
@@ -316,7 +301,7 @@ function use_X(item, currentState, type, currentArea) {
         var triggers = currentDungeon.items[item].states[currentState].on_use.triggers;
         for (var i = 0; i < triggers.length; i++) {
             if (!triggers[i].requires) {
-                process_trigger(currentDungeon, triggers[i]);
+                process_trigger(triggers[i]);
                 if (triggers[i].single_trigger && triggers[i].single_trigger === "true") {
                     triggers.splice(i, 1);
                 }
