@@ -75,6 +75,30 @@ function gameloop(text) {
     parseInput(text);
 }
 
+
+function help() {
+    output(
+        "Your available actions are as follows:" +
+        "look - describes the room" +
+        "move (direction) - attempts to leave the room in that direction" +
+        "examine (item, object, direction) - examines an object" +
+        "take (item) - attempts to take an object" +
+        "use (object, direction, item) - use something" +
+        "use (item) on (object, direction, item) - use something" +
+        "talk (thing) - talks to the thing" +
+        "inventory - checks your current items" +
+        "help - displays this message!"
+        );
+}
+
+
+
+
+
+function look() {
+    outputRoom();
+}
+
 function outputRoom() {
     var outputString = "";
     outputString += currentRoom.description + " ";
@@ -168,9 +192,7 @@ function inventory() {
     }
 }
 
-function look() {
-    outputRoom();
-}
+
 
 function trigger_action(item_use, item_on, triggers, currentState, currentArea) {
     var notUsed = true;
@@ -191,66 +213,14 @@ function trigger_action(item_use, item_on, triggers, currentState, currentArea) 
 
 function use(item_use, item_on) {
     if (item_on) {
-        if (currentDungeon.items[item_on]) { //the target is an item
-            if (currentPlayer.inventory.indexOf(item_use) != -1 && currentPlayer.inventory.indexOf(item_on) != -1) {
-                var currentState = getCurrentState(item_on, "item", currentDungeon);
-                if (useable(item_on, currentState, "item", currentDungeon)) {
-                    var triggers = currentDungeon.items[item_on].states[currentState].on_use.triggers;
-                    var use_currentState = getCurrentState(item_use, "item", currentDungeon);
-                    trigger_action(item_use, item_on, triggers, use_currentState, currentDungeon);
-                }
-                else {
-                    output("Nothing interesting happened.")
-                }
-            }
-            else {
-                output("You don't have that in your inventory.");
-            }
-        }
-        else if (currentRoom.exits[item_on]) { //the target is an exit
-            if (currentPlayer.inventory.indexOf(item_use) != -1) {
-                var currentState = getCurrentState(item_on, "exit", currentRoom);
-                if (useable(item_on, currentState, "exit", currentRoom)) {
-                    var triggers = currentRoom.exits[item_on].states[currentState].on_use.triggers;
-                    var use_currentState = getCurrentState(item_use, "item", currentDungeon);
-                    trigger_action(item_use, item_on, triggers, use_currentState, currentRoom);
-                }
-                else {
-                    output("You see nothing in the direction of {0} that you can do anything with {1}.".format(item_on, item_use));
-                }
-            }
-            else {
-                output("You don't have {0} in your inventory.".format(item_use));
-            }
-        }
-        else if (currentRoom.objects[item_on]) { //the target is an object
-            if (currentPlayer.inventory.indexOf(item_use) != -1) {
-                var currentState = getCurrentState(item_on, "object", currentRoom);
-                if (useable(item_on, currentState, "object", currentRoom)) {
-                    var triggers = currentRoom.objects[item_on].states[currentState].on_use.triggers;
-                    var use_currentState = getCurrentState(item_use, "item", currentDungeon);
-                    trigger_action(item_use, item_on, triggers, use_currentState, currentRoom);
-                }
-                else {
-                    output("There doesn't appear to be a way for {0} to do anything with {1}.".format(item_use, item_on));
-                }
-            }
-            else {
-                output("You don't have {0} in your inventory.".format(item_use));
-            }
-        }
-        else {
-
-            output("You do nothing with {0} or {1}".format(item_use, item_on));
-        }
+        use_x_on_y(item_use,item_on);
     }
-    //End of USE X ON Y
-    //Start USE X
+    //Else USE X
     else {
         if (currentDungeon.items[item_use]) {
             if (currentPlayer.inventory.indexOf(item_use) != -1) {
                 var currentState = getCurrentState(item_use, "item", currentDungeon);
-                use_item(item_use, currentState);
+                use_X(item_use, currentState, item, currentDungeon);
             }
             else {
                 output("You don't have {0}!".format(item_use));
@@ -258,7 +228,7 @@ function use(item_use, item_on) {
         }
         else if (currentRoom.objects[item_use]) {
             var currentState = getCurrentState(item_use, "object", currentRoom);
-            use_object(item_use, currentState);
+            use_X(item_use, currentState, "object", currentDungeon);
         }
         else {
             output("You don't have {0}!".format(item_use));
@@ -267,8 +237,55 @@ function use(item_use, item_on) {
     return;
 }
 
-function use_item(item, currentState) {
-    if (useable(item, currentState, "item", currentDungeon)) {
+function use_x_on_y(item_use,item_on){
+    
+        
+        if (currentDungeon.items[item_on]) { //the target is an item
+            if (currentPlayer.inventory.indexOf(item_on) != -1) {
+                use_type("item",item_use,item_on, currentDungeon);
+            }
+        }
+        
+        
+        else if (currentRoom.exits[item_on]) { //the target is an exit
+            use_type("exit", item_use,item_on, currentRoom);
+        }
+        
+        
+        else if (currentRoom.objects[item_on]) { //the target is an object
+            use_type("object",item_use,item_on, currentRoom);;
+        }
+        
+        
+        else {
+            output("You do nothing with {0} or {1}".format(item_use, item_on));
+        }
+}
+
+
+//helpers for use
+function use_type(type, item_use,item_on, currentArea){
+    if (currentPlayer.inventory.indexOf(item_use) != -1) {
+        var currentState = getCurrentState(item_on, type, currentArea);
+        if (useable(item_on, currentState, type, currentArea)) {
+            var triggers = currentRoom.exits[item_on].states[currentState].on_use.triggers;
+            var use_currentState = getCurrentState(item_use, "item", currentDungeon);
+            trigger_action(item_use, item_on, triggers, use_currentState, currentRoom);
+        }
+        else {
+            output("You see nothing in the direction of {0} that you can do anything with {1}.".format(item_on, item_use));
+        }
+    }
+    else {
+        output("You don't have {0} in your inventory.".format(item_use));
+    }
+}
+
+
+
+
+function use_X(item, currentState, type, currentArea) {
+    if (useable(item, currentState, type, currentArea)) {
         var triggers = currentDungeon.items[item].states[currentState].on_use.triggers;
         for (var i = 0; i < triggers.length; i++) {
             if (!triggers[i].requires) {
@@ -285,22 +302,7 @@ function use_item(item, currentState) {
 
 }
 
-function use_object(item, currentState) {
-    if (useable(item, currentState, "object", currentRoom)) {
-        var triggers = currentRoom.objects[item].states[currentState].on_use.triggers;
-        for (var i = 0; i < triggers.length; i++) {
-            if (!triggers[i].requires) {
-                process_trigger(currentDungeon, triggers[i]);
-                if (triggers[i].single_trigger && triggers[i].single_trigger === "true") {
-                    triggers.splice(i, 1);
-                }
-            }
-        }
-    }
-    else {
-        output("Nothing interesting happened.")
-    }
-}
+
 
 function take(item) {
     if (currentRoom.items && currentRoom.items.indexOf(item) != -1) {
@@ -325,6 +327,10 @@ function take(item) {
         output("You fumbled around but only found air.");
     }
 }
+
+
+
+
 
 function examine(item) {
 
@@ -387,17 +393,3 @@ function examine(item) {
 }
 
 
-function help() {
-    output(
-        "Your available actions are as follows:" +
-        "look - describes the room" +
-        "move (direction) - attempts to leave the room in that direction" +
-        "examine (item, object, direction) - examines an object" +
-        "take (item) - attempts to take an object" +
-        "use (object, direction, item) - use something" +
-        "use (item) on (object, direction, item) - use something" +
-        "talk (thing) - talks to the thing" +
-        "inventory - checks your current items" +
-        "help - displays this message!"
-        );
-}
