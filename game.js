@@ -101,36 +101,47 @@ function move(direction){
     if(currentRoom.exits && currentRoom.exits[direction] && currentRoom.exits[direction].destination){
         var roomState = getCurrentState(direction,"exit",currentRoom);
         var currentExit = currentRoom.exits[direction].states[roomState];
-        if(currentExit.open && currentExit.open === "true"){
-            output_break();//for readability sake
-            if(currentExit.on_enter){
-                if(currentExit.on_enter.description)
-                    output(currentExit.on_enter.description); //check for and display flavor text
-                if(currentExit.on_enter.triggers){
-                    var triggers = currentExit.on_enter.triggers;
-                    for(var i=0;i<triggers.length;i++){
-                        var shouldReturn = false;
-                        process_trigger(currentDungeon, triggers[i]);
-                        if(triggers[i].trigger_blocking && triggers[i].trigger_blocking === "true")
-                            shouldReturn = true;
-                        if(triggers[i].single_trigger && triggers[i].single_trigger === "true"){
-                            triggers.splice(i, 1);
-                        }
-                        if(shouldReturn)
-                            return;
-                    }
+        if(currentExit.open){
+            if(currentExit.open === "true"){
+                leave_room(currentExit,direction);
+            }
+            else {
+                console.log("Uh oh");
+                if(currentExit.examination){
+                    output(currentExit.examination + " ");
                 }
             }
-            currentRoom = currentDungeon.rooms[currentRoom.exits[direction].destination];
-            outputRoom();
-        } else {
-            console.log("Uh oh");
-            if(currentExit.examination)
-                output(currentExit.examination + " ");
+        }
+        else{//assume door is always open
+            leave_room(currentExit,direction);
         }
     } else {
         output("You can't go {0}!".format(direction));
     }
+}
+
+function leave_room(currentExit,direction){
+    output_break();//for readability sake 
+    if(currentExit.on_enter){
+    if(currentExit.on_enter.description)
+        output(currentExit.on_enter.description); //check for and display flavor text
+    if(currentExit.on_enter.triggers){
+        var triggers = currentExit.on_enter.triggers;
+        for(var i=0;i<triggers.length;i++){
+            var shouldReturn = false;
+            process_trigger(currentRoom, triggers[i]);
+            if(triggers[i].trigger_blocking && triggers[i].trigger_blocking === "true")
+                shouldReturn = true;
+            if(triggers[i].single_trigger && triggers[i].single_trigger === "true"){
+                triggers.splice(i, 1);
+            }
+            if(shouldReturn)
+                return;
+        }
+    }
+    }
+    currentRoom = currentDungeon.rooms[currentRoom.exits[direction].destination];
+    outputRoom();
 }
 
 

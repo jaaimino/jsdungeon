@@ -1,0 +1,144 @@
+{
+    "name": "tutorial",
+    "intro_text": "This text is output when you first choose this dungeon",
+    "start_room": "start",
+    "player": {
+        "name": "playername",
+        "description": "What is output on inspect self",
+        "inventory": ["startingitem"]
+    },
+
+
+    "rooms": {
+
+        "start": {
+            "description": "The room description is output when first the entering room and on look.",
+
+            "exits": {
+                "second room": {
+                    "destination": "second room",
+                    "current_state": "default",
+                    "states": {
+                        "default": {
+                            "description": "The <i> second room</i>'s door is in the room. This is the default description of the door, it is output with the standard room look. Make sure to include the name of the exit in italics within the description.",
+                            "examination": "This is output when examining the door itself",
+                            "open": "true",
+                            "on_enter": {
+                                "description": "This is optional text to be output on going through this door",
+                                "triggers": [
+                                    {
+                                        "trigger_type": "state_change",
+                                        "target_type": "exits",
+                                        "target": "second room's door",
+                                        "new_state": "changed text",
+                                        "description": "As for each thing above this line, 'trigger_type' chooses what sort of change will happen on using this object. 'target_type' specifies what type of object is being targeted (objects,exits,items). 'target' is the specfic target of this action. 'new_state' is the state within the object's state list to switch to."
+                                    }
+                                ]
+
+                            }
+
+
+                        },
+                        "changed text": {
+                            "description": "any object can have an arbitrary amount of states and triggers, we handle them. In this case this text replaces the door look text."
+                        }
+                    }
+
+
+
+                }
+
+            }
+
+
+
+        },
+
+        "second room":
+
+        {
+            "description": "A second room. The description is the bear minimum required attribute for each room, but it stops progress if you do not also include at least an exit back to the previous room",
+
+            "exits": {
+                "start": {
+                    "destination": "start",
+                    "current_state" : "default",
+                    "states"  : {
+                        "default": {
+                            "description" : "<i> start</i>'s door leads back. the minimum a door can have is a default state and a description."
+                        }
+                    }
+
+                },
+                "object room" : {
+                    "destination" : "object room",
+                    "current_state" : "default",
+                    "states"  : {
+                        "default": {
+                            "description" : "<i>object room</i>'s door the minimum a door can have is a default state and a description."
+                        }
+                    }
+                }
+            }
+        },
+        "object room" :
+        {
+            "description" : "objects are things that can be interacted with but not picked up, as opposed to items which can be picked up.",
+            "objects" : {
+                "thing" : {
+                    "current_state" : "default",
+                    "states" : {
+                        "default" : {
+                            "description" : "A <i>thing</i> is in the room. much like items objects are state-based with regard to description, as they tend to change states a lot on interaction. ",
+                            "examination" : "objects descriptions are printed on room looks, which examinations are printed when the object is specified. Much like everything else",
+                            "fail_pickup" : "Objects cannot be picked up, only items can, but you can change the default failed pickup text to something specific to that object."
+                        }
+                    }
+                }
+            },
+            "items" : ["pickup"],
+            
+            
+            "exits" : {
+                "back" : {
+                    "destination" : "second room",
+                    "current_state" : "default",
+                    "states"  : {
+                        "default": {
+                            "description" : "The way <i>back</i>. The minimum a door can have is a default state and a description."
+                        }
+                    }
+                }
+            }
+            
+            
+        }
+
+
+
+    },
+
+    "items" : {
+        "startingitem" : {
+            "current_state" : "default",
+            "states" : {
+                "default" : {
+                    "description" : "all items are based off of states as they tend to change state a lot, in this case the bare minimum is a default state that includes a description."
+                }
+                
+            }
+            
+        }
+        
+    }
+
+
+
+
+
+
+
+
+
+
+}

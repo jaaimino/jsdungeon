@@ -7,6 +7,16 @@
         {
             "name" : "Test 2",
             "filename" : "dungeons/test2.json"
+        },
+        {
+            "name" : "The Dungeon",
+            "filename" : "dungeons/TheDungeon.json"
+        },
+        {
+            "name" : "tutorial",
+            "filename" : "dungeons/default.json"
+            
+            
         }
     ]
 }

@@ -7,6 +7,9 @@ body {
     background-size: cover;
     color: white;
 }
+p{
+    color:inherit;
+}
 
 .page-title {
     margin-top: 50px;
@@ -34,7 +37,7 @@ body {
     padding:0em;
     border-top:1px;
     border-style:dotted;
-    border-color:black;
+    border-color:inherit;
 }
 
 #inputForm {
