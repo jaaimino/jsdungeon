@@ -156,7 +156,7 @@ function outputRoom() {
 /* Interaction Stuff */
 function move(direction) {
     if (currentRoom.exits && check_exist(currentRoom.exits[direction], "destination")) {
-        var roomState = getCurrentState(direction, "exit", currentRoom);
+        var roomState = getCurrentState(direction, "exits", currentRoom);
         var currentExit = currentRoom.exits[direction].states[roomState];
         if(currentExit.open){
             if(currentExit.open === "true"){
@@ -230,16 +230,16 @@ function use(item_use, item_on) {
     else {
         if (currentDungeon.items[item_use]) {
             if (currentPlayer.inventory.indexOf(item_use) != -1) {
-                var currentState = getCurrentState(item_use, "item", currentDungeon);
-                use_X(item_use, currentState, item, currentDungeon);
+                var currentState = getCurrentState(item_use, "items", currentDungeon);
+                use_X(item_use, currentState, "items", currentDungeon);
             }
             else {
                 output("You don't have {0}!".format(item_use));
             }
         }
         else if (currentRoom.objects[item_use]) {
-            var currentState = getCurrentState(item_use, "object", currentRoom);
-            use_X(item_use, currentState, "object", currentDungeon);
+            var currentState = getCurrentState(item_use, "objects", currentRoom);
+            use_X(item_use, currentState, "objects", currentDungeon);
         }
         else {
             output("You don't have {0}!".format(item_use));
@@ -253,7 +253,7 @@ function use_x_on_y(item_use,item_on){
         
         if (check_exist(currentDungeon.items, item_on)) { //the target is an item
             if (currentPlayer.inventory.indexOf(item_on) != -1) {
-                use_type("item",item_use,item_on, currentDungeon);
+                use_type("items",item_use,item_on, currentDungeon);
             }
             else{
                 output("You don't have {0} in your inventory.".format(item_on));
@@ -262,12 +262,12 @@ function use_x_on_y(item_use,item_on){
         
         
         else if (check_exist(currentRoom.exits, item_on)) { //the target is an exit
-            use_type("exit", item_use,item_on, currentRoom);
+            use_type("exits", item_use,item_on, currentRoom);
         }
         
         
         else if (check_exist(currentRoom.objects,item_on)) { //the target is an object
-            use_type("object",item_use,item_on, currentRoom);;
+            use_type("objects",item_use,item_on, currentRoom);;
         }
         
         
@@ -282,8 +282,8 @@ function use_type(type, item_use,item_on, currentArea){
     if (currentPlayer.inventory.indexOf(item_use) != -1) {
         var currentState = getCurrentState(item_on, type, currentArea);
         if (useable(item_on, currentState, type, currentArea)) {
-            var triggers = currentRoom.exits[item_on].states[currentState].on_use.triggers;
-            var use_currentState = getCurrentState(item_use, "item", currentDungeon);
+            var triggers = currentArea[type][item_on].states[currentState].on_use.triggers;
+            var use_currentState = getCurrentState(item_use, "items", currentDungeon);
             trigger_action(item_use, item_on, triggers, use_currentState);
         }
         else {
@@ -300,7 +300,7 @@ function use_type(type, item_use,item_on, currentArea){
 
 function use_X(item, currentState, type, currentArea) {
     if (useable(item, currentState, type, currentArea)) {
-        var triggers = currentDungeon.items[item].states[currentState].on_use.triggers;
+        var triggers = currentDungeon[type][item].states[currentState].on_use.triggers;
         for (var i = 0; i < triggers.length; i++) {
             if (!triggers[i].requires) {
                 process_trigger(triggers[i]);
@@ -327,7 +327,7 @@ function take(item) {
 
     }
     else if (check_exist(currentRoom.objects,item)) {
-        var currentState = getCurrentState(item, "object", currentRoom);
+        var currentState = getCurrentState(item, "objects", currentRoom);
         var currentObject = currentRoom.objects[item].states[currentState];
         if (currentObject.fail_pickup) {
             output(currentObject.fail_pickup);
@@ -353,7 +353,7 @@ function examine(item) {
         output(currentPlayer.description);
     }
     else if (check_exist(currentRoom.objects,item)) {
-        var currentState = getCurrentState(item, "object", currentRoom);
+        var currentState = getCurrentState(item, "objects", currentRoom);
         var currentObject = currentRoom.objects[item].states[currentState];
         //output("You look at {0}".format(item));
         if (currentObject.examination) {
@@ -369,7 +369,7 @@ function examine(item) {
         }
     }
     else if (currentPlayer.inventory.indexOf(item) != -1 || currentRoom.items && currentRoom.items.indexOf(item) != -1) {
-        var currentState = getCurrentState(item, "item", currentDungeon);
+        var currentState = getCurrentState(item, "items", currentDungeon);
         var currentItem = currentDungeon.items[item].states[currentState];
 
         //output("You look at {0}".format(item));
@@ -386,7 +386,7 @@ function examine(item) {
         }
     }
     else if (check_exist(currentRoom.exits,item)) {
-        var currentState = getCurrentState(item, "exit", currentRoom);
+        var currentState = getCurrentState(item, "exits", currentRoom);
         var currentExit = currentRoom.exits[item].states[currentState];
 
         if (currentExit.examination) {
