@@ -273,7 +273,7 @@ function use_x_on_y(item_use,item_on){
         
         
         else {
-            output("You do nothing with {0} or {1}".format(item_use, item_on));
+            output("You do nothing with {0} or {1} as {1} doesn't exist.".format(item_use, item_on));
         }
 }
 
