@@ -27,7 +27,7 @@
             }
         },
         "main hall" : {
-            "description" : "You are in a grand entryway. A sparkling chandellier hangs above a central table with a huge flower arrangement sitting on it. There are small groups and pair of guests chatting along the borders of the room, each holding an hor d'oeuvre or a drink. The butler who took your invitation stands behind you, greting the other guests.",
+            "description" : "You are in a grand entryway. A sparkling chandellier hangs above a central table. There are small groups and pair of guests chatting along the borders of the room, each holding an hor d'oeuvre or a drink. The butler who took your invitation stands behind you, greting the other guests.",
             "items" : ["flowers"],
             "exits" : {
                 "north" : {
@@ -70,6 +70,28 @@
         },
         "billiards room" : {
             "description" : "You are in a dark room with a large billiards table in the center. Many gentlemen lunge around the borders of the room and a few are playing a game of pool in the center.",
+            "objects" : {
+                "cabinet" : {
+                    "current_state" : "default",
+                    "states" : {
+                        "default" : {
+                            "description" : "On the west wall, there's a wooden <i>cabinet</i>.",
+                            "examination" : "It looks open. I wonder if there's anything useful inside.",
+                            "fail_pickup" : "As you try to pick up the cabinet, everyone in the room starts to give you strange looks. You quickly set the cabinet back down and back away from it.",
+                            "on_use" : {
+                                "triggers" : [
+                                    {
+                                        "trigger_type" : "add_item",
+                                        "target_item" : "pool cue",
+                                        "single_trigger" : "true",
+                                        "description" : "You open up the cabinet and find an elegant <i>pool cue</i>."
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            },
             "exits" : {
                 "north" : {
                   "destination" : "trophy room",
@@ -627,10 +649,28 @@
     },
     "items" : {
         "flowers" : {
-            "current_state" : {
+            "current_state" : "default",
+            "states" : {
                 "default" : {
-                    "description" : "On a table you can see a nice arrangement of <i>flowers</i>.",
+                    "description" : "On the central table you can see a nice arrangement of <i>flowers</i>.",
                     "examination" : "They smell quite nice."
+                }
+            }
+        },
+        "pool cue" : {
+            "current_state" : "default",
+            "states" : {
+                "default" : {
+                    "examination" : "It's a long wooden stick for playing pool."
+                }
+            }
+        },
+        "8 ball" : {
+            "current_state" : "default"
+            "states" : {
+                "default" : {
+                    "description" : "On the floor, you can can see an <i>8 ball</i>.",
+                    "examination" : "I wonder if it's magic.."
                 }
             }
         }
