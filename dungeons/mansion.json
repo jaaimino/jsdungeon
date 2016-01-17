@@ -28,6 +28,7 @@
         },
         "main hall" : {
             "description" : "You are in a grand entryway. A sparkling chandellier hangs above a central table with a huge flower arrangement sitting on it. There are small groups and pair of guests chatting along the borders of the room, each holding an hor d'oeuvre or a drink. The butler who took your invitation stands behind you, greting the other guests.",
+            "items" : ["flowers"],
             "exits" : {
                 "north" : {
                     "destination" : "ballroom",
@@ -247,7 +248,7 @@
                             "description" : "A small door to the <i>east</i> seems to lead to the kitchens. Waitstaff rush in and out of the door in a steady stream."
                         }
                     }
-                }
+                },
                 "south" :{
                     "destination" : "portrait hall",
                     "current_state" : "default",
@@ -271,7 +272,7 @@
                             "description" : "To the <i>south</i> lies a small wooden door that leads to the outside."
                         }
                     }
-                }
+                },
                 "west" :{
                     "destination" : "dining hall",
                     "current_state" : "default",
@@ -295,7 +296,7 @@
                           "description" : "Huge glass windows to the <i>north</i> open onto a spectacular balcony."
                       }
                   }
-              }
+              },
               "east" :{
                   "destination" : "east hall",
                   "current_state" : "default",
@@ -304,7 +305,7 @@
                           "description" : "A door to the <i>east</i> leads into the east wing of the building."
                       }
                   }
-              }
+              },
               "south" :{
                   "destination" : "main hall",
                   "current_state" : "default",
@@ -313,7 +314,7 @@
                           "description" : "A curving staircase to the <i>south</i> leads down into the main hall."
                       }
                   }
-              }
+              },
               "west" :{
                   "destination" : "west hall",
                   "current_state" : "default",
@@ -350,7 +351,7 @@
                             "description" : "There is a door to the <i>east</i> leading back into the ballroom."
                         }
                     }
-                }
+                },
                 "left" :{
                     "destination" : "bathroom",
                     "current_state" : "default",
@@ -359,7 +360,7 @@
                             "description" : ""
                         }
                     }
-                }
+                },
                 "middle" :{
                     "destination" : "bedroom",
                     "current_state" : "default",
@@ -368,7 +369,7 @@
                             "description" : "In the <i>middle</i> of the hall, there is a dark wooden door."
                         }
                     }
-                }
+                },
                 "right" :{
                     "destination" : "dark room",
                     "current_state" : "default",
@@ -434,7 +435,7 @@
                             "description" : "A door to the <i>east</i> leads to the ballroom."
                         }
                     }
-                }
+                },
                 "left" :{
                     "destination" : "antique room",
                     "current_state" : "default",
@@ -445,7 +446,7 @@
                             "open" : "false"
                         }
                     }
-                }
+                },
                 "middle" :{
                     "destination" : "blue room",
                     "current_state" : "default",
@@ -454,7 +455,7 @@
                             "description" : "There is a blue door in the <i>middle</i> of the hall."
                         }
                     }
-                }
+                },
                 "right" :{
                     "destination" : "library",
                     "current_state" : "default",
@@ -507,7 +508,7 @@
                             "description" : "A door to the <i>south</i> leads back into the west hall."
                         }
                     }
-                }
+                },
                 "east" :{
                     "destination" : "tower room",
                     "current_state" : "default",
@@ -549,7 +550,7 @@
                             "description" : "A doorway to the <i>north</i> leads to another dark room."
                         }
                     }
-                }
+                },
                 "east" :{
                     "destination" : "storage closet",
                     "current_state" : "default",
@@ -558,7 +559,7 @@
                             "description" : "A doorway to the <i>east</i> leads to what seems to be a storage room."
                         }
                     }
-                }
+                },
                 "west" :{
                     "destination" : "stables",
                     "current_state" : "default",
@@ -593,10 +594,11 @@
                    "current_state" : "default",
                    "states" :{
                        "default" :{
-                           "description" : "There is a curious blank space on the <i>east</i> side of the room. There doesn't seem to be anything there at the moment."
+                           "description" : "There is a curious blank space on the <i>east</i> side of the room. There doesn't seem to be anything there at the moment.",
+                           "open" : "false"
                        }
                    }
-               }
+               },
                "west" :{
                    "destination" : "cellar main room",
                    "current_state" : "default",
@@ -609,9 +611,28 @@
            }
         },
         "treasure room" :{
-            
+            "description" : "You find yourself in a small room. It is pretty unremarkable except for the large chest in the back.",
+            "exits":{
+               "west" :{
+                   "destination" : "storage room",
+                   "current_state" : "default",
+                    "states" :{
+                        "default" :{
+                            "description" : "There is a door to the <i>west</i> leading back into the storage closet."
+                        }
+                    }
+                }
+            }
         }
     },
     "items" : {
+        "flowers" : {
+            "current_state" : {
+                "default" : {
+                    "description" : "On a table you can see a nice arrangement of <i>flowers</i>.",
+                    "examination" : "They smell quite nice."
+                }
+            }
+        }
     }
 }
