@@ -8,6 +8,9 @@ var game_over = false;
 function getCurrentDungeon() {
     return currentDungeon;
 }
+function getCurrentRoom(){
+    return currentRoom;
+}
 
 function isGameOver() {
     return game_over;
