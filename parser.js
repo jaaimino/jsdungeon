@@ -28,7 +28,7 @@ function parseInput(text){
     
     if(reg.talk.test(text)){
         var match = reg.talk.exec(text);
-        talk(match[1]);
+        use(match[1]);
         
         return;
     }
