@@ -52,8 +52,6 @@
         }
         
     },
-
-
     "items": {
         "nuts": {
             "current_state": "default",
