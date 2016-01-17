@@ -136,9 +136,7 @@ function outputRoom() {
         for (var i = 0; i < currentRoom.items.length; i++) {
             var item = currentRoom.items[i];
             var itemState = currentDungeon.items[item].current_state;
-            if (currentDungeon.items[item].states[itemState].visible) {
-                outputString += currentDungeon.items[item].states[itemState].description + " ";
-            }
+            outputString += currentDungeon.items[item].states[itemState].description + " ";
         }
     }
     for (var key in currentRoom.exits) {
