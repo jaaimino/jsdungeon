@@ -256,6 +256,9 @@ function use_x_on_y(item_use,item_on){
             if (currentPlayer.inventory.indexOf(item_on) != -1) {
                 use_type("item",item_use,item_on, currentDungeon);
             }
+            else{
+                output("You don't have {0} in your inventory.".format(item_on));
+            }
         }
         
         
