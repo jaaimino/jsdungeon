@@ -118,10 +118,6 @@ function help() {
         );
 }
 
-
-
-
-
 function look() {
     outputRoom();
 }

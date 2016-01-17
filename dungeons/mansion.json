@@ -1,19 +1,75 @@
 {
     "name" : "The Mansion",
     "author" : "Allison",
-    "intro_text" : "Nope!",
+    "intro_text" : "You have been invited to a ritzy party at a mysterious mansion in the countryside. Rumor has it that this house hides a secret that you are determined to discover. You arrive at the place in a town car and depart the vehicle amidst a few other partygoers, all dressed to the nines for the event. Taking a look around you notice the beautiful but slightly unkempt two story house with wings extending far to either side. Taking a deep breath, you prepare to head inside.",
     "start_room" : "driveway",
     "player" : {
         "name" : "Leonardo",
-        "inventory" : ["banana"],
-        "description": "I'm a guy who really likes bananas."
+        "inventory" : [],
+        "description": "I'm a partyin' fool."
     },
     "rooms" : {
         "driveway" : {
-            "description" : "Stuff"
+            "description" : "You're in a long driveway filled with fancy cars. Well groomed hedges line either side of the driveway.",
+            "exits" : {
+                "north" : {
+                    "destination" : "main hall",
+                    "current_state" : "default",
+                    "states" : {
+                        "default" : {
+                            "description" : "To the <i>north</i>, a grand staircase leads up to the front entryway.",
+                            "open" : "true",
+                            "on_enter" : {
+                                "description" : "As you approach, the broad wooden doors swing open. A butler clad in an immaculate suit greets you and kindly asks for your invitation. You hand it to him wih a smile and continue into the mansion."
+                            }
+                        }
+                    }
+                }
+            }
         },
         "main hall" : {
-            
+            "description" : "You are in a grand entryway. A sparkling chandellier hangs above a central table with a huge flower arrangement sitting on it. There are small groups and pair of guests chatting along the borders of the room, each holding an hor d'oeuvre or a drink. The butler who took your invitation stands behind you, greting the other guests.",
+            "exits" : {
+                "north" : {
+                    "destination" : "ballroom",
+                    "current_state" : "default",
+                    "states" : {
+                        "default" : {
+                            "description" : "To the <i>north</i> lies an impressive curling staircase with gilded railings curling up to the second floor.",
+                            "open" : "true",
+                            "on_enter" : {
+                                "description" : "You enter a grand room, only to be nearly blinded by the bright lights and glittering dresses. Once your eyes adjust, you realize that you are in a huge ballroom."
+                            }
+                        }
+                    }
+                },
+                "east" : {
+                    "destination" : "sitting room",
+                    "current_state" : "default",
+                    "states" : {
+                        "default" : {
+                            "description" : "You notice a door to the <i>east</i> which has intricate, delicate carvings surrounding it. Groups of ladies seem to be heading this way. ",
+                            "open" : "true",
+                            "on_enter" : {
+                                "description" : "A group of ladies looks up as you walk in. Eyes seem to follow you as you enter the room and you get the distinct feeling that this is a room for women only."
+                            }
+                        }
+                    }
+                },
+                "west" : {
+                    "destination" : "billiards room",
+                    "current_state" : "default",
+                    "states" : {
+                        "default" : {
+                            "description" : "To the <i>west</i>, you notice an impressive dark wooden door. Many of the gentlemen at the party seem to be headed in this direction.",
+                            "open" : "true",
+                            "on_enter" : {
+                                "description" : "You enter a dark room with many gentlemen lounging around. A few are gathered in the center of the room around an expensive billiards table."
+                            }
+                        }
+                    }
+                }
+            }
         },
         "billiards room" : {
             
@@ -44,6 +100,11 @@
         },
         "garden" : {
             
+        },
+        "ballroom" : {
+            
         }
+    },
+    "items" : {
     }
 }
