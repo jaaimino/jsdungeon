@@ -239,7 +239,7 @@ function use(item_use, item_on) {
         }
         else if (currentRoom.objects[item_use]) {
             var currentState = getCurrentState(item_use, "objects", currentRoom);
-            use_X(item_use, currentState, "objects", currentDungeon);
+            use_X(item_use, currentState, "objects", currentRoom);
         }
         else {
             output("You don't have {0}!".format(item_use));
@@ -300,7 +300,7 @@ function use_type(type, item_use,item_on, currentArea){
 
 function use_X(item, currentState, type, currentArea) {
     if (useable(item, currentState, type, currentArea)) {
-        var triggers = currentDungeon[type][item].states[currentState].on_use.triggers;
+        var triggers = currentArea[type][item].states[currentState].on_use.triggers;
         for (var i = 0; i < triggers.length; i++) {
             if (!triggers[i].requires) {
                 process_trigger(triggers[i]);

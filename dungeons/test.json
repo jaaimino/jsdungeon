@@ -21,6 +21,7 @@
                         }
                     }
                 }
+
             },
             "items" : ["blue key"],
             "exits" : {
@@ -70,6 +71,11 @@
                     "states" : {
                         "default" : {
                             "description" : "There's a door to the <i>east</i>.",
+                            "examination" : "The door appears to be locked tightly.",
+                            "open" : "false"
+                        },
+                        "open" : {
+                            "description" : "There's a door to the <i>east</i>.",
                             "examination" : "The door appears to be open.",
                             "open" : "true",
                             "on_enter": {
@@ -98,6 +104,27 @@
                                         "description" : "You pull out a book and behind it, find an <i>old banana</i>."
                                     }
                                 ]
+                            }
+                        }
+                    }
+                },
+                "button":{
+                    "current_state" :"default",
+                    "states" : {
+                        "default" : {
+                            "description" : "A shiny button.",
+                            "on_use" : {
+                                "triggers" : [
+                                    {
+                                        "trigger_type" : "change_state",
+                                        "target_type" : "exits",
+                                        "target_item" : "east",
+                                        "target_room" : "entrance",
+                                        "new_state" : "open",
+                                        "single_trigger" : "true",
+                                        "description" : "You hear a loud click, and a rumbling from the entrance."
+                                    }
+                                    ]
                             }
                         }
                     }
