@@ -5,7 +5,7 @@ var reg= {
  talk : /(?:talk|chat) (.*)/i,
  examine : /(?:examine|check|scrutinize|look|inspect) (.*)/i,
  take : /(?:take|grab|snatch|get|pick up) (.*)/i,
- use : /(?:use|combine|try) (.+?)(?: (?:on|with|and) (.+?))?$/i,
+ use : /(?:search|use|combine|try) (.+?)(?: (?:on|with|and|for) (.+?))?$/i,
  look : /(?:look|review|survey)/i,
  inventory : /inventory/i,
  help : /help/i,
@@ -15,9 +15,6 @@ var reg= {
     
 
 function parseInput(text){
-    
-
-
     
     if(reg.move.test(text)){
         
