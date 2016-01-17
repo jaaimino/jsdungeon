@@ -4,6 +4,33 @@ var currentRoom = null;
 var currentPlayer = null;
 var game_over = false;
 
+function getObjects(room){
+    if(room){
+        return currentDungeon.rooms[room].objects;
+    } else {
+        return currentRoom.objects;
+    }
+}
+
+function getItems(){
+    return currentDungeon.items;
+}
+
+function getRoomItems(room){
+    if(room){
+        return currentDungeon.rooms[room].items;
+    } else {
+        return currentRoom.items;
+    }
+}
+
+function getExits(room){
+    if(room){
+        return currentDungeon.rooms[room].exits;
+    } else {
+        return currentRoom.exits;
+    }
+}
 
 function getCurrentDungeon() {
     return currentDungeon;
