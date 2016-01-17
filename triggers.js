@@ -3,17 +3,20 @@ function process_trigger(trigger){
     if(trigger.trigger_type === "state_change"){
         trigger_change_state(trigger);
     }
-    if(trigger.trigger_type === "lose_game"){
+    else if(trigger.trigger_type === "lose_game"){
         trigger_lose_game(trigger);
     }
-    if(trigger.trigger_type === "win_game"){
+    else if(trigger.trigger_type === "win_game"){
         trigger_win_game(trigger);
     }
-    if(trigger.trigger_type === "add_item"){
+    else if(trigger.trigger_type === "add_item"){
         trigger_add_item(trigger);
     }
-    if(trigger.trigger_type === "remove_item"){
+    else if(trigger.trigger_type === "remove_item"){
         trigger_remove_item(trigger);
+    }
+    else{
+        console.log("malformed trigger");
     }
 }
 

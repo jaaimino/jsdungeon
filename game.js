@@ -17,6 +17,7 @@ function getItems(){
 }
 
 function getRoomItems(room){
+    
     if(room){
         return currentDungeon.rooms[room].items;
     } else {

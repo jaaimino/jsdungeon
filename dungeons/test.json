@@ -116,12 +116,11 @@
                             "on_use" : {
                                 "triggers" : [
                                     {
-                                        "trigger_type" : "change_state",
+                                        "trigger_type" : "state_change",
                                         "target_type" : "exits",
-                                        "target_item" : "east",
+                                        "target" : "east",
                                         "target_room" : "entrance",
                                         "new_state" : "open",
-                                        "single_trigger" : "true",
                                         "description" : "You hear a loud click, and a rumbling from the entrance."
                                     }
                                     ]
