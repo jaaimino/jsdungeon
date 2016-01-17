@@ -214,29 +214,401 @@
             }
         },
         "portrait hall" : {
-            "description" : "",
+            "description" : "You enter a long hall with a multitude of portraits spanning generations of the affluent family. However, there doesn't seem to be any recent portraits and a thin layer of dust covers some of the older paintings.",
             "exits" : {
                 "north" : {
-                    
+                    "destination" : "dining hall",
+                    "current_state" : "default",
+                    "states" : {
+                        "default" :{
+                            "description" : "To the <i>north</i> lies a glittering doorway with the doors wide open. Indside, you can see many partygoers gathered around a long wooden table stacked with food."
+                        }
+                    }
                 },
                 "south" : {
-                    
+                    "destination" : "sitting room",
+                    "current_state" : "default",
+                    "states" :{
+                        "default" :{
+                            "description" : "A doorway to the <i>south</i> leads into the pastel sitting room."
+                        }
+                    }
                 }
             }
         },
         "dining hall" : {
+            "description" : "You are in a fancy dining room. A long dark wooden table lies in the middle of the room. The table is stacked with many different types of food and each place setting sports a small card with a guest's name printed in looping cursive. Several sparkling chandeliers hang over the table, illuminating the whole room in bright light. Several guests mill around sampling the food on the table and waiters walk amongst them, offering small appetizers.",
+            "exits" :{
+                "east" :{
+                    "destination" : "kitchens",
+                    "current_state" : "default",
+                    "states" :{
+                        "default" :{
+                            "description" : "A small door to the <i>east</i> seems to lead to the kitchens. Waitstaff rush in and out of the door in a steady stream."
+                        }
+                    }
+                }
+                "south" :{
+                    "destination" : "portrait hall",
+                    "current_state" : "default",
+                    "states" :{
+                        "default" :{
+                            "description" : "Glittering doors to the <i>south</i> lead to a long hall."
+                        }
+                    }
+                }
+            }
             
         },
         "kitchens" : {
-            
-        },
-        "garden" : {
+            "description" : "You are in a bustling kitchen. Cooks and waitstaff hurry throughout.",
+            "exits" :{
+                "south" :{
+                    "destination" : "garden",
+                    "current_state" : "default",
+                    "states" :{
+                        "default" :{
+                            "description" : "To the <i>south</i> lies a small wooden door that leads to the outside."
+                        }
+                    }
+                }
+                "west" :{
+                    "destination" : "dining hall",
+                    "current_state" : "default",
+                    "states" :{
+                        "default" :{
+                            "description" : "To the <i>west</i> lies a door to the dining hall. Waiters rush in and out constantly."
+                        }
+                    }
+                }
+            }
             
         },
         "ballroom" : {
+          "description" : "You are in a huge ballroom filled with women in flowing gowns and men in sharp suits. Pairs of people spin around the dancefloor, while waoters patrol the outskirts offering guests drinks and finger food.",
+          "exits" :{
+              "north" :{
+                  "destination" : "balcony",
+                  "current_state" : "default",
+                  "states" :{
+                      "default" :{
+                          "description" : "Huge glass windows to the <i>north</i> open onto a spectacular balcony."
+                      }
+                  }
+              }
+              "east" :{
+                  "destination" : "east hall",
+                  "current_state" : "default",
+                  "states" :{
+                      "default" :{
+                          "description" : "A door to the <i>east</i> leads into the east wing of the building."
+                      }
+                  }
+              }
+              "south" :{
+                  "destination" : "main hall",
+                  "current_state" : "default",
+                  "states" :{
+                      "default" :{
+                          "description" : "A curving staircase to the <i>south</i> leads down into the main hall."
+                      }
+                  }
+              }
+              "west" :{
+                  "destination" : "west hall",
+                  "current_state" : "default",
+                  "states" :{
+                      "default" :{
+                          "description" : "A door to the <i>west</i> leads to the west wing of the building."
+                      }
+                  }
+              }
+          }
+        },
+        "balcony" : {
+            "description" : "You step out onto a gorgeous balcony. It provides a spectacular view of the countryside. A few partygoers lean over the railing, enjoying the view.",
+            "exits" :{
+                "south" :{
+                    "destination" : "ballroom",
+                    "current_state" : "default",
+                    "states" :{
+                        "default" :{
+                            "description" : "Wide glass windows open to the <i>south</i> and allow entry to the ballroom."
+                        }
+                    }
+                }
+            }
+        },
+        "east hall" :{
+            "description" : "You are in the long main hall of the east wing. No guests seem to have ventured this far.",
+            "exits" :{
+                "east" :{
+                    "destination" : "ballroom",
+                    "current_state" : "default",
+                    "states" :{
+                        "default" :{
+                            "description" : "There is a door to the <i>east</i> leading back into the ballroom."
+                        }
+                    }
+                }
+                "left" :{
+                    "destination" : "bathroom",
+                    "current_state" : "default",
+                    "states" :{
+                        "default" :{
+                            "description" : ""
+                        }
+                    }
+                }
+                "middle" :{
+                    "destination" : "bedroom",
+                    "current_state" : "default",
+                    "states" :{
+                        "default" :{
+                            "description" : "In the <i>middle</i> of the hall, there is a dark wooden door."
+                        }
+                    }
+                }
+                "right" :{
+                    "destination" : "dark room",
+                    "current_state" : "default",
+                    "states" :{
+                        "default" :{
+                            "description" : "To the <i>right</i> there is a small door fitting snugly in its frame."
+                        }
+                    }
+                }
+            }
+        },
+        "bathroom" :{
+            "description" : "",
+            "exits" :{
+                "south" :{
+                    "destination" : "east hall",
+                    "current_state" : "default",
+                    "states" :{
+                        "default" :{
+                            "description" : "To the <i>south</i> is a door leading back into the hall."
+                        }
+                    }
+                }
+            }
+        },
+        "bedroom" :{
+            "description" : "You are in a richly adorned bedroom. A large four-posted bed lies in the center of the room. Dark furniture lines the walls and richly colored wallpaper covers them. One window is partially open and the curtains billow in the breeze coming in.",
+            "exits" :{
+                "south" :{
+                    "destination" : "east hall",
+                    "current_state" : "default",
+                    "states" :{
+                        "default" :{
+                            "description" : "To the <i>south</i> lies the door back into the east hall."
+                        }
+                    }
+                }
+            }
+        },
+        "dark room" :{
+            "description" : "You are in a small photography dark room. Red light fills the room and illuminates the chemical bins and a line holding partially developed prints. You squint at them, but cannot make out the subject of the photographs.",
+            "exits" :{
+                "south" :{
+                    "destination" : "east hall",
+                    "current_state" : "default",
+                    "states" :{
+                        "default" :{
+                            "description": "To the <i>south</i> lies the door back to the east hall"
+                        }
+                    }
+                }
+            }
             
         },
+        "west hall" :{
+            "description" : "You are in a long hall in the west wing. A few guests seem to be wandering around.",
+            "exits" :{
+                "east" :{
+                    "destination" : "ballroom",
+                    "current_state" : "default",
+                    "states" :{
+                        "default" :{
+                            "description" : "A door to the <i>east</i> leads to the ballroom."
+                        }
+                    }
+                }
+                "left" :{
+                    "destination" : "antique room",
+                    "current_state" : "default",
+                    "states" :{
+                        "default" :{
+                            "description" : "A wooden door on the <i>left</i> seems slightly fancier than the others in the hall.",
+                            "examination" : "You try the handle only to find that the door is locked.",
+                            "open" : "false"
+                        }
+                    }
+                }
+                "middle" :{
+                    "destination" : "blue room",
+                    "current_state" : "default",
+                    "states" :{
+                        "default" :{
+                            "description" : "There is a blue door in the <i>middle</i> of the hall."
+                        }
+                    }
+                }
+                "right" :{
+                    "destination" : "library",
+                    "current_state" : "default",
+                    "states" :{
+                        "default" :{
+                            "description" : "There is a large door on the <i>right</i>."
+                        }
+                    }
+                }
+            }
+            
+        },
+        "antique room" :{
+            "description" : "You find yourself in a splendid room filled with antiques.",
+            "exits" :{
+                "south" :{
+                    "destination" : "west hall",
+                    "current_state" : "default",
+                    "states" :{
+                        "default" :{
+                            "description" : "To the <i>south</i> is the door back to the west hall."
+                        }
+                    }
+                }
+            }
+            
+        },
+        "blue room" :{
+            "description" : "You are in a room decorated entirely in shades of blue. Fountains of sparkling blue run in the corners of the room. The purpose of such a room escapes you.",
+            "exits" :{
+                "south" :{
+                    "destination" : "west hall",
+                    "current_state" : "default",
+                    "states" :{
+                        "default" :{
+                            "description" : "A door to the <i>south</i> leads back into the west hall."
+                        }
+                    }
+                }
+            }
+        },
+        "library" :{
+            "description" : "You are in a large library. There are more books here than you have ever imagined existed. Some books are open on tables and party guests stand reading them. Other guests gather in corners, looking at the bookshelves or holding heated conversations.",
+            "exits" :{
+                "south" :{
+                    "destination" : "west hall",
+                    "current_state" : "default",
+                    "states" :{
+                        "default" :{
+                            "description" : "A door to the <i>south</i> leads back into the west hall."
+                        }
+                    }
+                }
+                "east" :{
+                    "destination" : "tower room",
+                    "current_state" : "default",
+                    "states" :{
+                        "default" :{
+                            "description" : "A huge bookshelf covers the entire <i>east</i> wall.",
+                            "on_enter" : {
+                                "description" : "A section of the bookshelf retracts, opening up an entryway into the wall. You find a dark stone staircase winding its way upwards. You decide to follow to stairs to investigate."
+                            },
+                            "open" : "false"
+                        }
+                    }
+                }
+            }
+            
+        },
+        "tower room" :{
+            "description" : "You find yourself in a room at the top of a tower. It is illuminated only by the moonlight filtering in through thin windows.",
+            "exits" :{
+                "south" :{
+                    "destination" : "library",
+                    "current_state" : "default",
+                    "states" :{
+                        "default" :{
+                            "description" : "There is a spiraling staircase to the <i>south</i> leading back down to the library."
+                        }
+                    }
+                }
+            }
+        },
         "cellar main room" : {
+            "description" : "You are in a cool dark cellar room. Several barrels sit in the corners and water drips from one corner, forming a small puddle on the ground.",
+            "exits" :{
+                "north" :{
+                    "destination" : "root cellar",
+                    "current_state" : "default",
+                    "states" :{
+                        "default" :{
+                            "description" : "A doorway to the <i>north</i> leads to another dark room."
+                        }
+                    }
+                }
+                "east" :{
+                    "destination" : "storage closet",
+                    "current_state" : "default",
+                    "states" :{
+                        "default" :{
+                            "description" : "A doorway to the <i>east</i> leads to what seems to be a storage room."
+                        }
+                    }
+                }
+                "west" :{
+                    "destination" : "stables",
+                    "current_state" : "default",
+                    "states" :{
+                        "default" :{
+                            "description" : "Stairs to the <i>west</i> lead to the stables."
+                        }
+                    }
+                }
+            }
+        },
+        "root cellar" :{
+            "description" : "You are in a dark room filled with piles of fruits and vegetables. It seems to be the mansion's root cellar.",
+            "exits" :{
+                "south" :{
+                    "destination" : "cellar main room",
+                    "current_state" : "default",
+                    "states" :{
+                        "default" :{
+                            "description" : "A doorway to the <i>south</i> leads to the main cellar room"
+                        }
+                    }
+                }
+            }
+            
+        },
+        "storage closet" :{
+           "description" : "You find yourself in a small, cold storage room. There are shelves of cleaning products and mops and brooms line most of the walls.",
+           "exits" :{
+               "east" :{
+                   "destination" : "treasure room",
+                   "current_state" : "default",
+                   "states" :{
+                       "default" :{
+                           "description" : "There is a curious blank space on the <i>east</i> side of the room. There doesn't seem to be anything there at the moment."
+                       }
+                   }
+               }
+               "west" :{
+                   "destination" : "cellar main room",
+                   "current_state" : "default",
+                   "states" :{
+                       "default" :{
+                           "description" : "There is a door to the <i>west</i> leading back into the cellar main room."
+                       }
+                   }
+               }
+           }
+        },
+        "treasure room" :{
             
         }
     },
