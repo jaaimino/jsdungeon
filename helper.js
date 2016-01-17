@@ -42,3 +42,14 @@ function trigger_action(item_use, item_on, triggers, currentState) {
         output("You used {0} on {1} to no effect.".format(item_use, item_on));
     }
 }
+
+
+function check_exist(array, item){
+    if(array && array[item]){
+        return true;
+    }
+    else{
+        return false;
+    }
+    
+}

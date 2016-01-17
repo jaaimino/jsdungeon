@@ -155,7 +155,7 @@ function outputRoom() {
 
 /* Interaction Stuff */
 function move(direction) {
-    if (currentRoom.exits && currentRoom.exits[direction] && currentRoom.exits[direction].destination) {
+    if (currentRoom.exits && check_exist(currentRoom.exits[direction], "destination")) {
         var roomState = getCurrentState(direction, "exit", currentRoom);
         var currentExit = currentRoom.exits[direction].states[roomState];
         if(currentExit.open){
@@ -171,7 +171,6 @@ function move(direction) {
         }
         else{//assume door is always open
             leave_room(currentExit,direction);
-
         }
     }
     else {
@@ -252,7 +251,7 @@ function use(item_use, item_on) {
 function use_x_on_y(item_use,item_on){
     
         
-        if (currentDungeon.items[item_on]) { //the target is an item
+        if (check_exist(currentDungeon.items, item_on)) { //the target is an item
             if (currentPlayer.inventory.indexOf(item_on) != -1) {
                 use_type("item",item_use,item_on, currentDungeon);
             }
@@ -262,12 +261,12 @@ function use_x_on_y(item_use,item_on){
         }
         
         
-        else if (currentRoom.exits[item_on]) { //the target is an exit
+        else if (check_exist(currentRoom.exits, item_on)) { //the target is an exit
             use_type("exit", item_use,item_on, currentRoom);
         }
         
         
-        else if (currentRoom.objects[item_on]) { //the target is an object
+        else if (check_exist(currentRoom.objects,item_on)) { //the target is an object
             use_type("object",item_use,item_on, currentRoom);;
         }
         
@@ -327,7 +326,7 @@ function take(item) {
         return;
 
     }
-    else if (currentRoom.objects && currentRoom.objects[item]) {
+    else if (check_exist(currentRoom.objects,item)) {
         var currentState = getCurrentState(item, "object", currentRoom);
         var currentObject = currentRoom.objects[item].states[currentState];
         if (currentObject.fail_pickup) {
@@ -353,7 +352,7 @@ function examine(item) {
         output("My name is " + currentPlayer.name);
         output(currentPlayer.description);
     }
-    else if (currentRoom.objects && currentRoom.objects[item]) {
+    else if (check_exist(currentRoom.objects,item)) {
         var currentState = getCurrentState(item, "object", currentRoom);
         var currentObject = currentRoom.objects[item].states[currentState];
         //output("You look at {0}".format(item));
@@ -386,7 +385,7 @@ function examine(item) {
             }
         }
     }
-    else if (currentRoom.exits && currentRoom.exits[item]) {
+    else if (check_exist(currentRoom.exits,item)) {
         var currentState = getCurrentState(item, "exit", currentRoom);
         var currentExit = currentRoom.exits[item].states[currentState];
 
