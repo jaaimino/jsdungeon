@@ -7,8 +7,13 @@ body {
     background-size: cover;
     color: white;
 }
+
 p{
     color:inherit;
+}
+
+i{
+    color: #3CA9F7;
 }
 
 .page-title {
