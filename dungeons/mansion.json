@@ -18,7 +18,6 @@
                     "states" : {
                         "default" : {
                             "description" : "To the <i>north</i>, a grand staircase leads up to the front entryway.",
-                            "open" : "true",
                             "on_enter" : {
                                 "description" : "As you approach, the broad wooden doors swing open. A butler clad in an immaculate suit greets you and kindly asks for your invitation. You hand it to him wih a smile and continue into the mansion."
                             }
@@ -36,7 +35,6 @@
                     "states" : {
                         "default" : {
                             "description" : "To the <i>north</i> lies an impressive curling staircase with gilded railings curling up to the second floor.",
-                            "open" : "true",
                             "on_enter" : {
                                 "description" : "You enter a grand room, only to be nearly blinded by the bright lights and glittering dresses. Once your eyes adjust, you realize that you are in a huge ballroom."
                             }
@@ -49,7 +47,6 @@
                     "states" : {
                         "default" : {
                             "description" : "You notice a door to the <i>east</i> which has intricate, delicate carvings surrounding it. Groups of ladies seem to be heading this way. ",
-                            "open" : "true",
                             "on_enter" : {
                                 "description" : "A group of ladies looks up as you walk in. Eyes seem to follow you as you enter the room and you get the distinct feeling that this is a room for women only."
                             }
@@ -62,7 +59,6 @@
                     "states" : {
                         "default" : {
                             "description" : "To the <i>west</i>, you notice an impressive dark wooden door. Many of the gentlemen at the party seem to be headed in this direction.",
-                            "open" : "true",
                             "on_enter" : {
                                 "description" : "You enter a dark room with many gentlemen lounging around. A few are gathered in the center of the room around an expensive billiards table."
                             }
@@ -72,25 +68,161 @@
             }
         },
         "billiards room" : {
-            
+            "description" : "You are in a dark room with a large billiards table in the center. Many gentlemen lunge around the borders of the room and a few are playing a game of pool in the center.",
+            "exits" : {
+                "north" : {
+                  "destination" : "trophy room",
+                  "current_state" : "default",
+                  "states" : {
+                      "default" : {
+                          "description" : "To the <i>north</i> there is a door left slightly ajar. A thin line of cigar smoke escapes from the next room."
+                      }
+                  }
+                },
+                "east" : {
+                    "destination" : "main hall",
+                    "current_state" : "default",
+                    "states" : {
+                        "default" : {
+                            "description" : "An impressive wooden door to the main hall lies to the <i>east</i>."
+                        }
+                    }
+                }
+            }
         },
-        "tropy room" : {
-            
+        "trophy room" : {
+            "description" : "You are in a room thick with cigar smoke. Men sit in heavy leather chairs drinking sophisticated drinks and smoking. A few are gathered near an impressive fireplace on one side.",
+            "exits" : {
+                "north" : {
+                    "destination" : "stables",
+                    "current_state" : "default",
+                    "states" : {
+                        "default" : {
+                            "description" : "To the <i>north</i> is a nondescript wooden door leading outside."
+                        }
+                    }
+                },
+                "south" : {
+                    "destination" : "billiards room",
+                    "current_state" : "default",
+                    "states" : {
+                        "default" : {
+                            "description" : "To the <i>south</i> is a large door, left slightly open, leading to the billiards room."
+                        }
+                    }
+                }
+            }
         },
         "stables" : {
-            
+            "description" : "You are in a large stable. The amount of money spent building the structure is apparent, but cobwebs in aome corners and a thin layer of dust seem to suggest a lack of use. You hear a couple of horses stamping down the aisle.",
+            "exits" : {
+                "east" : {
+                    "destination" : "cellar main room",
+                    "current_state" : "default",
+                    "states" : {
+                        "default" : {
+                            "description" : "Just outside the door to the <i>east</i>, you can see a set of stairs leading down to a cellar. The door covering these stairs is slightly ajar, as if inviting you in."
+                        }
+                    }
+                },
+                "south" : {
+                    "destination" : "trophy room",
+                    "current_state" : "default",
+                    "states" : {
+                        "default" : {
+                            "description" : "To the <i>south</i>, a nondescript door leads back into the mansion."
+                        }
+                    }
+                }
+            }
         },
         "sitting room" : {
-            
+            "description" : "You are in a room filled with delicate furniture and pastel fabrics. Ladies in chatter in small groups throughout the room.",
+            "exits" : {
+                "north" : {
+                    "destination" : "portrait hall",
+                    "current_state" : "default",
+                    "states" : {
+                        "default" : {
+                            "description" : "A wide doorway to the <i>north</i> seems to lead to an impressive hallway."
+                        }
+                    }
+                },
+                "east" : {
+                    "destination" : "sunroom",
+                    "current_state" : "default",
+                    "states" : {
+                        "default" : {
+                            "description" : "A glass door to the <i>east</i> leads to a room filled with green plants."
+                        }
+                    }
+                },
+                "west" : {
+                    "destination" : "main hall",
+                    "current_state" : "default",
+                    "states" : {
+                        "default" : {
+                            "description" : "A delicate door to the <i>west</i> leads back into the main hall."
+                        }
+                    }
+                }
+            }
         },
         "sunroom" : {
-            
+            "description" : "You find yourself in a small greenhouse. At one time, it must have held an impressive collection of plants, but now it is very overgrown.",
+            "exits" : {
+                "north" : {
+                    "destination" : "garden",
+                    "current_state" : "default",
+                    "states" : {
+                        "default" : {
+                            "description" : "To the <i>north</i> lies a door outside."
+                        }
+                    }
+                },
+                "west" : {
+                    "destination" : "sitting room",
+                    "states" : {
+                        "default" : {
+                            "description" : "A glass dor to the <i>west</i> leads into a delicate sitting room."
+                        }
+                    }
+                }
+            }
         },
         "garden" : {
-            
+            "description" : "You are in a beautiful garden. There are flowering rosebushes all around, though they are slightly overgrown. Behind the flowers lies a more practical garden that seems to be used to grow fresh food for the kitchen.",
+            "exits" : {
+                "north" : {
+                    "destination" : "kitchen",
+                    "current_state" : "default",
+                    "states" : {
+                        "default" : {
+                            "description" : "To the <i>north</i> lies a simple wooden door."
+                        }
+                    }
+                },
+                "south" : {
+                    "destination" : "sunroom",
+                    "current_state" : "default",
+                    "states" : {
+                        "default" :{
+                            "description" : "To the <i>south</i> is a door that leads inside the mansion."
+                        }
+                    }
+                }
+            }
         },
         "portrait hall" : {
-            
+            "description" : "",
+            "exits" : {
+                "north" : {
+                    
+                },
+                "south" : {
+                    
+                }
+            }
         },
         "dining hall" : {
             
@@ -102,6 +234,9 @@
             
         },
         "ballroom" : {
+            
+        },
+        "cellar main room" : {
             
         }
     },
