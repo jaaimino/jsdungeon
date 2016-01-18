@@ -1,13 +1,5 @@
-/* Will use localstorage to save game */
-
-function localStorageTest(currentDungeon){
-    // Store
-    localStorage.setItem("lastname", "Smith");
-    // Retrieve
-    localStorage.getItem("lastname");
-}
-
 function saveGame(dungeonName, currentDungeon){
+    currentDungeon.currentPlayer = getCurrentPlayer();
     localStorage.setItem(dungeonName, JSON.stringify(currentDungeon));
 }
 

@@ -1,80 +1,39 @@
 /* Global variables :( */
-var currentDungeon = null;
-var currentRoom = null;
-var currentPlayer = null;
 var game_over = false;
-
-function getObjects(room){
-    if(room){
-        return currentDungeon.rooms[room].objects;
-    } else {
-        return currentRoom.objects;
-    }
-}
-
-function getItems(){
-    return currentDungeon.items;
-}
-
-function getRoomItems(room){
-    
-    if(room){
-        return currentDungeon.rooms[room].items;
-    } else {
-        return currentRoom.items;
-    }
-}
-
-function getExits(room){
-    if(room){
-        return currentDungeon.rooms[room].exits;
-    } else {
-        return currentRoom.exits;
-    }
-}
-
-function getCurrentDungeon() {
-    return currentDungeon;
-}
-function getCurrentRoom(){
-    return currentRoom;
-}
-
-function isGameOver() {
-    return game_over;
-}
-
-function endGame() {
-    game_over = true;
-}
+var currentDungeon = null;
 
 function startGame(dungeon) {
     //Do some setup
     game_over = false;
     currentDungeon = dungeon;
-    currentRoom = currentDungeon.rooms[currentDungeon.start_room];
-    document.getElementById("page-title").innerHTML = currentDungeon.name;
-    var page_title_inner = "<b>{0}</b>".format(currentDungeon.name);
-    document.getElementById("page-title-inner").innerHTML = page_title_inner;
-    if (currentDungeon.player) {
-        currentPlayer = currentDungeon.player;
-        if (!currentPlayer.inventory) {
-            currentPlayer.inventory = [];
+    //If we don't have a current room, we're starting a new save
+    if(!getCurrentDungeon().currentRoom){
+        getCurrentDungeon().currentRoom = getCurrentDungeon().rooms[getCurrentDungeon().start_room];
+        document.getElementById("page-title").innerHTML = getCurrentDungeon().name;
+        var page_title_inner = "<b>{0}</b>".format(getCurrentDungeon().name);
+        document.getElementById("page-title-inner").innerHTML = page_title_inner;
+        if (getCurrentDungeon().player) {
+            getCurrentDungeon().currentPlayer = getCurrentDungeon().player;
+            if (!getCurrentDungeon().currentPlayer.inventory) {
+                getCurrentDungeon().currentPlayer.inventory = [];
+            }
+            if (!getCurrentDungeon().currentPlayer.description) {
+                getCurrentDungeon().currentPlayer.description = "A person.";
+            }
         }
-        if (!currentPlayer.description) {
-            currentPlayer.description = "A person.";
+        else {
+            getCurrentDungeon().currentPlayer = {
+                name: "Jim",
+                description: "A person",
+                inventory: []
+            }
         }
-    }
-    else {
-        currentPlayer = {
-            name: "Jim",
-            description: "A person",
-            inventory: []
-        }
+        clearOutput();
+        examine_self();
+        output(getCurrentDungeon().intro_text);
+        outputRoom();
     }
     clearOutput();
-    examine_self();
-    output(currentDungeon.intro_text);
     outputRoom();
 }
 
@@ -95,7 +54,7 @@ function loadGameButton() {
 function saveGameButton() {
     var select = document.getElementById("adventureSelect");
     var dungeonName = select.options[select.selectedIndex].text;
-    saveGame(dungeonName, currentDungeon);
+    saveGame(dungeonName, getCurrentDungeon());
     output("<i>Saved game for {0}</i>".format(dungeonName));
     return false;
 }
@@ -125,28 +84,28 @@ function look() {
 }
 
 function outputRoom() {
-    if(currentRoom.name){
-        output("<b>{0}</b>".format(currentRoom.name));
+    if(getCurrentRoom().name){
+        output("<b>{0}</b>".format(getCurrentRoom().name));
     }
     var outputString = "";
-    outputString += currentRoom.description + " ";
-    for (var key in currentRoom.objects) {
-        if (currentRoom.objects.hasOwnProperty(key)) {
-            var objectState = currentRoom.objects[key].current_state;
-            outputString += currentRoom.objects[key].states[objectState].description + " ";
+    outputString += getCurrentRoom().description + " ";
+    for (var key in getCurrentRoom().objects) {
+        if (getCurrentRoom().objects.hasOwnProperty(key)) {
+            var objectState = getCurrentRoom().objects[key].current_state;
+            outputString += getCurrentRoom().objects[key].states[objectState].description + " ";
         }
     }
-    if (currentRoom.items) {
-        for (var i = 0; i < currentRoom.items.length; i++) {
-            var item = currentRoom.items[i];
-            var itemState = currentDungeon.items[item].current_state;
-            outputString += currentDungeon.items[item].states[itemState].description + " ";
+    if (getCurrentRoom().items) {
+        for (var i = 0; i < getCurrentRoom().items.length; i++) {
+            var item = getCurrentRoom().items[i];
+            var itemState = getCurrentDungeon().items[item].current_state;
+            outputString += getCurrentDungeon().items[item].states[itemState].description + " ";
         }
     }
-    for (var key in currentRoom.exits) {
-        if (currentRoom.exits.hasOwnProperty(key)) {
-            var roomState = currentRoom.exits[key].current_state;
-            outputString += currentRoom.exits[key].states[roomState].description + " ";
+    for (var key in getCurrentRoom().exits) {
+        if (getCurrentRoom().exits.hasOwnProperty(key)) {
+            var roomState = getCurrentRoom().exits[key].current_state;
+            outputString += getCurrentRoom().exits[key].states[roomState].description + " ";
         }
     }
     output(outputString);
@@ -154,9 +113,9 @@ function outputRoom() {
 
 /* Interaction Stuff */
 function move(direction) {
-    if (currentRoom.exits && check_exist(currentRoom.exits[direction], "destination")) {
-        var roomState = getCurrentState(direction, "exits", currentRoom);
-        var currentExit = currentRoom.exits[direction].states[roomState];
+    if (getCurrentRoom().exits && check_exist(getCurrentRoom().exits[direction], "destination")) {
+        var roomState = getCurrentState(direction, "exits", getCurrentRoom());
+        var currentExit = getCurrentRoom().exits[direction].states[roomState];
         if(currentExit.open){
             if(currentExit.open === "true"){
                 leave_room(currentExit,direction);
@@ -198,17 +157,17 @@ function leave_room(currentExit,direction){
             }
         }
     }
-    currentRoom = currentDungeon.rooms[currentRoom.exits[direction].destination];
+    getCurrentDungeon().currentRoom = getCurrentDungeon().rooms[getCurrentRoom().exits[direction].destination];
     outputRoom();
 }
 
 function inventory() {
-    if (currentPlayer.inventory.length > 0) {
+    if (currentDungeon.currentPlayer.inventory.length > 0) {
         outputString = "";
-        for (var i = 0; i < currentPlayer.inventory.length - 1; i++) {
-            outputString += "<i>" + currentPlayer.inventory[i] + "</i>" + ", ";
+        for (var i = 0; i < currentDungeon.currentPlayer.inventory.length - 1; i++) {
+            outputString += "<i>" + currentDungeon.currentPlayer.inventory[i] + "</i>" + ", ";
         }
-        outputString += "<i>" + currentPlayer.inventory[currentPlayer.inventory.length - 1] + "</i>";
+        outputString += "<i>" + currentDungeon.currentPlayer.inventory[currentDungeon.currentPlayer.inventory.length - 1] + "</i>";
         output("items: {0}".format(outputString));
     }
     else {
@@ -222,18 +181,18 @@ function use(item_use, item_on) {
     }
     //Else USE X
     else {
-        if (check_exist(currentDungeon.items, item_use)) {
-            if (currentPlayer.inventory.indexOf(item_use) != -1) {
-                var currentState = getCurrentState(item_use, "items", currentDungeon);
-                use_X(item_use, currentState, "items", currentDungeon);
+        if (check_exist(getCurrentDungeon().items, item_use)) {
+            if (currentDungeon.currentPlayer.inventory.indexOf(item_use) != -1) {
+                var currentState = getCurrentState(item_use, "items", getCurrentDungeon());
+                use_X(item_use, currentState, "items", getCurrentDungeon());
             }
             else {
                 output("You don't have {0}!".format(item_use));
             }
         }
-        else if (check_exist(currentRoom.objects, item_use)) {
-            var currentState = getCurrentState(item_use, "objects", currentRoom);
-            use_X(item_use, currentState, "objects", currentRoom);
+        else if (check_exist(getCurrentRoom().objects, item_use)) {
+            var currentState = getCurrentState(item_use, "objects", getCurrentRoom());
+            use_X(item_use, currentState, "objects", getCurrentRoom());
         }
         else {
             output("You don't have {0}!".format(item_use));
@@ -243,19 +202,19 @@ function use(item_use, item_on) {
 }
 
 function use_x_on_y(item_use,item_on){
-        if (check_exist(currentDungeon.items, item_on)) { //the target is an item
-            if (currentPlayer.inventory.indexOf(item_on) != -1) {
-                use_type("items",item_use,item_on, currentDungeon);
+        if (check_exist(getCurrentDungeon().items, item_on)) { //the target is an item
+            if (currentDungeon.currentPlayer.inventory.indexOf(item_on) != -1) {
+                use_type("items",item_use,item_on, getCurrentDungeon());
             }
             else{
                 output("You don't have {0} in your inventory.".format(item_on));
             }
         }
-        else if (check_exist(currentRoom.exits, item_on)) { //the target is an exit
-            use_type("exits", item_use,item_on, currentRoom);
+        else if (check_exist(getCurrentRoom().exits, item_on)) { //the target is an exit
+            use_type("exits", item_use,item_on, getCurrentRoom());
         }
-        else if (check_exist(currentRoom.objects,item_on)) { //the target is an object
-            use_type("objects",item_use,item_on, currentRoom);;
+        else if (check_exist(getCurrentRoom().objects,item_on)) { //the target is an object
+            use_type("objects",item_use,item_on, getCurrentRoom());;
         }
         else {
             output("You do nothing with {0} or {1} as {1} doesn't exist.".format(item_use, item_on));
@@ -264,11 +223,11 @@ function use_x_on_y(item_use,item_on){
 
 //helpers for use
 function use_type(type, item_use,item_on, currentArea){
-    if (currentPlayer.inventory.indexOf(item_use) != -1) {
+    if (currentDungeon.currentPlayer.inventory.indexOf(item_use) != -1) {
         var currentState = getCurrentState(item_on, type, currentArea);
         if (useable(item_on, currentState, type, currentArea)) {
             var triggers = currentArea[type][item_on].states[currentState].on_use.triggers;
-            var use_currentState = getCurrentState(item_use, "items", currentDungeon);
+            var use_currentState = getCurrentState(item_use, "items", getCurrentDungeon());
             trigger_action(item_use, item_on, triggers, use_currentState);
         }
         else {
@@ -300,17 +259,17 @@ function use_X(item, currentState, type, currentArea) {
 }
 
 function take(item) {
-    if (currentRoom.items && currentRoom.items.indexOf(item) != -1) {
+    if (getCurrentRoom().items && getCurrentRoom().items.indexOf(item) != -1) {
         
-        currentPlayer.inventory.push(item);
-        currentRoom.items.splice(currentRoom.items.indexOf(item),1);
+        currentDungeon.currentPlayer.inventory.push(item);
+        getCurrentRoom().items.splice(getCurrentRoom().items.indexOf(item),1);
         output("You picked up the <i>{0}</i>!".format(item));
         return;
 
     }
-    else if (check_exist(currentRoom.objects,item)) {
-        var currentState = getCurrentState(item, "objects", currentRoom);
-        var currentObject = currentRoom.objects[item].states[currentState];
+    else if (check_exist(getCurrentRoom().objects,item)) {
+        var currentState = getCurrentState(item, "objects", getCurrentRoom());
+        var currentObject = getCurrentRoom().objects[item].states[currentState];
         if (currentObject.fail_pickup) {
             output(currentObject.fail_pickup);
             return;
@@ -325,7 +284,7 @@ function take(item) {
 }
 
 function examine_self(){
-    output("Your name is " + currentPlayer.name + ". " + currentPlayer.description);
+    output("Your name is " + currentDungeon.currentPlayer.name + ". " + currentDungeon.currentPlayer.description);
 }
 
 function examine(item) {
@@ -333,22 +292,22 @@ function examine(item) {
     if (item === "self") {
         examine_self();
     }
-    else if (check_exist(currentRoom.objects,item)) {
-        var currentState = getCurrentState(item, "objects", currentRoom);
-        var currentObject = currentRoom.objects[item].states[currentState];
+    else if (check_exist(getCurrentRoom().objects,item)) {
+        var currentState = getCurrentState(item, "objects", getCurrentRoom());
+        var currentObject = getCurrentRoom().objects[item].states[currentState];
         //output("You look at {0}".format(item));
         lookatthing(currentObject);
     }
-    else if (currentPlayer.inventory.indexOf(item) != -1 || currentRoom.items && currentRoom.items.indexOf(item) != -1) {
-        var currentState = getCurrentState(item, "items", currentDungeon);
-        var currentItem = currentDungeon.items[item].states[currentState];
+    else if (currentDungeon.currentPlayer.inventory.indexOf(item) != -1 || getCurrentRoom().items && getCurrentRoom().items.indexOf(item) != -1) {
+        var currentState = getCurrentState(item, "items", getCurrentDungeon());
+        var currentItem = getCurrentDungeon().items[item].states[currentState];
 
         //output("You look at {0}".format(item));
         lookatthing(currentItem);
     }
-    else if (check_exist(currentRoom.exits,item)) {
-        var currentState = getCurrentState(item, "exits", currentRoom);
-        var currentExit = currentRoom.exits[item].states[currentState];
+    else if (check_exist(getCurrentRoom().exits,item)) {
+        var currentState = getCurrentState(item, "exits", getCurrentRoom());
+        var currentExit = getCurrentRoom().exits[item].states[currentState];
 
         if (currentExit.examination) {
             output(currentExit.examination);
@@ -382,10 +341,10 @@ function lookatthing(currentThing){
 }
 
 function talk(person){
-    if(check_exist(currentRoom.objects,person)){
+    if(check_exist(getCurrentRoom().objects,person)){
         
-        var currentState = getCurrentState(person,"objects",currentRoom);
-        var currentPerson = currentRoom.objects[person].states[currentState];
+        var currentState = getCurrentState(person,"objects",getCurrentRoom());
+        var currentPerson = getCurrentRoom().objects[person].states[currentState];
         var notalk=true;
         
         if(check_exist(currentPerson.on_talk,"description")){
@@ -410,4 +369,52 @@ function talk(person){
     else{
         output("You couldn't figure out how to talk to that.")
     }
+}
+
+/* Various getters below */
+function getObjects(room){
+    if(room){
+        return getCurrentDungeon().rooms[room].objects;
+    } else {
+        return getCurrentRoom().objects;
+    }
+}
+
+function getItems(){
+    return getCurrentDungeon().items;
+}
+
+function getRoomItems(room){
+    if(room){
+        return getCurrentDungeon().rooms[room].items;
+    } else {
+        return getCurrentRoom().items;
+    }
+}
+
+function getExits(room){
+    if(room){
+        return getCurrentDungeon().rooms[room].exits;
+    } else {
+        return getCurrentRoom().exits;
+    }
+}
+
+function getCurrentPlayer() {
+    return getCurrentDungeon().currentPlayer;
+}
+
+function getCurrentDungeon(){
+    return currentDungeon;
+}
+function getCurrentRoom(){
+    return getCurrentDungeon().currentRoom;
+}
+
+function isGameOver() {
+    return game_over;
+}
+
+function endGame() {
+    game_over = true;
 }
