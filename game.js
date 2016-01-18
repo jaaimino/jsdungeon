@@ -297,6 +297,7 @@ function use_X(item, currentState, type, currentArea) {
                 process_trigger(triggers[i]);
                 if (triggers[i].single_trigger && triggers[i].single_trigger === "true") {
                     triggers.splice(i, 1);
+                    i = i=1;
                 }
             }
         }
