@@ -203,9 +203,9 @@ function inventory() {
     if (currentPlayer.inventory.length > 0) {
         outputString = "";
         for (var i = 0; i < currentPlayer.inventory.length - 1; i++) {
-            outputString += currentPlayer.inventory[i] + ", ";
+            outputString += "<i>" + currentPlayer.inventory[i] + "</i>" + ", ";
         }
-        outputString += currentPlayer.inventory[currentPlayer.inventory.length - 1];
+        outputString += "<i>" + currentPlayer.inventory[currentPlayer.inventory.length - 1] + "</i>";
         output("items: {0}".format(outputString));
     }
     else {

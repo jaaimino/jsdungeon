@@ -59,10 +59,7 @@
                     "current_state" : "default",
                     "states" : {
                         "default" : {
-                            "description" : "To the <i>west</i>, you notice an impressive dark wooden door. Many of the gentlemen at the party seem to be headed in this direction.",
-                            "on_enter" : {
-                                "description" : "You enter a dark room with many gentlemen lounging around. A few are gathered in the center of the room around an expensive billiards table."
-                            }
+                            "description" : "To the <i>west</i>, you notice an impressive dark wooden door. Many of the gentlemen at the party seem to be headed in this direction."
                         }
                     }
                 }
@@ -70,6 +67,7 @@
         },
         "billiards room" : {
             "description" : "You are in a dark room with a large billiards table in the center. Many gentlemen lunge around the borders of the room and a few are playing a game of pool in the center.",
+            "items" : ["8 ball"],
             "objects" : {
                 "cabinet" : {
                     "current_state" : "default",
@@ -114,7 +112,49 @@
             }
         },
         "trophy room" : {
-            "description" : "You are in a room thick with cigar smoke. Men sit in heavy leather chairs drinking sophisticated drinks and smoking. A few are gathered near an impressive fireplace on one side.",
+            "description" : "You are in a room thick with cigar smoke. Men sit in heavy leather chairs drinking sophisticated drinks and smoking.",
+            "objects" : {
+                "gun rack" : {
+                    "current_state" : "default",
+                    "states" : {
+                        "default" : {
+                            "description" : "On the wall has a <i>gun rack</i>.",
+                            "examination" : "These look pretty expensive.",
+                            "fail_pickup" : "I probably shouldn't touch this.."
+                        }
+                    }
+                },
+                "fireplace" : {
+                    "current_state" : "default",
+                    "states" : {
+                        "default" : {
+                            "description" : "A few are gathered near an impressive <i>fireplace</i> on one side.",
+                            "examination" : "Wow, this is pretty darn warm. I should get one of these.",
+                            "fail_pickup" : "I don't even have to tell you that's a bad idea.."
+                        }
+                    }
+                },
+                "cigar case" : {
+                    "current_state" : "default",
+                    "states" : {
+                        "default" : {
+                            "description" : "On a table near the fire, there's a fancy <i>cigar case</i>.",
+                            "examination" : "You open up the <i>cigar case</i> and see that there are a few left. A man nearby tells you to go ahead and take one.",
+                            "fail_pickup" : "I probably shouldn't take this with me.",
+                            "on_use" : {
+                                "triggers" : [
+                                    {
+                                        "trigger_type" : "add_item",
+                                        "target_item" : "cigar",
+                                        "single_trigger" : "true",
+                                        "description" : "You take a fresh <i>cigar</i> from the <i>cigar case</i>."
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            },
             "exits" : {
                 "north" : {
                     "destination" : "stables",
@@ -666,7 +706,7 @@
             }
         },
         "8 ball" : {
-            "current_state" : "default"
+            "current_state" : "default",
             "states" : {
                 "default" : {
                     "description" : "On the floor, you can can see an <i>8 ball</i>.",
