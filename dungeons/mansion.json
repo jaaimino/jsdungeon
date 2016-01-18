@@ -416,8 +416,7 @@
                                         "target" : "dark corner",
                                         "requires" : "flashlight",
                                         "requires_state":"default",
-                                        "new_state" : "light",
-                                        "description" : "The corner lights up."
+                                        "new_state" : "light"
                                     }
                                 ]
                             }
@@ -585,12 +584,36 @@
                 },
                 "left": {
                     "destination": "antique room",
-                    "current_state": "default",
+                    "current_state": "locked",
                     "states": {
-                        "default": {
+                        "locked": {
                             "description": "A wooden door on the <i>left</i> seems slightly fancier than the others in the hall.",
                             "examination": "You try the handle only to find that the door is locked.",
-                            "open": "false"
+                            "open": "false",
+                            "on_use" : {
+                                "triggers" : [
+                                    {
+                                        "trigger_type" : "state_change",
+                                        "target_type" : "exits",
+                                        "target" : "left",
+                                        "requires" : "old key",
+                                        "requires_state":"default",
+                                        "new_state" : "unlocked",
+                                        "description" : "You put the <i>old key</i> into the lock on the door, and hear a satisfying click. The key breaks into pieces once the door opens."
+                                    },
+                                    {
+                                        "trigger_type" : "remove_item",
+                                        "target_item" : "old key",
+                                        "single_trigger" : "true",
+                                        "requires" : "old key",
+                                        "requires_state":"default"
+                                    }
+                                ]
+                            }
+                        },
+                        "unlocked" : {
+                            "description" : "A wooden door on the <i>left</i> seems slightly fancier than the others in the hall.",
+                            "examination" : "It looks unlocked. I wonder what's inside."
                         }
                     }
                 },
@@ -605,10 +628,16 @@
                 },
                 "right": {
                     "destination": "library",
-                    "current_state": "default",
+                    "current_state": "locked",
                     "states": {
-                        "default": {
-                            "description": "There is a large door on the <i>right</i>."
+                        "locked": {
+                            "description": "There is a large door on the <i>right</i>.",
+                            "examination": "You try the handle only to find that the door is locked.",
+                            "open": "false"
+                        },
+                        "unlocked" : {
+                            "description" : "There is a large door on the <i>right</i>.",
+                            "examination" : "It looks unlocked. I wonder what's inside."
                         }
                     }
                 }
@@ -618,6 +647,37 @@
         "antique room": {
             "name": "Antique Room",
             "description": "You find yourself in a splendid room filled with antiques.",
+            "objects" :{
+                 "old pot": {
+                    "current_state": "default",
+                    "states": {
+                        "default": {
+                            "description": "On a pedastal to the east is an <i>old pot</i>. It has intricate designs over the whole thing.",
+                            "examination": "Its a very old pot. You cant tell where or when it is from, but it looks very expensive.",
+                            "fail_pickup": "I probably shouldn't take this with me. It seems to fragile to be carrying around.",
+                            "on_use": {
+                                "triggers": [
+                                    {
+                                        "trigger_type": "add_item",
+                                        "target_item": "note",
+                                        "single_trigger": "true",
+                                        "description": "You shift the pot slightly and find a <i>note</i> underneath."
+                                    },
+                                    {
+                                        "trigger_type" : "state_change",
+                                        "target_type" : "exits",
+                                        "target_room" : "west hall",
+                                        "target" : "right",
+                                        "single_trigger" : "true",
+                                        "new_state" : "unlocked",
+                                        "description" : "You hear a clicking sound coming from the <i>west hall</i>."
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            },
             "exits": {
                 "south": {
                     "destination": "west hall",
@@ -649,6 +709,24 @@
         "library": {
             "name": "Library",
             "description": "You are in a large library. There are more books here than you have ever imagined existed. Some books are open on tables and party guests stand reading them. Other guests gather in corners, looking at the bookshelves or holding heated conversations.",
+            "objects":{
+                "west":{
+                    "current_state": "default",
+                    "states" :{
+                        "default" :{
+                            "description" : "A huge bookshelf covers the <i>west</i> wall.",
+                            "on_use": {
+                                "triggers": [{
+                                    "trigger_type": "add_item",
+                                    "target_item": "thick book",
+                                    "single_trigger": "true",
+                                    "description": "You search the bookcase and pull out a <i>thick book</i>."
+                                }]
+                            }
+                        }
+                    }
+                }
+            },
             "exits": {
                 "south": {
                     "destination": "west hall",
@@ -661,14 +739,17 @@
                 },
                 "east": {
                     "destination": "tower room",
-                    "current_state": "default",
+                    "current_state": "locked",
                     "states": {
-                        "default": {
-                            "description": "A huge bookshelf covers the entire <i>east</i> wall.",
+                        "locked": {
+                            "description": "Another huge bookshelf covers the entire <i>east</i> wall.",
+                            "open": "false",
                             "on_enter": {
                                 "description": "A section of the bookshelf retracts, opening up an entryway into the wall. You find a dark stone staircase winding its way upwards. You decide to follow to stairs to investigate."
-                            },
-                            "open": "false"
+                            }
+                        },
+                        "unlocked" : {
+                            "descritpion" : "There is a small entryway to the <i>east</i> where the bookshelf moved aside."
                         }
                     }
                 }
@@ -851,7 +932,7 @@
             "states": {
                 "default": {
                     "description": "A large <i>soup bowl</i> sits by your place at the table. It is about half-full of some sort of soup.",
-                    "examine": "The soup smells delicious. Maybe you should try some..",
+                    "examination": "The soup smells delicious. Maybe you should try some..",
                     "on_use": {
                         "triggers": [{
                             "trigger_type": "remove_item",
@@ -867,7 +948,7 @@
             "states": {
                 "default": {
                     "description": "A steaming <i>lamb plate</i> sits at your place setting.",
-                    "examine": "Several slices of tender-looking lamb sit atop a pile of spiced rice. A flavourful sauce is drizzled around the food. The whole thing looks like a work of culinary art.",
+                    "examination": "Several slices of tender-looking lamb sit atop a pile of spiced rice. A flavourful sauce is drizzled around the food. The whole thing looks like a work of culinary art.",
                     "on_use": {
                         "triggers": [{
                             "tirgger_type": "remove_item",
@@ -883,7 +964,7 @@
             "states": {
                 "default": {
                     "description": "A shiny and sharp-looking <i>steak knife</i> lies on the counter.",
-                    "examine": "This thing looks pretty sharp! Better be careful with it."
+                    "examination": "This thing looks pretty sharp! Better be careful with it."
                 }
             }
         },
@@ -891,7 +972,7 @@
             "current_state": "default",
             "states": {
                 "default" :{
-                    "examine": "The <i>old key</i> looks like it belongs in a museum."
+                    "examination": "The <i>old key</i> looks like it belongs in a museum."
                 }
             }
         },
@@ -900,7 +981,70 @@
             "states": {
                 "default" :{
                     "description" : "There is a plain black <i>flashlight</i> on one of the hay bales",
-                    "examine": "It's a pretty spiffy <i>flashlight</i>. You flip it on and a bright light emanates from the bulb. You quickly turn it off again to conserve its battery."
+                    "examination": "It's a pretty spiffy <i>flashlight</i>. You flip it on and a bright light emanates from the bulb. You quickly turn it off again to conserve its battery."
+                }
+            }
+        },
+        "tomato": {
+            "current_state": "default",
+            "states": {
+                "default" :{
+                    "examination" : "It is a shiny red <i>tomato</i>.",
+                    "on_use": {
+                        "triggers": [{
+                            "trigger_type": "remove_item",
+                            "target_item": "tomato",
+                            "description": "You bite into the <i>tomato</i>. Rich tomato juices flow into your mouth. You dispose of the remains."
+                        }]
+                    }
+                }
+            }
+        },
+        "lettuce":{
+            "curent_state": "default",
+            "states":{
+                "default":{
+                    "examination": "It is a nice looking head of <i>lettuce</i>. Might not be good to eat on its own though.",
+                    "on_use": {
+                        "triggers": [{
+                            "trigger_type": "remove_item",
+                            "target_item": "lettuce",
+                            "description": "You take a big bite of the <i>lettuce</i>. It tastes gross and you immediately spit the mouthful out and throw away the rest."
+                        }]
+                    }
+                }
+            }
+        },
+        "red rose":{
+            "current_state": "default",
+            "states":{
+                "default":{
+                    "examination": "It is a beautiful, delicate red rose. THe petals are soft to the touch, but the thorns are sharp."
+                }
+            }
+        },
+        "broken pot":{
+            "current_state": "default",
+            "states":{
+                "default":{
+                    "description" : "There are <i>broken pot</i> shards littered areound the shelves of plants.",
+                    "examination" : "The shards look useful for.. something."
+                }
+            }
+        },
+        "note":{
+            "current_state": "default",
+            "states" :{
+                "default" :{
+                    "examination" : "You read the note. 'The secret that you seek lies behind the tomes of greatest knowledge.'"
+                }
+            }
+        },
+        "thick book":{
+            "current_state": "default",
+            "states" :{
+                "default" :{
+                    "examination" : "It is a very <i>thick book</i>. It looks like it contains important knowlege."
                 }
             }
         }
