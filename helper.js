@@ -29,14 +29,17 @@ function useable(itemname, currentState, itemtype, currentArea){
 
 function trigger_action(item_use, item_on, triggers, currentState) {
     var notUsed = true;
+
     for (var i = 0; i < triggers.length; i++) {
         if (triggers[i].requires && triggers[i].requires === item_use && triggers[i].requires_state === currentState) {
             process_trigger(triggers[i]);
             notUsed = false;
-        }
-        if (triggers[i].single_trigger && triggers[i].single_trigger === "true") {
+            if (triggers[i].single_trigger && triggers[i].single_trigger === "true") {
             triggers.splice(i, 1);
+            i = i-1;
+            }
         }
+
     }
     if (notUsed) {
         output("You used {0} on {1} to no effect.".format(item_use, item_on));
