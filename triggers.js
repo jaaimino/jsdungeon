@@ -3,6 +3,9 @@ function process_trigger(trigger){
     if(trigger.trigger_type === "state_change"){
         trigger_change_state(trigger);
     }
+    else if(trigger.trigger_type === "flavor_text"){
+        trigger_flavor_text(trigger);
+    }
     else if(trigger.trigger_type === "lose_game"){
         trigger_lose_game(trigger);
     }
@@ -37,6 +40,12 @@ function getTargetGroup(trigger){
         } else {
             return getExits();
         }
+    }
+}
+
+function trigger_flavor_text(trigger){
+    if(trigger.text){
+        output(trigger.text);
     }
 }
 

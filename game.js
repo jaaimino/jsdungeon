@@ -124,6 +124,9 @@ function look() {
 }
 
 function outputRoom() {
+    if(currentRoom.name){
+        output("<b>{0}</b>".format(currentRoom.name));
+    }
     var outputString = "";
     outputString += currentRoom.description + " ";
     for (var key in currentRoom.objects) {

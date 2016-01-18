@@ -10,7 +10,20 @@
     },
     "rooms" : {
         "driveway" : {
+            "name" : "The Driveway",
             "description" : "You're in a long driveway filled with fancy cars. Well groomed hedges line either side of the driveway.",
+            "objects" : {
+                "gargoyles" : {
+                    "current_state" : "default",
+                    "states" : {
+                        "default" : {
+                            "description" : "On both sides of the stairs, you can see large <i>gargoyles</i>.",
+                            "examination" : "Those are pretty spooky scary. I don't even..",
+                            "fail_pickup" : "I'm not going near those things.."
+                        }
+                    }
+                }
+            },
             "exits" : {
                 "north" : {
                     "destination" : "main hall",
@@ -27,6 +40,7 @@
             }
         },
         "main hall" : {
+            "name" : "Main Hall",
             "description" : "You are in a grand entryway. A sparkling chandellier hangs above a central table. There are small groups and pair of guests chatting along the borders of the room, each holding an hor d'oeuvre or a drink. The butler who took your invitation stands behind you, greting the other guests.",
             "items" : ["flowers"],
             "exits" : {
@@ -66,6 +80,7 @@
             }
         },
         "billiards room" : {
+            "name" : "Billiards Room",
             "description" : "You are in a dark room with a large billiards table in the center. Many gentlemen lunge around the borders of the room and a few are playing a game of pool in the center.",
             "items" : ["8 ball"],
             "objects" : {
@@ -112,6 +127,7 @@
             }
         },
         "trophy room" : {
+            "name" : "Tropy Room",
             "description" : "You are in a room thick with cigar smoke. Men sit in heavy leather chairs drinking sophisticated drinks and smoking.",
             "objects" : {
                 "gun rack" : {
@@ -177,7 +193,9 @@
             }
         },
         "stables" : {
+            "name" : "Stables",
             "description" : "You are in a large stable. The amount of money spent building the structure is apparent, but cobwebs in aome corners and a thin layer of dust seem to suggest a lack of use. You hear a couple of horses stamping down the aisle.",
+            "items" : ["rope"],
             "exits" : {
                 "east" : {
                     "destination" : "cellar main room",
@@ -200,7 +218,9 @@
             }
         },
         "sitting room" : {
+            "name" : "Sitting Room",
             "description" : "You are in a room filled with delicate furniture and pastel fabrics. Ladies in chatter in small groups throughout the room.",
+            "items" : ["small cake"],
             "exits" : {
                 "north" : {
                     "destination" : "portrait hall",
@@ -232,6 +252,7 @@
             }
         },
         "sunroom" : {
+            "name" : "Sunroom",
             "description" : "You find yourself in a small greenhouse. At one time, it must have held an impressive collection of plants, but now it is very overgrown.",
             "exits" : {
                 "north" : {
@@ -254,6 +275,7 @@
             }
         },
         "garden" : {
+            "name" : "Garden",
             "description" : "You are in a beautiful garden. There are flowering rosebushes all around, though they are slightly overgrown. Behind the flowers lies a more practical garden that seems to be used to grow fresh food for the kitchen.",
             "exits" : {
                 "north" : {
@@ -277,6 +299,7 @@
             }
         },
         "portrait hall" : {
+            "name" : "Portrait Hall",
             "description" : "You enter a long hall with a multitude of portraits spanning generations of the affluent family. However, there doesn't seem to be any recent portraits and a thin layer of dust covers some of the older paintings.",
             "exits" : {
                 "north" : {
@@ -300,7 +323,9 @@
             }
         },
         "dining hall" : {
+            "name" : "Dining Hall",
             "description" : "You are in a fancy dining room. A long dark wooden table lies in the middle of the room. The table is stacked with many different types of food and each place setting sports a small card with a guest's name printed in looping cursive. Several sparkling chandeliers hang over the table, illuminating the whole room in bright light. Several guests mill around sampling the food on the table and waiters walk amongst them, offering small appetizers.",
+            "items" : ["soup bowl"],
             "exits" :{
                 "east" :{
                     "destination" : "kitchens",
@@ -324,6 +349,7 @@
             
         },
         "kitchens" : {
+            "name" : "Kitchens",
             "description" : "You are in a bustling kitchen. Cooks and waitstaff hurry throughout.",
             "exits" :{
                 "south" :{
@@ -348,6 +374,7 @@
             
         },
         "ballroom" : {
+          "name" : "Ballroom",
           "description" : "You are in a huge ballroom filled with women in flowing gowns and men in sharp suits. Pairs of people spin around the dancefloor, while waoters patrol the outskirts offering guests drinks and finger food.",
           "exits" :{
               "north" :{
@@ -389,6 +416,7 @@
           }
         },
         "balcony" : {
+            "name" : "Balcony",
             "description" : "You step out onto a gorgeous balcony. It provides a spectacular view of the countryside. A few partygoers lean over the railing, enjoying the view.",
             "exits" :{
                 "south" :{
@@ -403,6 +431,7 @@
             }
         },
         "east hall" :{
+            "name" : "East Hall",
             "description" : "You are in the long main hall of the east wing. No guests seem to have ventured this far.",
             "exits" :{
                 "east" :{
@@ -444,7 +473,8 @@
             }
         },
         "bathroom" :{
-            "description" : "",
+            "name" : "Bathroom",
+            "description" : "You are in an extravagant bathroom. There are gilded tiles throughout and a larger bathtub than you have ever seen before.",
             "exits" :{
                 "south" :{
                     "destination" : "east hall",
@@ -458,6 +488,7 @@
             }
         },
         "bedroom" :{
+            "name" : "Bedroom",
             "description" : "You are in a richly adorned bedroom. A large four-posted bed lies in the center of the room. Dark furniture lines the walls and richly colored wallpaper covers them. One window is partially open and the curtains billow in the breeze coming in.",
             "exits" :{
                 "south" :{
@@ -472,6 +503,7 @@
             }
         },
         "dark room" :{
+            "name" : "Dark Room",
             "description" : "You are in a small photography dark room. Red light fills the room and illuminates the chemical bins and a line holding partially developed prints. You squint at them, but cannot make out the subject of the photographs.",
             "exits" :{
                 "south" :{
@@ -487,6 +519,7 @@
             
         },
         "west hall" :{
+            "name" : "West Hall",
             "description" : "You are in a long hall in the west wing. A few guests seem to be wandering around.",
             "exits" :{
                 "east" :{
@@ -531,6 +564,7 @@
             
         },
         "antique room" :{
+            "name" : "Antique Room",
             "description" : "You find yourself in a splendid room filled with antiques.",
             "exits" :{
                 "south" :{
@@ -546,6 +580,7 @@
             
         },
         "blue room" :{
+            "name" : "Blue Room",
             "description" : "You are in a room decorated entirely in shades of blue. Fountains of sparkling blue run in the corners of the room. The purpose of such a room escapes you.",
             "exits" :{
                 "south" :{
@@ -560,6 +595,7 @@
             }
         },
         "library" :{
+            "name" : "Library",
             "description" : "You are in a large library. There are more books here than you have ever imagined existed. Some books are open on tables and party guests stand reading them. Other guests gather in corners, looking at the bookshelves or holding heated conversations.",
             "exits" :{
                 "south" :{
@@ -588,6 +624,7 @@
             
         },
         "tower room" :{
+            "name" : "Tower Room",
             "description" : "You find yourself in a room at the top of a tower. It is illuminated only by the moonlight filtering in through thin windows.",
             "exits" :{
                 "south" :{
@@ -602,6 +639,7 @@
             }
         },
         "cellar main room" : {
+            "name" : "Cellar Main Room",
             "description" : "You are in a cool dark cellar room. Several barrels sit in the corners and water drips from one corner, forming a small puddle on the ground.",
             "exits" :{
                 "north" :{
@@ -634,6 +672,7 @@
             }
         },
         "root cellar" :{
+            "name" : "Root Cellar",
             "description" : "You are in a dark room filled with piles of fruits and vegetables. It seems to be the mansion's root cellar.",
             "exits" :{
                 "south" :{
@@ -649,6 +688,7 @@
             
         },
         "storage closet" :{
+            "name" : "Storage Closet",
            "description" : "You find yourself in a small, cold storage room. There are shelves of cleaning products and mops and brooms line most of the walls.",
            "exits" :{
                "east" :{
@@ -673,6 +713,7 @@
            }
         },
         "treasure room" :{
+            "name" : "Treasure Room",
             "description" : "You find yourself in a small room. It is pretty unremarkable except for the large chest in the back.",
             "exits":{
                "west" :{
@@ -711,6 +752,67 @@
                 "default" : {
                     "description" : "On the floor, you can can see an <i>8 ball</i>.",
                     "examination" : "I wonder if it's magic.."
+                }
+            }
+        },
+        "cigar" :{
+            "current_state" : "default",
+            "states" :{
+                "default" :{
+                    "examination" : "Its a fancy cigar with foreign-looking marks.",
+                    "on_use" :{
+                        "triggers" :[
+                            {
+                                "trigger_type" : "flavor_text",
+                                "text" : "You light up the <i>cigar</i>, inhale and blow out a puff of smoke."
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        "small cake" :{
+            "current_state" : "default",
+            "states" :{
+                "default" :{
+                    "description" : "There is a plate of <i>small cake</i>s sitting on one of the tables in the room.",
+                    "examination" : "A delicate cake with a small flower on the top. It looks very sweet.",
+                    "on_use" : {
+                        "triggers" : [
+                            {
+                                "trigger_type" : "remove_item",
+                                "target_item" : "small cake",
+                                "description" : "You eat the <i>small cake</i> and taste a burst of sweetness and spices. You feel slightly more energized and continue on your journey."
+                            }
+                        ]
+                    }
+                } 
+            }
+        },
+        "rope" :{
+            "current_state" : "default",
+            "states" :{
+                "default" :{
+                    "description" : "There is a coiled length of <i>rope</i> laying on the floor a few feet away.",
+                    "examination" : "The <i>rope</i> seems strong. Perhaps even strong enough to hold a person such as yourself."
+                }
+            }
+        },
+        "soup bowl" :{
+            "current_state" : "default",
+            "states" :{
+                "default" :{
+                    "description" : "A large <i>soup bowl</i> sits to by your place at the table. It is about half-full of some sort of soup.",
+                    "examine" : "The soup smells delicious. Maybe you should try some..",
+                    "on_use" :{
+                        "triggers" :[
+                            {
+                              "trigger_type" : "remove_item",
+                              "target_item" : "soup bowl",
+                              "description" : "You slurp up the soup from the bowl. It tastes amazing and creates a warm, fuzzy feeling in your stomach."
+                            }
+                        ]
+                    }
                 }
             }
         }
