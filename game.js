@@ -106,16 +106,17 @@ function gameloop(text) {
 
 function help() {
     output(
-        "Your available actions are as follows:" +
-        "look - describes the room" +
-        "move (direction) - attempts to leave the room in that direction" +
-        "examine (item, object, direction) - examines an object" +
-        "take (item) - attempts to take an object" +
-        "use (object, direction, item) - use something" +
-        "use (item) on (object, direction, item) - use something" +
-        "talk (thing) - talks to the thing" +
-        "inventory - checks your current items" +
-        "help - displays this message!"
+        "Your available actions are as follows: <br>" +
+        "<i>look</i> - describes the room <br>" +
+        "<i>move</i> (direction) - attempts to leave the room in that direction <br>" +
+        "<i>examine</i> (item, object, direction) - examines an object <br>" +
+        "<i>search</i> (item, object, direction) - searches an object <br>" + 
+        "<i>take</i> (item) - attempts to take an object <br>" +
+        "<i>use</i> (object, direction, item) - use something <br>" +
+        "<i>use</i> (item) <i>on</i> (object, direction, item) - use something <br>" +
+        "<i>talk</i> (thing) - talks to the thing <br>" +
+        "<i>inventory</i> - checks your current items <br>" +
+        "<i>help</i> - displays this message! <br>"
         );
 }
 
@@ -247,8 +248,6 @@ function use(item_use, item_on) {
 }
 
 function use_x_on_y(item_use,item_on){
-    
-        
         if (check_exist(currentDungeon.items, item_on)) { //the target is an item
             if (currentPlayer.inventory.indexOf(item_on) != -1) {
                 use_type("items",item_use,item_on, currentDungeon);
@@ -257,18 +256,12 @@ function use_x_on_y(item_use,item_on){
                 output("You don't have {0} in your inventory.".format(item_on));
             }
         }
-        
-        
         else if (check_exist(currentRoom.exits, item_on)) { //the target is an exit
             use_type("exits", item_use,item_on, currentRoom);
         }
-        
-        
         else if (check_exist(currentRoom.objects,item_on)) { //the target is an object
             use_type("objects",item_use,item_on, currentRoom);;
         }
-        
-        
         else {
             output("You do nothing with {0} or {1} as {1} doesn't exist.".format(item_use, item_on));
         }
@@ -320,7 +313,7 @@ function take(item) {
     if (currentRoom.items && currentRoom.items.indexOf(item) != -1) {
         currentPlayer.inventory.push(item);
         currentRoom.items.splice(currentRoom.items.indexOf(item));
-        output("You picked up the {0}!".format(item));
+        output("You picked up the <i>{0}</i>!".format(item));
         return;
 
     }

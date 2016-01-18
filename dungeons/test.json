@@ -123,7 +123,7 @@
                                         "new_state" : "open",
                                         "description" : "You hear a loud click, and a rumbling from the entrance."
                                     }
-                                    ]
+                                ]
                             }
                         }
                     }
@@ -193,6 +193,7 @@
                 "default" : {
                     "description" : "On the floor there is a <i>blue key</i>.",
                     "examination" : "It looks like a standard key, painted blue.",
+                    "visible" : "true",
                     "on_use" : {
                         
                     },
