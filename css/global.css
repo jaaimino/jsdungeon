@@ -12,6 +12,10 @@ p{
     color:inherit;
 }
 
+b{
+    color: purple;
+}
+
 i{
     color: #3CA9F7;
 }
@@ -20,7 +24,7 @@ i{
     margin-top: 50px;
     margin-left: auto;
     margin-right: auto;
-    width: 700px;
+    width: 50%;
     padding: 8px;
     background-color: #2C3133;
 }
@@ -63,7 +67,7 @@ i{
 }
 
 #output {
-    height: 400px;
+    height: 90%;
     overflow-y: scroll;
     margin-top: 0px;
     margin-bottom: 2px;
@@ -74,7 +78,8 @@ i{
     background-color: #2C3133;
     margin-left: auto;
     margin-right: auto;
-    width: 700px;
+    height: 70%;
+    width: 50%;
 }
 
 #chooseAdventureForm {
