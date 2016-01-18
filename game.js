@@ -227,7 +227,7 @@ function use(item_use, item_on) {
     }
     //Else USE X
     else {
-        if (currentDungeon.items[item_use]) {
+        if (check_exist(currentDungeon.items, item_use)) {
             if (currentPlayer.inventory.indexOf(item_use) != -1) {
                 var currentState = getCurrentState(item_use, "items", currentDungeon);
                 use_X(item_use, currentState, "items", currentDungeon);
@@ -236,7 +236,7 @@ function use(item_use, item_on) {
                 output("You don't have {0}!".format(item_use));
             }
         }
-        else if (currentRoom.objects[item_use]) {
+        else if (check_exist(currentRoom.objects, item_use)) {
             var currentState = getCurrentState(item_use, "objects", currentRoom);
             use_X(item_use, currentState, "objects", currentRoom);
         }
