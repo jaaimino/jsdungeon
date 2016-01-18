@@ -996,13 +996,13 @@
             "name": "Root Cellar",
             "description": "You are in a dark room filled with piles of fruits and vegetables. It seems to be the mansion's root cellar.",
             "objects" :{
-                "pile of lemons": {
+                "pile of apples": {
                     "current_state": "default",
                     "states": {
                         "default": {
-                            "description": "There is a <i>pile of lemons</i> beside the door that look especially delicious.",
-                            "examination": "That sure is a lot of lemons! It must have taken quite a while to pick them all.",
-                            "fail_pickup": "Why can't I hold all these lemons!",
+                            "description": "There is a <i>pile of apples</i> beside the door that look especially delicious.",
+                            "examination": "That sure is a lot of apples! It must have taken quite a while to pick them all.",
+                            "fail_pickup": "Why can't I hold all these apples!",
                             "on_use": {
                                 "triggers": [{
                                     "trigger_type": "add_item",
