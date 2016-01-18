@@ -44,12 +44,12 @@
             "description": "You are in a grand entryway. A sparkling chandellier hangs above a central table. There are small groups and pair of guests chatting along the borders of the room, each holding an hor d'oeuvre or a drink. The butler who took your invitation stands behind you, greting the other guests.",
             "items": ["flowers"],
             "exits": {
-                "north": {
+                "up": {
                     "destination": "ballroom",
                     "current_state": "default",
                     "states": {
                         "default": {
-                            "description": "To the <i>north</i> lies an impressive curling staircase with gilded railings curling up to the second floor.",
+                            "description": "In front of you lies an impressive curling staircase with gilded railings curling <i>up</i> to the second floor.",
                             "on_enter": {
                                 "description": "You enter a grand room, only to be nearly blinded by the bright lights and glittering dresses. Once your eyes adjust, you realize that you are in a huge ballroom."
                             }
@@ -305,7 +305,7 @@
                     "current_state": "default",
                     "states": {
                         "default": {
-                            "description": "To the <i>north</i> lies a glittering doorway with the doors wide open. Indside, you can see many partygoers gathered around a long wooden table stacked with food."
+                            "description": "To the <i>north</i> lies a glittering doorway with the doors wide open. Inside, you can see many partygoers gathered around a long wooden table stacked with food."
                         }
                     }
                 },
@@ -392,7 +392,7 @@
         },
         "ballroom": {
             "name": "Ballroom",
-            "description": "You are in a huge ballroom filled with women in flowing gowns and men in sharp suits. Pairs of people spin around the dancefloor, while waoters patrol the outskirts offering guests drinks and finger food.",
+            "description": "You are in a huge ballroom filled with women in flowing gowns and men in sharp suits. Pairs of people spin around the dancefloor, while waiters patrol the outskirts offering guests drinks and finger food.",
             "items": ["caviar", "fancy drink"],
             "objects": {
                 "dark corner": {
@@ -445,12 +445,12 @@
                         }
                     }
                 },
-                "south": {
+                "down": {
                     "destination": "main hall",
                     "current_state": "default",
                     "states": {
                         "default": {
-                            "description": "A curving staircase to the <i>south</i> leads down into the main hall."
+                            "description": "A curving staircase behind you leads <i>down</i> into the main hall."
                         }
                     }
                 },
@@ -484,12 +484,12 @@
             "name": "East Hall",
             "description": "You are in the long main hall of the east wing. No guests seem to have ventured this far.",
             "exits": {
-                "east": {
+                "west": {
                     "destination": "ballroom",
                     "current_state": "default",
                     "states": {
                         "default": {
-                            "description": "There is a door to the <i>east</i> leading back into the ballroom."
+                            "description": "There is a door to the <i>west</i> leading back into the ballroom."
                         }
                     }
                 },
@@ -739,7 +739,7 @@
                             "open": "false",
                             "examination": "It is just a large bookshelf. It doesn't look like anyone could move it.",
                             "on_enter": {
-                                "description": "A section of the bookshelf retracts, opening up an entryway into the wall. You find a dark stone staircase winding its way upwards. You decide to follow to stairs to investigate."
+                                "description": "You find a dark stone staircase winding its way upwards. You decide to follow to stairs to investigate."
                             },
                             "on_use": {
                                 "triggers": [{
@@ -748,7 +748,7 @@
                                     "single_trigger": "true",
                                     "requires": "thick book",
                                     "requires_state": "default",
-                                    "description": "You place the <i>thick book</i> in an empty slot in the bookcase. It slides smothly in and a clicking noise emanates around the room."
+                                    "description": "You place the <i>thick book</i> in an empty slot in the bookcase. It slides smoothly in and a clicking noise emanates around the room. A section of the bookshelf retracts, opening up an entryway into the wall to the <i>east</i>."
                                 }, {
                                     "trigger_type": "state_change",
                                     "target_type": "exits",
@@ -760,7 +760,7 @@
                             }
                         },
                         "unlocked": {
-                            "descritpion": "There is a small entryway to the <i>east</i> where the bookshelf moved aside."
+                            "description": "There is a small entryway to the <i>east</i> where the bookshelf moved aside."
                         }
                     }
                 }
@@ -866,7 +866,7 @@
                             "open": "false"
                         },
                         "unlocked": {
-                            "description": ""
+                            "description": "A section of the wall seems to have moved to reveal a small doorway to the <i>east</i>."
                         }
                     }
                 },
@@ -1096,7 +1096,7 @@
             "current_state": "default",
             "states": {
                 "default": {
-                    "examination": "It is a very <i>thick book</i>. It looks like it contains important knowlege."
+                    "examination": "It is a very <i>thick book</i>. It looks like it contains important knowledge."
                 }
             }
         },
