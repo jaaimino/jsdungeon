@@ -312,8 +312,9 @@ function use_X(item, currentState, type, currentArea) {
 
 function take(item) {
     if (currentRoom.items && currentRoom.items.indexOf(item) != -1) {
+        
         currentPlayer.inventory.push(item);
-        currentRoom.items.splice(currentRoom.items.indexOf(item));
+        currentRoom.items.splice(currentRoom.items.indexOf(item),1);
         output("You picked up the <i>{0}</i>!".format(item));
         return;
 
