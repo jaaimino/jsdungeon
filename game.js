@@ -73,6 +73,7 @@ function startGame(dungeon) {
         }
     }
     clearOutput();
+    examine_self();
     output(currentDungeon.intro_text);
     outputRoom();
 }
@@ -102,7 +103,6 @@ function saveGameButton() {
 function gameloop(text) {
     parseInput(text);
 }
-
 
 function help() {
     output(
@@ -202,8 +202,6 @@ function leave_room(currentExit,direction){
     outputRoom();
 }
 
-
-
 function inventory() {
     if (currentPlayer.inventory.length > 0) {
         outputString = "";
@@ -264,7 +262,6 @@ function use_x_on_y(item_use,item_on){
         }
 }
 
-
 //helpers for use
 function use_type(type, item_use,item_on, currentArea){
     if (currentPlayer.inventory.indexOf(item_use) != -1) {
@@ -302,8 +299,6 @@ function use_X(item, currentState, type, currentArea) {
 
 }
 
-
-
 function take(item) {
     if (currentRoom.items && currentRoom.items.indexOf(item) != -1) {
         
@@ -329,15 +324,14 @@ function take(item) {
     }
 }
 
-
-
-
+function examine_self(){
+    output("Your name is " + currentPlayer.name + ". " + currentPlayer.description);
+}
 
 function examine(item) {
 
     if (item === "self") {
-        output("My name is " + currentPlayer.name);
-        output(currentPlayer.description);
+        examine_self();
     }
     else if (check_exist(currentRoom.objects,item)) {
         var currentState = getCurrentState(item, "objects", currentRoom);
@@ -387,7 +381,6 @@ function lookatthing(currentThing){
     }
 }
 
-
 function talk(person){
     if(check_exist(currentRoom.objects,person)){
         
@@ -417,8 +410,4 @@ function talk(person){
     else{
         output("You couldn't figure out how to talk to that.")
     }
-    
-    
-    
-    
 }

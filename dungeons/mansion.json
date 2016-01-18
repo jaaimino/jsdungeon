@@ -6,7 +6,7 @@
     "player": {
         "name": "Leonardo",
         "inventory": [],
-        "description": "You are a prominent member of society with a passion for solving mysteries. You have attended the party with the sole purpose of discovering the truth behind the gossip surrounding the mysterious mansion."
+        "description": "You are a prominent member of society with a passion for solving mysteries."
     },
     "rooms": {
         "driveway": {
