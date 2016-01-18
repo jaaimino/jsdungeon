@@ -248,7 +248,7 @@ function take(item) {
         
         currentDungeon.currentPlayer.inventory.push(item);
         getCurrentRoom().items.splice(getCurrentRoom().items.indexOf(item),1);
-        output("You picked up the <i>{0}</i>!".format(item));
+        output("You picked up <i>{0}</i>.".format(item));
         return;
 
     }
