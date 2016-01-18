@@ -180,22 +180,23 @@ function move(direction) {
 function leave_room(currentExit,direction){
     output_break();//for readability sake 
     if(currentExit.on_enter){
-    if(currentExit.on_enter.description)
-        output(currentExit.on_enter.description); //check for and display flavor text
-    if(currentExit.on_enter.triggers){
-        var triggers = currentExit.on_enter.triggers;
-        for(var i=0;i<triggers.length;i++){
-            var shouldReturn = false;
-            process_trigger(triggers[i]);
-            if(triggers[i].trigger_blocking && triggers[i].trigger_blocking === "true")
-                shouldReturn = true;
-            if(triggers[i].single_trigger && triggers[i].single_trigger === "true"){
-                triggers.splice(i, 1);
+        if(currentExit.on_enter.description)
+            output(currentExit.on_enter.description); //check for and display flavor text
+        if(currentExit.on_enter.triggers){
+            var triggers = currentExit.on_enter.triggers;
+            for(var i=0;i<triggers.length;i++){
+                var shouldReturn = false;
+                process_trigger(triggers[i]);
+                if(triggers[i].trigger_blocking && triggers[i].trigger_blocking === "true")
+                    shouldReturn = true;
+                if(triggers[i].single_trigger && triggers[i].single_trigger === "true"){
+                    triggers.splice(i, 1);
+                    i-=1;
+                }
+                if(shouldReturn)
+                    return;
             }
-            if(shouldReturn)
-                return;
         }
-    }
     }
     currentRoom = currentDungeon.rooms[currentRoom.exits[direction].destination];
     outputRoom();
@@ -342,34 +343,14 @@ function examine(item) {
         var currentState = getCurrentState(item, "objects", currentRoom);
         var currentObject = currentRoom.objects[item].states[currentState];
         //output("You look at {0}".format(item));
-        if (currentObject.examination) {
-            output(currentObject.examination);
-        }
-        else {
-            if (currentObject.description) {
-                output(currentObject.description);
-            }
-            else {
-                output("There doesn't seem to be anything interesting about that..");
-            }
-        }
+        lookatthing(currentObject);
     }
     else if (currentPlayer.inventory.indexOf(item) != -1 || currentRoom.items && currentRoom.items.indexOf(item) != -1) {
         var currentState = getCurrentState(item, "items", currentDungeon);
         var currentItem = currentDungeon.items[item].states[currentState];
 
         //output("You look at {0}".format(item));
-        if (currentItem.examination) {
-            output(currentItem.examination);
-        }
-        else {
-            if (currentItem.description) {
-                output(currentItem.description);
-            }
-            else {
-                output("There doesn't seem to be anything interesting about that..");
-            }
-        }
+        lookatthing(currentItem);
     }
     else if (check_exist(currentRoom.exits,item)) {
         var currentState = getCurrentState(item, "exits", currentRoom);
@@ -392,4 +373,52 @@ function examine(item) {
     }
 }
 
+function lookatthing(currentThing){
+    if (currentThing.examination) {
+        output(currentThing.examination);
+    }
+    else {
+        if (currentThing.description) {
+            output(currentThing.description);
+        }
+        else {
+            output("There doesn't seem to be anything interesting about that...");
+        }
+    }
+}
 
+
+function talk(person){
+    if(check_exist(currentRoom.objects,person)){
+        
+        var currentState = getCurrentState(person,"objects",currentRoom);
+        var currentPerson = currentRoom.objects[person].states[currentState];
+        var notalk=true;
+        
+        if(check_exist(currentPerson.on_talk,"description")){
+            output(currentPerson.on_talk.description);
+            notalk=false;
+        }
+        if(check_exist(currentPerson.on_talk,"triggers")){
+            notalk=false;
+            var triggers = currentPerson.on_talk.triggers;
+            for(var i = 0; i<triggers.length;i++){
+                process_trigger(triggers[i]);
+                if(triggers[i].single_trigger && triggers[i].single_trigger === "true"){
+                    triggers.splice(i, 1);
+                    i-=1;
+                }
+            }
+        }
+        if(notalk){
+            output("There was nothing much to say.");
+        }
+    }
+    else{
+        output("You couldn't figure out how to talk to that.")
+    }
+    
+    
+    
+    
+}

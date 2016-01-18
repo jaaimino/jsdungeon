@@ -17,7 +17,30 @@
                         "default" : {
                             "description" : "There is a <i>lamp</i>, sitting there... menacingly..",
                             "examination" : "Something just doesn't feel right about this thing.",
-                            "fail_pickup" : "You attempt to grab the lamp, but it wobbles so much you reluctantly put it back down."
+                            "fail_pickup" : "You attempt to grab the lamp, but it wobbles so much you reluctantly put it back down.",
+                            "on_talk" : 
+                            {
+                                "description" : "You have an in-depth conversation on metaphysics with the lamp.",
+                                "triggers" :
+                                [
+                                    {
+                                        "trigger_type" : "state_change",
+                                        "target_type" : "objects",
+                                        "target" : "lamp",
+                                        "new_state" : "fried",
+                                        "description" : "After talking a while, the lamp goes on the fritz."
+                                    }
+                                ]
+                            }
+                        },
+                        "fried" : {
+                            "description" : "There is a <i>lamp</i>, sitting there... menacingly..",
+                            "examination" : "The <i>lamp</i> seems a little burnt out.",
+                            "fail_pickup" : "You attempt to grab the lamp, but it wobbles so much you reluctantly put it back down.",
+                            "on_talk" : 
+                            {
+                                "description" : "The lamp is simply too tired to continue your conversation."
+                            }
                         }
                     }
                 }
@@ -207,7 +230,8 @@
             "current_state" : "default",
             "states" : {
                 "default" : {
-                    "description" : "Bright and yellow, a herbvaceous fruit. It's actually technically a berry.",
+                    "description" :"There's a <i>banana</i> just lying there abandoned.",
+                    "examination":"Bright and yellow, a herbvaceous fruit. It's actually technically a berry.",
                     "visible" : "true",
                     "on_use" : {
                         "triggers" : [

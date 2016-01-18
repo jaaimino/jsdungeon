@@ -2,10 +2,10 @@
 var reg= {
 
  move: /(?:move|go|skedaddle|sally forth|proceed|exit(?: through)?) (.*)/i,
- talk : /(?:talk|chat) (.*)/i,
+ talk : /(?:talk|chat)(?: to)? (.*)/i,
  examine : /(?:examine|check|scrutinize|look|inspect) (.*)/i,
  take : /(?:take|grab|snatch|get|pick up) (.*)/i,
- use : /(?:search|use|combine|try) (.+?)(?: (?:on|with|and|for) (.+?))?$/i,
+ use : /(?:search|use|combine|try|give) (.+?)(?: (?:on|with|and|for|to|a) (.+?))?$/i,
  look : /(?:look|review|survey)/i,
  inventory : /inventory/i,
  help : /help/i,
@@ -28,7 +28,7 @@ function parseInput(text){
     
     if(reg.talk.test(text)){
         var match = reg.talk.exec(text);
-        use(match[1]);
+        talk(match[1]);
         
         return;
     }
