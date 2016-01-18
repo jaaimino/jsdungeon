@@ -217,10 +217,6 @@ function inventory() {
     }
 }
 
-
-
-
-
 function use(item_use, item_on) {
     if (item_on) {
         use_x_on_y(item_use,item_on);
@@ -285,9 +281,6 @@ function use_type(type, item_use,item_on, currentArea){
         output("You don't have {0} in your inventory.".format(item_use));
     }
 }
-
-
-
 
 function use_X(item, currentState, type, currentArea) {
     if (useable(item, currentState, type, currentArea)) {

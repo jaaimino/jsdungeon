@@ -190,7 +190,7 @@
         },
         "stables": {
             "name": "Stables",
-            "description": "You are in a large stable. The amount of money spent building the structure is apparent, but cobwebs in aome corners and a thin layer of dust seem to suggest a lack of use. You hear a couple of horses stamping down the aisle.",
+            "description": "You are in a large stable. The amount of money spent building the structure is apparent, but cobwebs in some corners and a thin layer of dust seem to suggest a lack of use. You hear a couple of horses stamping down the aisle.",
             "items": ["rope", "flashlight"],
             "exits": {
                 "east": {
@@ -277,7 +277,7 @@
             "description": "You are in a beautiful garden. There are flowering rosebushes all around, though they are slightly overgrown. Behind the flowers lies a more practical garden that seems to be used to grow fresh food for the kitchen.",
             "exits": {
                 "north": {
-                    "destination": "kitchen",
+                    "destination": "kitchens",
                     "current_state": "default",
                     "states": {
                         "default": {
