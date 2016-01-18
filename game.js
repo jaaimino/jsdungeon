@@ -153,7 +153,7 @@ function inventory() {
             outputString += "<i>" + currentDungeon.currentPlayer.inventory[i] + "</i>" + ", ";
         }
         outputString += "<i>" + currentDungeon.currentPlayer.inventory[currentDungeon.currentPlayer.inventory.length - 1] + "</i>";
-        output("items: {0}".format(outputString));
+        output("inventory: {0}".format(outputString));
     }
     else {
         output("Your inventory is empty!");
