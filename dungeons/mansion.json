@@ -2,10 +2,10 @@
     "name": "The Mansion",
     "author": "Allison",
     "intro_text": "You have been invited to a ritzy party at a mysterious mansion in the countryside. Rumor has it that this house hides a secret that you are determined to discover. You arrive at the place in a town car and depart the vehicle amidst a few other partygoers, all dressed to the nines for the event. Taking a look around you notice the beautiful but slightly unkempt two story house with wings extending far to either side. Taking a deep breath, you prepare to head inside.",
-    "start_room": "ballroom",
+    "start_room": "driveway,
     "player": {
         "name": "Leonardo",
-        "inventory": ["flashlight"],
+        "inventory": [,
         "description": "You are a prominent member of society with a passion for solving mysteries. You have attended the party with the sole purpose of discovering the truth behind the gossip surrounding the mysterious mansion."
     },
     "rooms": {
