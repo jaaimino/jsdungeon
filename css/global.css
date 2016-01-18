@@ -1,3 +1,7 @@
+/*
+ * Native edits
+ */
+ 
 body {
     background-color: #2C3133;
     background: url('../img/dungeon.jpg') no-repeat center center fixed;
@@ -10,16 +14,6 @@ body {
 
 p{
     color:inherit;
-}
-
-.room-name{
-    font-size: 1.2em;
-    font-weight: bold;
-    color: #3CA9F7;
-    margin-top: 0;
-    margin-left: 0;
-    margin-bottom: 0;
-    margin-right: 0;
 }
 
 i{
@@ -51,13 +45,31 @@ input:focus, select:focus, button:active, button:focus {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
 }
 
+/*
+ * Custom ids and classes
+ */
+
+.room-name{
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #3CA9F7;
+    margin-top: 0;
+    margin-left: 0;
+    margin-bottom: 0;
+    margin-right: 0;
+}
+
 .page-title {
     margin-top: 50px;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 15px;
     width: 50%;
     padding: 8px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     background-color: #2C3133;
+    box-shadow: 2px 2px 5px #000000;
 }
 
 /*this is the thing editing the <p> tag*/
@@ -109,6 +121,7 @@ input:focus, select:focus, button:active, button:focus {
     margin-right: auto;
     height: 70%;
     width: 50%;
+    box-shadow: 2px 2px 5px #000000;
 }
 
 #chooseAdventureForm {

@@ -13,11 +13,11 @@
             "name": "The Driveway",
             "description": "You're in a long driveway filled with fancy cars. Well groomed hedges line either side of the driveway.",
             "objects": {
-                "your car" : {
+                "car" : {
                     "current_state": "default",
                     "states": {
                         "default": {
-                            "description": "To your right, <i>your car</i> is parked.",
+                            "description": "Your <i>car</i> is parked to your right.",
                             "fail_pickup": "U wot m8?",
                             "on_use": {
                                 "triggers": [{
@@ -580,6 +580,26 @@
         "bathroom": {
             "name": "Bathroom",
             "description": "You are in an extravagant bathroom. There are gilded tiles throughout and a larger bathtub than you have ever seen before.",
+            "items" :["night cream", "toothpaste", "toothbrush"],
+            "objects" :{
+                 "mirror": {
+                    "current_state": "default",
+                    "states": {
+                        "default": {
+                            "description": "There is a splendid <i>mirror</i> above the sink.",
+                            "examination": "The <i>mirror</i> really is very pretty. It is stunningly clear and the silver engravings around the edges shine bright in the light from the room. You look at yourself for a few minutes before continuing on.",
+                            "fail_pickup": "You try frantically to remove the glorious <i>mirror</i> from the wall, but to no avail. It seems to be bolted in place.",
+                            "on_use": {
+                                "triggers": [{
+                                    "trigger_type": "flavor_text",
+                                    "single_trigger": "true",
+                                    "description": ""
+                                }]
+                            }
+                        }
+                    }
+                }
+            },
             "exits": {
                 "south": {
                     "destination": "east hall",
@@ -595,6 +615,7 @@
         "bedroom": {
             "name": "Bedroom",
             "description": "You are in a richly adorned bedroom. A large four-posted bed lies in the center of the room. Dark furniture lines the walls and richly colored wallpaper covers them. One window is partially open and the curtains billow in the breeze coming in.",
+            "items" : ["comb"],
             "exits": {
                 "south": {
                     "destination": "east hall",
@@ -610,6 +631,7 @@
         "dark room": {
             "name": "Dark Room",
             "description": "You are in a small photography dark room. Red light fills the room and illuminates the chemical bins and a line holding partially developed prints. You squint at them, but cannot make out the subject of the photographs.",
+            "items" : ["developed film", "camera"],
             "exits": {
                 "south": {
                     "destination": "east hall",
@@ -698,6 +720,7 @@
         "antique room": {
             "name": "Antique Room",
             "description": "You find yourself in a splendid room filled with antiques.",
+            "items" : ["antique revolver"],
             "objects": {
                 "old pot": {
                     "current_state": "default",
@@ -895,6 +918,44 @@
         "root cellar": {
             "name": "Root Cellar",
             "description": "You are in a dark room filled with piles of fruits and vegetables. It seems to be the mansion's root cellar.",
+            "objects" :{
+                "pile of apples": {
+                    "current_state": "default",
+                    "states": {
+                        "default": {
+                            "description": "There is a <i>pile of apples</i> beside the door that look especially delicious.",
+                            "examination": "That sure is a lot of apples! It must have taken quite a while to pick them all.",
+                            "fail_pickup": "I don't think I can hold this many apples..",
+                            "on_use": {
+                                "triggers": [{
+                                    "trigger_type": "add_item",
+                                    "target_item": "apple",
+                                    "single_trigger": "true",
+                                    "description": "You pluck an <i>apple</i> from the pile, careful to leave the rest undisturbed."
+                                }]
+                            }
+                        }
+                    }
+                },
+                 "pile of potatoes": {
+                    "current_state": "default",
+                    "states": {
+                        "default": {
+                            "description": "There is a <i>pile of potatoes</i> in the back corner.",
+                            "examination": "That sue is a lot of potatoes! I wonder where they were all grown?",
+                            "fail_pickup": "I don't think I can hold this many potatoes..",
+                            "on_use": {
+                                "triggers": [{
+                                    "trigger_type": "add_item",
+                                    "target_item": "potato",
+                                    "single_trigger": "true",
+                                    "description": "You pluck an <i>potato</i> from the pile, careful to leave the rest undisturbed."
+                                }]
+                            }
+                        }
+                    }
+                }
+            },
             "exits": {
                 "south": {
                     "destination": "cellar main room",
@@ -911,6 +972,7 @@
         "storage closet": {
             "name": "Storage Closet",
             "description": "You find yourself in a small, cold storage room. There are shelves of cleaning products and mops and brooms line most of the walls.",
+            "items" : ["pocket knife", "step stool"],
             "exits": {
                 "east": {
                     "destination": "treasure room",
@@ -1274,6 +1336,53 @@
                 "default" :{
                     "description" : "A <i>toothbrush</i> sits beside the <i>toothpaste</i>.",
                     "examination" : "It looks like a regular toothbrush. It is very out of place in the opulent mansion."
+                }
+            }
+        },
+        "apple" :{
+            "current_state" : "default",
+            "states" :{
+                "default" :{
+                    "examination" : "A shiny red <i>apple</i>. It looks as fresh as if you had just picked it from the tree.",
+                     "on_use": {
+                        "triggers": [{
+                            "trigger_type": "remove_item",
+                            "target_item": "apple",
+                            "description": "You bite into the <i>apple</i>, enjoying the sweet taste of the juice. You quickly finish the rest and dispose of the core."
+                        }]
+                    }
+                }
+            }
+        },
+        "potato" :{
+            "current_state" : "default",
+            "states" :{
+                "default" :{
+                    "examination" : "It is a slightly dirty, brown <i>potato</i>.",
+                    "on_use": {
+                        "triggers": [{
+                            "trigger_type": "flavor_text",
+                            "text": "You think about taking a big bite of the <i>potato</i>, but the dirt covering the outside makes you think better. You quickly pocket the vegetable before anyone can see what you were about to do."
+                        }]
+                    }
+                }
+            }
+        },
+        "pocket knife" :{
+            "current_state" : "default",
+            "states" :{
+                "default" :{
+                    "description" : "There is a small <i>pocket knife</i> sitting on a shelf to one side.",
+                    "examination" : "It is a red <i>pocket knife</i>. You flip out the serrated blade and notice that it is suprisingly menacing."
+                }
+            }
+        },
+        "step stool" :{
+            "current_state" : "default",
+            "states" :{
+                "default" :{
+                    "description" : "There is a <i>step stool</i> leaning against the wall by some dusters.",
+                    "examination" : "It is a pretty standard <i>step stool</i>. Looks like it would be handy to boost you up a couple of feet."
                 }
             }
         }
