@@ -22,8 +22,12 @@ i{
 input, button, select{
    background-color: rgba(0,0,0,0.3);
    border: 0px;
-   padding: 5px;
+   padding: 4px;
    color: white;
+}
+
+input, button {
+    padding: 5px;
 }
 
 input:focus, select:focus, button:active, button:focus {

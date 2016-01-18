@@ -351,9 +351,10 @@ function help() {
     output(
         "Your available actions are as follows: <br>" +
         "<i>look</i> - describes the room <br>" +
-        "<i>move</i> (direction) - attempts to leave the room in that direction <br>" +
+        "<i>go</i> (direction) - attempts to leave the room in that direction <br>" +
         "<i>examine</i> (item, object, direction) - examines an object <br>" +
         "<i>search</i> (item, object, direction) - searches an object <br>" + 
+        "<i>open</i> (item, object, direction) - opens an object <br>" + 
         "<i>take</i> (item) - attempts to take an object <br>" +
         "<i>use</i> (object, direction, item) - use something <br>" +
         "<i>use</i> (item) <i>on</i> (object, direction, item) - use something on something <br>" +

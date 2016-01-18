@@ -382,6 +382,16 @@
                             "fail_pickup" : "It looks like it's nailed to the wall."
                         }
                     }
+                },
+                "landscape painting" : {
+                    "current_state" : "default",
+                    "states" : {
+                        "default" : {
+                            "description" : "Next to it, hangs a <i>landscape painting</i>.",
+                            "examination" : "Ah, the Grand Canal, by JMW Turner. I bet this is pretty valuable.",
+                            "fail_pickup" : "It looks like it's nailed to the wall."
+                        }
+                    }
                 }
             },
             "exits": {
@@ -434,6 +444,7 @@
         "kitchens": {
             "name": "Kitchens",
             "description": "You are in a bustling kitchen. Cooks and waitstaff hurry throughout.",
+            "items" : ["steak knife"],
             "objects": {
                 "pot": {
                     "current_state": "default",
@@ -565,6 +576,11 @@
                             },
                             "on_use" : {
                                 "triggers" : [{
+                                    "trigger_type": "flavor_text",
+                                    "requires" : "steak knife",
+                                    "requires_state" : "default",
+                                    "text": "I'm not sure why you'd do such a thing."
+                                },{
                                     "trigger_type": "state_change",
                                     "target_type": "objects",
                                     "target": "woman",
@@ -980,13 +996,13 @@
             "name": "Root Cellar",
             "description": "You are in a dark room filled with piles of fruits and vegetables. It seems to be the mansion's root cellar.",
             "objects" :{
-                "pile of apples": {
+                "pile of lemons": {
                     "current_state": "default",
                     "states": {
                         "default": {
-                            "description": "There is a <i>pile of apples</i> beside the door that look especially delicious.",
-                            "examination": "That sure is a lot of apples! It must have taken quite a while to pick them all.",
-                            "fail_pickup": "I don't think I can hold this many apples..",
+                            "description": "There is a <i>pile of lemons</i> beside the door that look especially delicious.",
+                            "examination": "That sure is a lot of lemons! It must have taken quite a while to pick them all.",
+                            "fail_pickup": "Why can't I hold all these lemons!",
                             "on_use": {
                                 "triggers": [{
                                     "trigger_type": "add_item",
@@ -1181,7 +1197,7 @@
                     "examination": "Several slices of tender-looking lamb sit atop a pile of spiced rice. A flavourful sauce is drizzled around the food. The whole thing looks like a work of culinary art.",
                     "on_use": {
                         "triggers": [{
-                            "tirgger_type": "remove_item",
+                            "trigger_type": "remove_item",
                             "target_item": "lamb plate",
                             "description": "You eat the meal with your hands, though you feel quite silly doing it. It tastes great, but now you have meat juice on your fingers."
                         }]
