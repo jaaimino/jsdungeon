@@ -5,6 +5,10 @@
             "filename" : "dungeons/mansion.json"
         },
         {
+            "name" : "The Woods",
+            "filename" : "dungeons/woods.json"
+        },
+        {
             "name" : "Test",
             "filename" : "dungeons/test.json"
 

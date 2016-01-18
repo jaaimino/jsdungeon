@@ -1,0 +1,61 @@
+{
+    "name": "The Woods",
+    "intro_text": "You've heard stories of the woods near the old cement plant. You and a few friends decide to camp out there for the night to see what you can uncover.",
+    "start_room": "camp site",
+    "player": {
+        "name": "Joseph",
+        "inventory": [],
+        "description": "You're an amateur supernatural investigator who's always looking for a new challenge."
+    },
+    "rooms": {
+        "camp site": {
+            "name": "Camp Site",
+            "description": "You're at the camp.",
+            "items" : ["lantern"],
+            "objects": {
+                "your tent": {
+                    "current_state": "default",
+                    "states": {
+                        "default" : {
+                            "description" : "Around the central part of camp is <i>your tent</i>.",
+                            "examination" : "Yep, this is my tent all right.",
+                            "fail_pickup" : "I think I'm going to just leave this here actually."
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "items" : {
+        "lantern" : {
+            "current_state" : "dark",
+            "states" : {
+                "dark" : {
+                    "description" : "On the ground near your tent is an electric <i>lantern</i>.",
+                    "examination" : "It looks like it's switched off.",
+                    "on_use" : {
+                        "triggers" : [{
+                            "trigger_type": "state_change",
+                            "target_type": "items",
+                            "target": "lantern",
+                            "new_state": "lit",
+                            "description" : "You switch the <i>lantern</i> on."
+                        }]
+                    }
+                },
+                "lit" : {
+                    "examination" : "It's nice and bright.",
+                    "on_use" : {
+                        "triggers" : [{
+                            "trigger_type": "state_change",
+                            "target_type": "items",
+                            "target": "lantern",
+                            "new_state": "dark",
+                            "description" : "You switch the <i>lantern</i> off."
+                        }]
+                    }
+                }
+            }
+        }
+    }
+}
