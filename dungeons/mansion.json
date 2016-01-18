@@ -5,7 +5,7 @@
     "start_room": "driveway,
     "player": {
         "name": "Leonardo",
-        "inventory": [,
+        "inventory": [],
         "description": "You are a prominent member of society with a passion for solving mysteries. You have attended the party with the sole purpose of discovering the truth behind the gossip surrounding the mysterious mansion."
     },
     "rooms": {
