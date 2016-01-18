@@ -744,8 +744,29 @@
                         "locked": {
                             "description": "Another huge bookshelf covers the entire <i>east</i> wall.",
                             "open": "false",
+                            "examination" : "It is just a large bookshelf. It doesn't look like anyone could move it.",
                             "on_enter": {
-                                "description": "A section of the bookshelf retracts, opening up an entryway into the wall. You find a dark stone staircase winding its way upwards. You decide to follow to stairs to investigate."
+                                "description": "A section of the bookshelf retracts, opening up an entryway into the wall. You find a dark stone staircase winding its way upwards. You decide to follow to stairs to investigate.",
+                            },
+                            "on_use" : {
+                                "triggers" : [
+                                    {
+                                        "trigger_type" : "remove_item",
+                                        "target_item" : "thick book",
+                                        "single_trigger" : "true",
+                                        "requires" : "thick book",
+                                        "requires_state":"default",
+                                        "description" : "You place the <i>thick book</i> in an empty slot in the bookcase. It slides smothly in and a clicking noise emanates around the room."
+                                    },
+                                    {
+                                        "trigger_type" : "state_change",
+                                        "target_type" : "exits",
+                                        "target" : "east",
+                                        "requires" : "thick book",
+                                        "requires_state":"default",
+                                        "new_state" : "unlocked"
+                                    }
+                                ]
                             }
                         },
                         "unlocked" : {
