@@ -468,6 +468,44 @@
         "balcony": {
             "name": "Balcony",
             "description": "You step out onto a gorgeous balcony. It provides a spectacular view of the countryside. A few partygoers lean over the railing, enjoying the view.",
+            "objects" : {
+                "woman" : {
+                    "current_state" : "sad",
+                    "states" : {
+                        "sad" : {
+                            "description" : "There's a <i>woman</i> standing on the balcony.",
+                            "examination" : "She appears to be really sad.",
+                            "on_talk": {
+                                "description": "The <i>woman</i> tells you that she's upset because she feels like the only one at the party without a date."
+                            },
+                            "on_use" : {
+                                "triggers" : [{
+                                    "trigger_type": "state_change",
+                                    "target_type": "objects",
+                                    "target": "woman",
+                                    "requires": "flowers",
+                                    "requires_state": "default",
+                                    "new_state": "happy",
+                                    "description": "You hand the <i>woman</i> the flowers, and tell her it'll be okay. She seems to be brightening right up."
+                                },{
+                                    "trigger_type": "remove_item",
+                                    "target_item": "flowers",
+                                    "single_trigger": "true",
+                                    "requires": "flowers",
+                                    "requires_state": "default"
+                                }]
+                            }
+                        },
+                        "happy" : {
+                            "description" : "There's a <i>woman</i> standing on the balcony.",
+                            "examination" : "She doesn't appear to be upset any longer.",
+                            "on_talk": {
+                                "description": "The <i>woman</i> tells you that she feels a lot better."
+                            }
+                        }
+                    }
+                }
+            },
             "exits": {
                 "south": {
                     "destination": "ballroom",
