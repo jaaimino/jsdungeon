@@ -299,12 +299,7 @@ function examine(item) {
             output(currentExit.examination);
         }
         else {
-            if (currentExit.description) {
-                output(currentExit.description);
-            }
-            else {
-                output("It is certainly an exit to this room.");
-            }
+            output("It is certainly an exit to this room.");
         }
     }
     else {
@@ -317,12 +312,7 @@ function lookatthing(currentThing){
         output(currentThing.examination);
     }
     else {
-        if (currentThing.description) {
-            output(currentThing.description);
-        }
-        else {
-            output("There doesn't seem to be anything interesting about that...");
-        }
+        output("There doesn't seem to be anything interesting about that...");
     }
 }
 

@@ -292,6 +292,62 @@
         "garden": {
             "name": "Garden",
             "description": "You are in a beautiful garden. There are flowering rosebushes all around, though they are slightly overgrown. Behind the flowers lies a more practical garden that seems to be used to grow fresh food for the kitchen.",
+            "objects" :{
+                 "rosebush": {
+                    "current_state": "default",
+                    "states": {
+                        "default": {
+                            "description": "Directly in front of you there is a <i>rosebush</i> with the most splendid roses you have ever seen.",
+                            "examination": "The flowers on this <i>rosebush</i> are a stunning red color which deepens towards the edges of the petals.",
+                            "fail_pickup": "The <i>rosebush</i> is firmly planted in the ground. Perhaps a single flower will have to suffice.",
+                            "on_use": {
+                                "triggers": [{
+                                    "trigger_type": "add_item",
+                                    "target_item": "red rose",
+                                    "single_trigger": "true",
+                                    "description": "You pluck an <i>red rose</i> from the bush and inhale its scent before pinning it to your lapel."
+                                }]
+                            }
+                        }
+                    }
+                },
+                 "lettuce plant": {
+                    "current_state": "default",
+                    "states": {
+                        "default": {
+                            "description": "There are a few <i>lettuce plant</i>s off to one side that have not been harvested yet.",
+                            "examination": "TFrom what you can tell, they look like relatively healthy <i>lettuce plant</i>s.",
+                            "fail_pickup": "It is planted firmly in the ground.",
+                            "on_use": {
+                                "triggers": [{
+                                    "trigger_type": "add_item",
+                                    "target_item": "lettuce",
+                                    "single_trigger": "true",
+                                    "description": "You pluck a head of <i>lettuce</i> from one of the plants."
+                                }]
+                            }
+                        }
+                    }
+                },
+                 "tomato vine": {
+                    "current_state": "default",
+                    "states": {
+                        "default": {
+                            "description": "Nearby, several <i>tomato vine</i>s curl wround stakes. Most seem to be bare, their fruit having been just harvested, but a few still have a few red tomatoes clinging to them.",
+                            "examination": "As far as you can tell, they look like fairly healthy <i>tomato vine</i>s",
+                            "fail_pickup": "The vines seem to be firmly planted in the ground. You will just have to leave them.",
+                            "on_use": {
+                                "triggers": [{
+                                    "trigger_type": "add_item",
+                                    "target_item": "tomato",
+                                    "single_trigger": "true",
+                                    "description": "You pluck a single <i>tomato</i> from the vine."
+                                }]
+                            }
+                        }
+                    }
+                }
+            },
             "exits": {
                 "north": {
                     "destination": "kitchens",
@@ -316,6 +372,18 @@
         "portrait hall": {
             "name": "Portrait Hall",
             "description": "You enter a long hall with a multitude of portraits spanning generations of the affluent family. However, there doesn't seem to be any recent portraits and a thin layer of dust covers some of the older paintings.",
+            "objects" : {
+                "family painting" : {
+                    "current_state" : "default",
+                    "states" : {
+                        "default" : {
+                            "description" : "You see a simple <i>family painting</i> on the west wall.",
+                            "examination" : "I wonder when this was even painted, and where they've all gone..",
+                            "fail_pickup" : "It looks like it's nailed to the wall."
+                        }
+                    }
+                }
+            },
             "exits": {
                 "north": {
                     "destination": "dining hall",
@@ -588,14 +656,7 @@
                         "default": {
                             "description": "There is a splendid <i>mirror</i> above the sink.",
                             "examination": "The <i>mirror</i> really is very pretty. It is stunningly clear and the silver engravings around the edges shine bright in the light from the room. You look at yourself for a few minutes before continuing on.",
-                            "fail_pickup": "You try frantically to remove the glorious <i>mirror</i> from the wall, but to no avail. It seems to be bolted in place.",
-                            "on_use": {
-                                "triggers": [{
-                                    "trigger_type": "flavor_text",
-                                    "single_trigger": "true",
-                                    "description": ""
-                                }]
-                            }
+                            "fail_pickup": "You try frantically to remove the glorious <i>mirror</i> from the wall, but to no avail. It seems to be bolted in place."
                         }
                     }
                 }
@@ -1222,7 +1283,7 @@
             "states": {
                 "default": {
                     "description": "Waiters mill around offering plates of <i>caviar</i> to guests.",
-                    "examination": "It is some ritzy caviar on a cracker",
+                    "examination": "It is some ritzy <i>caviar</i> on a cracker",
                     "on_use": {
                         "triggers": [{
                             "trigger_type": "remove_item",
