@@ -13,6 +13,23 @@
             "name": "The Driveway",
             "description": "You're in a long driveway filled with fancy cars. Well groomed hedges line either side of the driveway.",
             "objects": {
+                "your car" : {
+                    "current_state": "default",
+                    "states": {
+                        "default": {
+                            "description": "To your right, <i>your car</i> is parked.",
+                            "fail_pickup": "U wot m8?",
+                            "on_use": {
+                                "triggers": [{
+                                    "trigger_type": "add_item",
+                                    "target_item": "cell phone",
+                                    "single_trigger": "true",
+                                    "description": "You look around your car to see if you forgot anything. On the seat, you find your <i>cell phone</i>, and quickly stuff it into your pocket."
+                                }]
+                            }
+                        }
+                    }
+                },
                 "gargoyles": {
                     "current_state": "default",
                     "states": {
@@ -473,7 +490,7 @@
                     "current_state" : "sad",
                     "states" : {
                         "sad" : {
-                            "description" : "There's a <i>woman</i> standing on the balcony.",
+                            "description" : "There's a <i>woman</i> standing nearby.",
                             "examination" : "She appears to be really sad.",
                             "on_talk": {
                                 "description": "The <i>woman</i> tells you that she's upset because she feels like the only one at the party without a date."
@@ -1167,6 +1184,96 @@
                             "description": "The bubles tickle your nose as you drink it. The <i>fancy drink</i> tastes sweet in your mouth and makes you feel more at ease."
                         }]
                     }
+                }
+            }
+        },
+        "antique revolver" :{
+            "current_state" : "default",
+            "states" :{
+                "default":{
+                    "description" : "An <i>antique revolver</i> lies in a rack off to the left of the room, accented by a spotlight.",
+                    "examination" : "It is an old revolver with intricate engravings on the stock that curl up towards the barrel."
+                }
+            }
+        },
+        "developed film" :{
+            "current_state" : "default",
+            "states" :{
+                "default" :{
+                    "description" : "A roll of <i>developed film</i> sits on the countertop beside the chemicals.",
+                    "examination" : "A pretty standard roll of film. It looks like this is where the prints in the dark room came from."
+                }
+            }
+        },
+        "camera" :{
+            "current_state" : "default",
+            "states" :{
+                "default" :{
+                    "description" : "An old <i>camera</i> sits beside the roll of film.",
+                    "examination" : "This <i>camera</i> looks pretty old, but still seems to be in working order. However, the film is missing, so you cant take any new photographs."
+                }
+            }
+        },
+        "comb" :{
+            "current_state" : "default",
+            "states" :{
+                "default" :{
+                    "description" : "There is a <i>comb</i> sitting on a bureau across the room.",
+                    "examination" : "A nice <i>comb</i>. It is made of dark wood and has a pearl inlay on the back.",
+                     "on_use": {
+                        "triggers": [{
+                            "trigger_type": "flavor_text",
+                            "text": "You run the <i>comb</i> through your hair, catching the strands that have fallen out of place. With new confidence that you are looking your best, you continue your search."
+                        }]
+                    }
+                }
+            } 
+        },
+        "night cream" :{
+            "current_state" : "default",
+            "states" :{
+                "default" :{
+                    "description" : "A jar of anti-aging <i>night cream</i> sits on the vanity.",
+                    "examination" : "It seems to ba a nightly cream to remove wrinkles in older individuals. You wonder if it would make young people look even younger.",
+                    "on_use": {
+                        "triggers": [{
+                            "trigger_type": "remove_item",
+                            "target_item": "night cream",
+                            "description": "Charged with a desire to remain forever young, you rub the cream onto your face. After a few minutes you check in the mirror, but nothing seems to have changed."
+                        }]
+                    }
+                }
+            }
+        },
+        "cell phone" :{
+            "current_state" : "default",
+            "states" :{
+                "default" :{
+                    "examination" : "A state of the art <i>cell phone</i>.",
+                    "on_use": {
+                        "triggers": [{
+                            "trigger_type": "flavor_text",
+                            "text": "You turn on your <i>cell phone</i>, only to find that it doesn't seem to get any reception here."
+                        }]
+                    }
+                }
+            }
+        },
+        "toothpaste" :{
+            "current_state" :"default",
+            "states" :{
+                "default" :{
+                    "description" : "a tube of <i>toothpaste</i> sits beside the sink.",
+                    "examination" : "A pretty standard tube of <i>toothpaste</i>, fresh mint flavored."
+                }
+            }
+        },
+        "toothbrush" :{
+            "current_state" : "default",
+            "states" :{
+                "default" :{
+                    "description" : "A <i>toothbrush</i> sits beside the <i>toothpaste</i>.",
+                    "examination" : "It looks like a regular toothbrush. It is very out of place in the opulent mansion."
                 }
             }
         }

@@ -12,12 +12,43 @@ p{
     color:inherit;
 }
 
-b{
-    color: #FFEB40;
+.room-name{
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #3CA9F7;
+    margin-top: 0;
+    margin-left: 0;
+    margin-bottom: 0;
+    margin-right: 0;
 }
 
 i{
     color: #3CA9F7;
+}
+input, button, select{
+   background-color: rgba(0,0,0,0.3);
+   border: 0px;
+   padding: 5px;
+   color: white;
+}
+
+input:focus, select:focus, button:active, button:focus {
+    outline: none !important;
+    /*border:1px solid red;*/
+    box-shadow: 0 0 10px #719ECE;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    background-color: rgba(0,0,0,0.3);
+}
+ 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+ 
+::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
 }
 
 .page-title {
@@ -57,9 +88,7 @@ i{
 #inputBox {
     flex-grow: 10;
     margin-right: 5px;
-    background-color: #2C3133;
     color: white;
-    border: 1px solid white;
 }
 
 #inputButton {
@@ -70,7 +99,7 @@ i{
     height: 90%;
     overflow-y: scroll;
     margin-top: 0px;
-    margin-bottom: 2px;
+    margin-bottom: 5px;
 }
 
 .output-box {

@@ -6,12 +6,12 @@ function startGame(dungeon) {
     //Do some setup
     game_over = false;
     currentDungeon = dungeon;
+    document.getElementById("page-title").innerHTML = getCurrentDungeon().name;
+    var page_title_inner = "<b>{0}</b>".format(getCurrentDungeon().name);
+    document.getElementById("page-title-inner").innerHTML = page_title_inner;
     //If we don't have a current room, we're starting a new save
     if(!getCurrentDungeon().currentRoom){
         getCurrentDungeon().currentRoom = getCurrentDungeon().rooms[getCurrentDungeon().start_room];
-        document.getElementById("page-title").innerHTML = getCurrentDungeon().name;
-        var page_title_inner = "<b>{0}</b>".format(getCurrentDungeon().name);
-        document.getElementById("page-title-inner").innerHTML = page_title_inner;
         if (getCurrentDungeon().player) {
             getCurrentDungeon().currentPlayer = getCurrentDungeon().player;
             if (!getCurrentDungeon().currentPlayer.inventory) {
@@ -64,29 +64,13 @@ function gameloop(text) {
     parseInput(text);
 }
 
-function help() {
-    output(
-        "Your available actions are as follows: <br>" +
-        "<i>look</i> - describes the room <br>" +
-        "<i>move</i> (direction) - attempts to leave the room in that direction <br>" +
-        "<i>examine</i> (item, object, direction) - examines an object <br>" +
-        "<i>search</i> (item, object, direction) - searches an object <br>" + 
-        "<i>take</i> (item) - attempts to take an object <br>" +
-        "<i>use</i> (object, direction, item) - use something <br>" +
-        "<i>use</i> (item) <i>on</i> (object, direction, item) - use something <br>" +
-        "<i>talk</i> (thing) - talks to the thing <br>" +
-        "<i>inventory</i> - checks your current items <br>" +
-        "<i>help</i> - displays this message! <br>"
-        );
-}
-
 function look() {
     outputRoom();
 }
 
 function outputRoom() {
     if(getCurrentRoom().name){
-        output("<b>{0}</b>".format(getCurrentRoom().name));
+        output("<span class='room-name'>{0}</span>".format(getCurrentRoom().name));
     }
     var outputString = "";
     outputString += getCurrentRoom().description + " ";
@@ -371,6 +355,23 @@ function talk(person){
     else{
         output("You couldn't figure out how to talk to that.")
     }
+}
+
+function help() {
+    output(
+        "Your available actions are as follows: <br>" +
+        "<i>look</i> - describes the room <br>" +
+        "<i>move</i> (direction) - attempts to leave the room in that direction <br>" +
+        "<i>examine</i> (item, object, direction) - examines an object <br>" +
+        "<i>search</i> (item, object, direction) - searches an object <br>" + 
+        "<i>take</i> (item) - attempts to take an object <br>" +
+        "<i>use</i> (object, direction, item) - use something <br>" +
+        "<i>use</i> (item) <i>on</i> (object, direction, item) - use something on something <br>" +
+        "<i>give</i> (item) <i>to</i> (object, direction, item) - give something to something <br>" +
+        "<i>talk (to)</i> (object, direciton, item) - talks to something <br>" +
+        "<i>inventory</i> - checks your current items <br>" +
+        "<i>help</i> - displays this message! <br>"
+        );
 }
 
 /* Various getters below */
