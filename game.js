@@ -30,11 +30,12 @@ function startGame(dungeon) {
         }
         clearOutput();
         examine_self();
-        output(getCurrentDungeon().intro_text);
+        outputRoom();
+    //Else, we're restoring the game state
+    } else {
+        clearOutput();
         outputRoom();
     }
-    clearOutput();
-    outputRoom();
 }
 
 function loadGameButton() {
@@ -285,6 +286,7 @@ function take(item) {
 
 function examine_self(){
     output("Your name is " + currentDungeon.currentPlayer.name + ". " + currentDungeon.currentPlayer.description);
+    output(getCurrentDungeon().intro_text);
 }
 
 function examine(item) {
