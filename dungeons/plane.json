@@ -32,7 +32,7 @@
                         "default" : {
                             "description" : "To your <i>right</i> is the aisle.",
                             "on_enter" : {
-                                "descripton": "The rumbling of turbulence catches you off guard as you stand up, and you stumble out into the aisle. <br> You get up and brush yourself off and take stock of the plane."
+                                "description": "The rumbling of turbulence catches you off guard as you stand up, and you stumble out into the aisle. <br> You get up and brush yourself off and take stock of the plane."
                             }
                         }
                         
@@ -145,10 +145,8 @@
                             
                         },
                         "dead":{
-                        
-                          "description":"The pilot is laying slumped over in his chair, it looks like he may have taken a blow to the head.",
+                          "description":"The <i>pilot</i> is laying slumped over in his chair, it looks like he may have taken a blow to the head.",
                           "examination":"Well, the pilot wasn't so much ignoring you as being dead."
-                      
                         }
                     }
                     
@@ -178,7 +176,7 @@
                             "description" : "The <i>door</i> to the cockpit is in front of you.",
                             "examination" : "You try it, and the door seems to be open now.",
                             "open" : "true",
-                            "one_enter":{
+                            "on_enter":{
                                 "description":"You get a good look at the cockpit as you enter",
                                 "triggers":
                                     [
@@ -216,6 +214,7 @@
                                         "trigger_type":"state_change",
                                         "target_type" : "objects",
                                         "target" : "panel",
+                                        "target_state" : "open",
                                         "new_state": "shorted",
                                         "description" : "The open panel goes on the fritz."
                                     },
@@ -224,6 +223,7 @@
                                         "target_type" : "exits",
                                         "target" : "door",
                                         "target_room" : "cockpit door",
+                                        "single_trigger": "true",
                                         "new_state" : "open",
                                         "description" : "You hear a loud click from the front of the plane."
                                     },

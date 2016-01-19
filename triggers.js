@@ -54,11 +54,23 @@ function trigger_flavor_text(trigger){
 
 function trigger_change_state(trigger){
     var targetGroup = getTargetGroup(trigger);
+    if(trigger.target_state){
+        if(trigger.target_state === targetGroup[trigger.target].current_state){
+            changestate(trigger);
+        }
+    }
+    else{
+        changestate(trigger);
+    }
+}
+function changestate(trigger){
+    var targetGroup = getTargetGroup(trigger);
     targetGroup[trigger.target].current_state = trigger.new_state;
     if(trigger.description){
         output(trigger.description);
     }
 }
+
 
 function trigger_add_item(trigger){
     var item = trigger.target_item;
