@@ -5,7 +5,7 @@
     "player": {
         "name": "Joseph",
         "inventory": [],
-        "description": "I'm a guy who really likes bananas."
+        "description": "You're a guy who really likes bananas."
     },
     "rooms": {
         "entrance": {
