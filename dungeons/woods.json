@@ -403,20 +403,20 @@
             "description": "",
             "exits": {
                 "east": {
-                    "destination": "cemetery gate",
+                    "destination": "factory main room",
                     "current_state": "default",
                     "states": {
                         "default": {
-                            "description": "To the <i>east</i>, you can see the cemetery gate."
+                            "description": "A gate to the <i>east</i> leads to the main part of the factory."
                         }
                     }
                 },
                 "west": {
-                    "destination": "cemetery gate",
+                    "destination": "east trail 3",
                     "current_state": "default",
                     "states": {
                         "default": {
-                            "description": "To the <i>east</i>, you can see the cemetery gate."
+                            "description": "The trail winds back to the <i>west</i>."
                         }
                     }
                 }
@@ -426,21 +426,62 @@
             "name": "Factory Main Room",
             "description": "",
             "exits": {
-
+                "north": {
+                    "destination": "boiler room",
+                    "current_state": "default",
+                    "states": {
+                        "default": {
+                            "description": "A door to the <i>north</i> leads to the boiler room."
+                        }
+                    }
+                },
+                "south": {
+                    "destination": "offices",
+                    "current_state": "default",
+                    "states": {
+                        "default": {
+                            "description": "A door to the <i>south</i> leads to the old offices."
+                        }
+                    }
+                },
+                "west": {
+                    "destination": "factory entrance",
+                    "current_state": "default",
+                    "states": {
+                        "default": {
+                            "description": "A gate to the <i>west</i> leads back to the factory entrance."
+                        }
+                    }
+                }
             }
         },
         "boiler room": {
             "name": "Boiler Room",
             "description": "",
             "exits": {
-
+                "south": {
+                    "destination": "factory main room",
+                    "current_state": "default",
+                    "states": {
+                        "default": {
+                            "description": "A door to the <i>south</i> leads to the main part of the factory."
+                        }
+                    }
+                }
             }
         },
         "offices": {
             "name": "Offices",
             "description": "",
             "exits": {
-
+                "north": {
+                    "destination": "factory main room",
+                    "current_state": "default",
+                    "states": {
+                        "default": {
+                        }
+                    }
+                }
             }
         }
     },

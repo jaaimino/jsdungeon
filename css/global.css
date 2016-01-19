@@ -68,7 +68,7 @@ input:focus, select:focus, button:active, button:focus {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 15px;
-    width: 50%;
+    width: 60%;
     padding: 8px;
     padding-top: 15px;
     padding-bottom: 15px;
@@ -116,6 +116,7 @@ input:focus, select:focus, button:active, button:focus {
     overflow-y: scroll;
     margin-top: 0px;
     margin-bottom: 5px;
+    height: 60%;
 }
 
 .output-box {
@@ -123,8 +124,7 @@ input:focus, select:focus, button:active, button:focus {
     background-color: #2C3133;
     margin-left: auto;
     margin-right: auto;
-    height: 70%;
-    width: 50%;
+    width: 60%;
     box-shadow: 2px 2px 5px #000000;
 }
 
