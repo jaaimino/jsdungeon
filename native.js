@@ -31,3 +31,8 @@ Array.prototype.removeAll = function(element) {
     var index = this.indexOf(element);
   }
 };
+
+function setBackgroungImage(image) {
+    var urlString = 'url(' + image + ')';
+    document.body.style.backgroundImage =  urlString;
+}

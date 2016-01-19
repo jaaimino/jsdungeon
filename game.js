@@ -6,6 +6,11 @@ function startGame(dungeon) {
     //Do some setup
     game_over = false;
     currentDungeon = dungeon;
+    if(currentDungeon.background){
+        setBackgroungImage(currentDungeon.background);
+    } else {
+        setBackgroungImage("img/dungeon.jpg");
+    }
     document.getElementById("page-title").innerHTML = getCurrentDungeon().name;
     var page_title_inner = "<b>{0}</b>".format(getCurrentDungeon().name);
     document.getElementById("page-title-inner").innerHTML = page_title_inner;
