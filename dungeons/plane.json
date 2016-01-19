@@ -1,11 +1,13 @@
 {
     "name": "Countdown",
+    "author" : "Mark",
+    "background" : "img/plane.jpg",
     "intro_text": "You're among the jetset elite.<br> Presently, you've just been woken up by tubulence while taking a trip on your private jet.",
     "start_room": "seat",
     "player": {
-        "name": "Joseph",
+        "name": "Humdinger Jinglebottom",
         "inventory": ["nuts"],
-        "description": "A snazzy looking fellow if I do say so myself."
+        "description": "A snazzy fellow if I do say so myself."
     },
     "rooms": {
         "seat" :{
@@ -95,11 +97,19 @@
             "objects":{
 
                 "pilot":{
-                    "description" : "You can see the vague figure of the <i>pilot</i> through the window to the cockpit.",
-                    "examination" : "He seems kind of slumped over.",
-                    "on_talk" :{
-                        "description" :"Try as you might, you can't get the pilots attention, he continues looking straight ahead."
+                    "current_state":"default",
+                    "states": {
+                        "default":{
+                            "description" : "You can see the vague figure of the <i>pilot</i> through the door's window.",
+                            "examination" : "He seems kind of slumped over.",
+                            
+                            "on_talk" :{
+                                "description" :"Try as you might, you can't get the pilots attention, he continues looking straight ahead. Humph, what a rude fellow. You'll have to consider docking his pay if he's going to cop an attitude like that."
+                            }
+                            
+                        }
                     }
+                    
                 } 
             }
             
