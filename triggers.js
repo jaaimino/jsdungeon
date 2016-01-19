@@ -47,6 +47,9 @@ function trigger_flavor_text(trigger){
     if(trigger.text){
         output(trigger.text);
     }
+    else if(trigger.description){
+        output(trigger.description);
+    }
 }
 
 function trigger_change_state(trigger){

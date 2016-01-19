@@ -82,14 +82,18 @@ function outputRoom() {
     for (var key in getCurrentRoom().objects) {
         if (getCurrentRoom().objects.hasOwnProperty(key)) {
             var objectState = getCurrentRoom().objects[key].current_state;
-            outputString += getCurrentRoom().objects[key].states[objectState].description + " ";
+            if(getCurrentRoom().objects[key].states[objectState].description){//checking for description allows for easy linking/hiding of things without descriptions.
+                outputString += getCurrentRoom().objects[key].states[objectState].description + " ";
+            }
         }
     }
     if (getCurrentRoom().items) {
         for (var i = 0; i < getCurrentRoom().items.length; i++) {
             var item = getCurrentRoom().items[i];
             var itemState = getCurrentDungeon().items[item].current_state;
-            outputString += getCurrentDungeon().items[item].states[itemState].description + " ";
+            if(getCurrentDungeon().items[item].states[itemState].description){
+                outputString += getCurrentDungeon().items[item].states[itemState].description + " ";
+            }
         }
     }
     for (var key in getCurrentRoom().exits) {
