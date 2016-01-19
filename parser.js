@@ -1,11 +1,11 @@
 
 var reg= {
 
- move: /(?:move|go|skedaddle|sally forth|proceed|exit(?: through)?) (.*)/i,
- talk : /(?:talk|chat)(?: to)? (.*)/i,
- examine : /(?:examine|check|scrutinize|look|inspect) (.*)/i,
- take : /(?:take|grab|snatch|get|pick up) (.*)/i,
- use : /(?:search|use|combine|try|give|open) (.+?)(?: (?:on|with|and|for|to|a) (.+?))?$/i,
+ move: /(?:move|go|skedaddle|sally forth|proceed|exit(?: through)?) +(.*)/i,
+ talk : /(?:talk|chat)(?: to)? +(.*)/i,
+ examine : /(?:examine|check|scrutinize|look|inspect) +(.*)/i,
+ take : /(?:take|grab|snatch|get|pick up) +(.*)/i,
+ use : /(?:search|use|combine|try|give|open) +(.+?)(?: +(?:on|with|and|for|to|a) +(.+?))?$/i,
  look : /(?:look|review|survey)/i,
  inventory : /inventory/i,
  help : /help/i,
