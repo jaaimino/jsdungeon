@@ -94,6 +94,7 @@
         "cockpit door":{
             "name" : "Outside the cockpit",
             "description" : "You're right outside the door to the cockpit now.",
+            "items" : ["fire extinguisher"],
             "objects":{
 
                 "pilot":{
@@ -156,13 +157,14 @@
                                         "requires" : "fire extinguisher",
                                         "requires_state" : "default",
                                         "new_state" : "open",
-                                        "description" : "A rather direct solution to the proble, but it seems to work, the panel meekly swings open after you smash it with the extinguisher."
+                                        "description" : "A rather direct solution to the problem, but it seems to work, the panel meekly swings open after you smash it with the extinguisher."
                                     }
                                 ]
                             }
                         },
                         "open":{
-                            "description" : "The shattered panel is now open, you can see the flashing LEDs of the actual control system behind it."
+                            "description" : "The shattered <i>panel</i> is now open, you can see the flashing LEDs of the actual control system behind it.",
+                            "examination" : "The control system is pretty complicated, you're not really sure what to do with it."
                         }
                     }
                 },
@@ -219,6 +221,15 @@
                         }
                         ]
                     }
+                }
+            }
+        },
+        "fire extinguisher":{
+            "current_state": "default",
+            "states": {
+                "default" : {
+                    "description" : "A bright red <i>fire extinguisher</i> is in a case on the side wall.",
+                    "examination" : "It's not particularly bulky, but you wonder what good a fire extinguisher would do if a fire actually happened several miles up."
                 }
             }
         }
