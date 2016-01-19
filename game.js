@@ -90,7 +90,9 @@ function outputRoom() {
     for (var key in getCurrentRoom().exits) {
         if (getCurrentRoom().exits.hasOwnProperty(key)) {
             var roomState = getCurrentRoom().exits[key].current_state;
-            outputString += getCurrentRoom().exits[key].states[roomState].description + " ";
+            if(getCurrentRoom().exits[key].states[roomState].description){//made this one optional so we can have hidden doors until a trigger happens.
+                outputString += getCurrentRoom().exits[key].states[roomState].description + " ";
+            }
         }
     }
     output(outputString);

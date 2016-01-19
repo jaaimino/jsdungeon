@@ -12,6 +12,10 @@
             "name" : "Test",
             "filename" : "dungeons/test.json"
 
+        },
+        {
+            "name" : "Plane Trip",
+            "filename" : "dungeons/plane.json"
         }
     ]
 }

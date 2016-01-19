@@ -1,0 +1,137 @@
+{
+    "name": "Countdown",
+    "intro_text": "You're among the jetset elite.<br> Presently, you've just been woken up by tubulence while taking a trip on your private jet.",
+    "start_room": "seat",
+    "player": {
+        "name": "Joseph",
+        "inventory": ["nuts"],
+        "description": "A snazzy looking fellow if I do say so myself."
+    },
+    "rooms": {
+        "seat" :{
+            "name" : "0700, in the seat of luxry (a personal jetliner)",
+            "description":"You're seated comfortably on your JSX-900 series first-rate personal airline. Aside from the minor tubulence everything seems basically ok.",
+            "objects" : {
+                "window" : {
+                    "current_state" : "default",
+                    "states" : {
+                        "default" : {
+                            "description" : "Your <i>window</i> is to the left of where you are seated.",
+                            "examination" : "On a closer look, something doesn't seem quite right. The flight plan shouldn't be leading you over water, much less an ocean, but all you can see in all directions is the deep blue sea.<p>...</p> Maybe you should go talk to the pilot."
+                        }
+                    }
+                }
+            },
+            "exits" : {
+                "right" : {
+                    "destination" : "aisle",
+                    "current_state" : "default",
+                    "states" : {
+                        "default" : {
+                            "description" : "To your <i>right</i> is the aisle.",
+                            "on_enter" : {
+                                "descripton": "The rumbling of turbulence catches you off guard as you stand up, and you stumble out into the aisle. <br> You get up and brush yourself off and take stock of the plane."
+                            }
+                        }
+                        
+                    }
+                }
+            }
+        },
+        "aisle" : {
+            "name" : "The aisle",
+            "description" : "You are standing in the aisle of the plane, more or less dead center.",
+            
+            "objects" : {
+                "window" : {
+                    "current_state" : "default",
+                    "states" : {
+                        "default" : {
+                            "description" : "More <i>window</i>s surround the area.",
+                            "examination" : "On a closer look, something doesn't seem quite right. The flight plan shouldn't be leading you over water, much less an ocean, but all you can see in all directions is the deep blue sea.<p>...</p> Maybe you should go talk to the pilot."
+                        }
+                    }
+                }
+            },
+            "exits" : {
+                "forward":{
+                    "destination": "cockpit door",
+                    "current_state" : "default",
+                    "states" : {
+                        "default" : {
+                            "description" : "<i>forward</i> from where you currently stand is the cockpit door."
+                        }
+                    }
+                },
+                "back":{
+                    "destination" : "the loo",
+                    "current_state" : "default",
+                    "states" : {
+                        "default" : {
+                            "description" : "<i>back</i> behind you is the loo.",
+                            "examination" : "Now that you think about it, there were some control pannels or something back there too."
+                        }
+                    }
+                },
+                "down":{
+                    "destination": "cargo",
+                    "current_state" :"hidden",
+                    "states" : {
+                        "hidden" : {
+                            "open" : "false",
+                            "examination" : "You knock on the floor, it sounds hollow, probably because <i>cargo</i> is below you. Can't think of how to get at it though."
+                        }
+                    }
+                }
+                
+                
+            }
+            
+            
+        },
+        "cockpit door":{
+            "name" : "Outside the cockpit",
+            "description" : "You're right outside the door to the cockpit now",
+            "objects":{
+
+                "pilot":{
+                    "description" : "You can see the vague figure of the <i>pilot</i> through the window to the cockpit.",
+                    "examination" : "He seems kind of slumped over.",
+                    "on_talk" :{
+                        "description" :"Try as you might, you can't get the pilots attention, he continues looking straight ahead."
+                    }
+                } 
+            }
+            
+            
+            
+        }
+        
+        
+        
+    },
+    
+    "items":{
+        "nuts": {
+            "current_state": "default",
+            "states": {
+                "default": {
+                    "description": "",
+                    "examination": "You've got a packet of nuts in your pocket; a healthy snack.",
+                    "on_use": {
+                        "triggers":
+                        [
+                        {
+                            "trigger_type": "flavor_text",
+                            "text": "You munch the <i>nuts</i>."
+                        }
+                        ]
+                    }
+                }
+            }
+        }
+        
+        
+        
+    }
+}
