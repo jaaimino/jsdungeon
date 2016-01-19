@@ -1,5 +1,6 @@
 {
     "name": "The Woods",
+    "background" : "img/woods.jpg",
     "intro_text": "You've heard stories of the woods near the old cement plant. You and a few friends decide to camp out there for the night to see what you can uncover.",
     "start_room": "camp site",
     "player": {
@@ -11,47 +12,464 @@
         "camp site": {
             "name": "Camp Site",
             "description": "You're at the camp.",
-            "items" : ["lantern"],
+            "items": ["lantern"],
             "objects": {
                 "your tent": {
                     "current_state": "default",
                     "states": {
-                        "default" : {
-                            "description" : "Around the central part of camp is <i>your tent</i>.",
-                            "examination" : "Yep, this is my tent all right.",
-                            "fail_pickup" : "I think I'm going to just leave this here actually."
+                        "default": {
+                            "description": "Around the central part of the camp is <i>your tent</i>.",
+                            "examination": "Yep, this is my tent all right.",
+                            "fail_pickup": "I think I'm going to just leave this here actually."
+                        }
+                    }
+                }
+            },
+            "exits": {
+                "north": {
+                    "destination": "north trail 1",
+                    "current_state": "default",
+                    "states": {
+                        "default": {
+                            "description": "There's a trail leading <i>north</i>."
+                        }
+                    }
+                },
+                "east": {
+                    "destination": "east trail 1",
+                    "current_state": "default",
+                    "states": {
+                        "default": {
+                            "description": "There's another trail leading <i>east</i>."
+                        }
+                    }
+                },
+                "south": {
+                    "destination": "south trail",
+                    "current_state": "default",
+                    "states": {
+                        "default": {
+                            "description": "There's also a trail leading <i>south</i>."
                         }
                     }
                 }
             }
+        },
+        "north trail 1": {
+            "name": "North Trail",
+            "description": "",
+            "exits": {
+                "north": {
+                    "destination": "north trail 2",
+                    "current_state": "default",
+                    "states": {
+                        "default": {
+                            "description": "The trail continues to the <i>north</i>."
+                        }
+                    }
+                },
+                "south": {
+                    "destination": "camp site",
+                    "current_state": "default",
+                    "states": {
+                        "default": {
+                            "description": "The camp site is back toward the <i>south</i>."
+                        }
+                    }
+                }
+            }
+        },
+        "north trail 2": {
+            "name": "North Trail",
+            "description": "",
+            "exits": {
+                "north": {
+                    "destination": "north trail 3",
+                    "current_state": "default",
+                    "states": {
+                        "default": {
+                            "description": "The trail continues to the <i>north</i>."
+                        }
+                    }
+                },
+                "south": {
+                    "destination": "north trail 1",
+                    "current_state": "default",
+                    "states": {
+                        "default": {
+                            "description": "The camp site is back toward the <i>south</i>."
+                        }
+                    }
+                }
+            }
+        },
+        "north trail 3": {
+            "name": "North Trail",
+            "description": "",
+            "exits": {
+                "north": {
+                    "destination": "road",
+                    "current_state": "default",
+                    "states": {
+                        "default": {
+                            "description": "There is a road through a clearing to the <i>north</i>."
+                        }
+                    }
+                },
+                "south": {
+                    "destination": "north trail 2",
+                    "current_state": "default",
+                    "states": {
+                        "default": {
+                            "description": "The camp site is back toward the <i>south</i>."
+                        }
+                    }
+                },
+                "west": {
+                    "destination": "abandoned camp",
+                    "current_state": "default",
+                    "states": {
+                        "default": {
+                            "description": "There's an opening in the trail to the <i>west</i>."
+                        }
+                    }
+                }
+            }
+        },
+        "abandoned camp": {
+            "name": "Abandoned Camp",
+            "description": "",
+            "exits": {
+                "east": {
+                    "destination": "north trail 3",
+                    "current_state": "default",
+                    "states": {
+                        "default": {
+                            "description": "The trail is back to the <i>east</i>."
+                        }
+                    }
+                }
+            }
+        },
+        "road": {
+            "name": "Road",
+            "description": "",
+            "exits": {
+                "south": {
+                    "destination": "north trail 3",
+                    "current_state": "default",
+                    "states": {
+                        "default": {
+                            "description": "The trail is back to the <i>south</i>."
+                        }
+                    }
+                }
+            }
+        },
+        "south trail": {
+            "name": "South Trail",
+            "description": "",
+            "exits": {
+                "north": {
+                    "destination": "camp site",
+                    "current_state": "default",
+                    "states": {
+                        "default": {
+                            "description": "The camp is back to the <i>north</i>."
+                        }
+                    }
+                },
+                "south": {
+                    "destination": "riverside",
+                    "current_state": "default",
+                    "states": {
+                        "default": {
+                            "description": "You hear the sound of running water to the <i>south</i>."
+                        }
+                    }
+                }
+            }
+        },
+        "riverside": {
+            "name": "Riverside",
+            "description": "",
+            "exits": {
+                "north": {
+                    "destination": "south trail",
+                    "current_state": "default",
+                    "states": {
+                        "default": {
+                            "description": "The trail is back to the <i>north</i>."
+                        }
+                    }
+                },
+                "east": {
+                    "destination": "cabin",
+                    "current_state": "default",
+                    "states": {
+                        "default": {
+                            "description": "You can see what looks like a cabin to the <i>east</i>."
+                        }
+                    }
+                }
+            }
+        },
+        "cabin": {
+            "name": "Cabin",
+            "description": "",
+            "exits": {
+                "east": {
+                    "destination": "cabin bedroom",
+                    "current_state": "default",
+                    "states": {
+                        "default": {
+                            "description": "There's a door to the <i>east</i> that appears to lead to the cabin bedroom."
+                        }
+                    }
+                },
+                "west": {
+                    "destination": "riverside",
+                    "current_state": "default",
+                    "states": {
+                        "default": {
+                            "description": "There door outside is to the <i>west</i>."
+                        }
+                    }
+                }
+            }
+        },
+        "cabin bedroom": {
+            "name": "Cabin Bedroom",
+            "description": "",
+            "exits": {
+                "west": {
+                    "destination": "cabin",
+                    "current_state": "default",
+                    "states": {
+                        "default": {
+                            "description": "There's a door leading <i>west</i>."
+                        }
+                    }
+                }
+            }
+        },
+        "east trail 1": {
+            "name": "East Trail 1",
+            "description": "",
+            "exits": {
+                "west": {
+                    "destination": "camp site",
+                    "current_state": "default",
+                    "states": {
+                        "default": {
+                            "description": "The trail back to the <i>camp site</i> is back to the <i>west</i>."
+                        }
+                    }
+                },
+                "east": {
+                    "destination": "east trail 2",
+                    "current_state": "default",
+                    "states": {
+                        "default": {
+                            "description": "The trail continues to the <i>east</i>."
+                        }
+                    }
+                }
+
+            }
+        },
+        "east trail 2": {
+            "name": "East Trail 2",
+            "description": "",
+            "exits": {
+                "north": {
+                    "destination": "cemetery gate",
+                    "current_state": "default",
+                    "states": {
+                        "default": {
+                            "description": "There is a trail leading to a spooky gate to the <i>north</i>."
+                        }
+                    }
+                },
+                "east": {
+                    "destination": "east trail 3",
+                    "current_state": "default",
+                    "states": {
+                        "default": {
+                            "description": "The trail continues forward to the <i>east</i>."
+                        }
+                    }
+                },
+                "west": {
+                    "destination": "east trail 1",
+                    "current_state": "default",
+                    "states": {
+                        "default": {
+                            "description": "The trail continues back towards the <i>west</i>."
+                        }
+                    }
+                }
+            }
+        },
+        "east trail 3": {
+            "name": "East Trail 3",
+            "description": "",
+            "exits": {
+                "east": {
+                    "destination": "factory entrance",
+                    "current_state": "default",
+                    "states": {
+                        "default": {
+                            "description": "There is a trail leading to a formidable gate to the <i>east</i>."
+                        }
+                    }
+                },
+                "west": {
+                    "destination": "east trail 2",
+                    "current_state": "default",
+                    "states": {
+                        "default": {
+                            "description": "The trail continues back towards the <i>west</i>."
+                        }
+                    }
+                }
+            }
+        },
+        "cemetery": {
+            "name": "Cemetery",
+            "description": "",
+            "exits": {
+                "east": {
+                    "destination": "cemetery gate",
+                    "current_state": "default",
+                    "states": {
+                        "default": {
+                            "description": "To the <i>east</i>, you can see the cemetery gate."
+                        }
+                    }
+                }
+            }
+        },
+        "cemetery gate": {
+            "name": "Cemetery Gate",
+            "description": "",
+            "exits": {
+                "north": {
+                    "destination": "mushroom patch",
+                    "current_state": "default",
+                    "states": {
+                        "default": {
+                            "description": "To the <i>north</i>, you can see what looks to ba a patch of strange looking mushrooms."
+                        }
+                    }
+                },
+                "south": {
+                    "destination": "east trail 2",
+                    "current_state": "default",
+                    "states": {
+                        "default": {
+                            "description": "A small path leads <i>south</i> back to the main trail."
+                        }
+                    }
+                },
+                "west": {
+                    "destination": "cemetery",
+                    "current_state": "default",
+                    "states": {
+                        "default": {
+                            "description": "Just beyond the gates to the <i>west</i>, you can see the many headstones of the old <i>cemetery</i>."
+                        }
+                    }
+                }
+            }
+        },
+        "mushroom patch": {
+            "name": "Mushroom Patch",
+            "description": "",
+            "exits": {
+                "south": {
+                    "destination": "cemetery gate",
+                    "current_state": "default",
+                    "states": {
+                        "default": {
+                            "description": "To the <i>south</i>, you can see the cemetery gate."
+                        }
+                    }
+                }
+            }
+        },
+        "factory entrance": {
+            "name": "Factory Entrance",
+            "description": "",
+            "exits": {
+                "east": {
+                    "destination": "cemetery gate",
+                    "current_state": "default",
+                    "states": {
+                        "default": {
+                            "description": "To the <i>east</i>, you can see the cemetery gate."
+                        }
+                    }
+                },
+                "west": {
+                    "destination": "cemetery gate",
+                    "current_state": "default",
+                    "states": {
+                        "default": {
+                            "description": "To the <i>east</i>, you can see the cemetery gate."
+                        }
+                    }
+                }
+            }
+        },
+        "factory main room": {
+            "name": "Factory Main Room",
+            "description": "",
+            "exits": {
+
+            }
+        },
+        "boiler room": {
+            "name": "Boiler Room",
+            "description": "",
+            "exits": {
+
+            }
+        },
+        "offices": {
+            "name": "Offices",
+            "description": "",
+            "exits": {
+
+            }
         }
     },
-    "items" : {
-        "lantern" : {
-            "current_state" : "dark",
-            "states" : {
-                "dark" : {
-                    "description" : "On the ground near your tent is an electric <i>lantern</i>.",
-                    "examination" : "It looks like it's switched off.",
-                    "on_use" : {
-                        "triggers" : [{
+    "items": {
+        "lantern": {
+            "current_state": "dark",
+            "states": {
+                "dark": {
+                    "description": "On the ground near your tent is an electric <i>lantern</i>.",
+                    "examination": "It looks like it's switched off.",
+                    "on_use": {
+                        "triggers": [{
                             "trigger_type": "state_change",
                             "target_type": "items",
                             "target": "lantern",
                             "new_state": "lit",
-                            "description" : "You switch the <i>lantern</i> on."
+                            "description": "You switch the <i>lantern</i> on."
                         }]
                     }
                 },
-                "lit" : {
-                    "examination" : "It's nice and bright.",
-                    "on_use" : {
-                        "triggers" : [{
+                "lit": {
+                    "examination": "It's nice and bright.",
+                    "on_use": {
+                        "triggers": [{
                             "trigger_type": "state_change",
                             "target_type": "items",
                             "target": "lantern",
                             "new_state": "dark",
-                            "description" : "You switch the <i>lantern</i> off."
+                            "description": "You switch the <i>lantern</i> off."
                         }]
                     }
                 }
