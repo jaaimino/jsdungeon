@@ -82,6 +82,11 @@
                         "hidden" : {
                             "open" : "false",
                             "examination" : "You knock on the floor, it sounds hollow, probably because <i>cargo</i> is below you. Can't think of how to get at it though."
+                        },
+                        "open" : {
+                            "open" : "true",
+                            "description" : "Air flows into the area <i> down </i> from the luggage below.",
+                            "examination" : "It looks like the door was blasted open by the other short circuit from earlier"
                         }
                     }
                 }
@@ -90,6 +95,36 @@
             }
             
             
+        },
+        "cargo":{
+          "name" : "The cargo",
+          "description" : "A musty area below deck, you can see scattered bits of stuff strewn about."
+        },
+        "cockpit":{
+          "name" : "The cockpit",
+          "description" : "You get an even better look at the ocean from the cockpit. But you also see a few things you'd rather you hadn't.",
+          "objects":{
+              "pilot":{
+                  "current_state":"default",
+                  "states":{
+                      "default":{
+                          "description":"The <i>pilot</i> is laying slumped over in his chair, it looks like he may have taken a blow to the head.",
+                          "examination":"Well, the pilot wasn't so much ignoring you as being dead."
+                      }
+                  }
+              }
+          },
+          "exits":{
+              "back":{
+                  "destination":"cockpit door",
+                  "current_state":"default",
+                  "states":{
+                      "default":{
+                          "description":"Going <i>back</i> will take you back to the door again."
+                      }
+                  }
+              }
+          }
         },
         "cockpit door":{
             "name" : "Outside the cockpit",
@@ -108,6 +143,12 @@
                                 "description" :"Try as you might, you can't get the pilots attention, he continues looking straight ahead. Humph, what a rude fellow. You'll have to consider docking his pay if he's going to cop an attitude like that."
                             }
                             
+                        },
+                        "dead":{
+                        
+                          "description":"The pilot is laying slumped over in his chair, it looks like he may have taken a blow to the head.",
+                          "examination":"Well, the pilot wasn't so much ignoring you as being dead."
+                      
                         }
                     }
                     
@@ -122,6 +163,36 @@
                             "description" : "Going <i>back</i> will get you to the aisle again."
                         }
                     }
+                },
+                "door":{
+                    "destination" : "cockpit",
+                    "current_state" :"locked",
+                    "states" : {
+                        "locked":{
+                            "description" : "The <i>door</i> to the cockpit is in front of you.",
+                            "examination" : "You try it, but it seems to be locked from the inside.",
+                            "open" : "false"
+                            
+                        },
+                        "open":{
+                            "description" : "The <i>door</i> to the cockpit is in front of you.",
+                            "examination" : "You try it, and the door seems to be open now.",
+                            "open" : "true",
+                            "one_enter":{
+                                "description":"You get a good look at the cockpit as you enter",
+                                "triggers":
+                                    [
+                                        {
+                                            "trigger_type":"state_change",
+                                            "target_type":"objects",
+                                            "target":"pilot",
+                                            "new_state":"dead"
+                                        }
+                                    ]
+                                
+                            }
+                        }
+                    }
                 }
             }
 
@@ -134,8 +205,38 @@
                     "current_state":"default",
                     "states":{
                         "default":{
-                            "description" : "The shower seems to be off right now."
+                            "description" : "The <i>shower</i> seems to be off right now.",
+                            "on_use" : {
+                            "triggers" :[
+                                    {
+                                        "trigger_type":"flavor_text",
+                                        "description": "You turn the shower on."
+                                    },
+                                    {
+                                        "trigger_type":"state_change",
+                                        "target_type" : "objects",
+                                        "target" : "panel",
+                                        "new_state": "shorted",
+                                        "description" : "The open panel goes on the fritz."
+                                    },
+                                    {
+                                        "trigger_type" : "state_change",
+                                        "target_type" : "exits",
+                                        "target" : "door",
+                                        "target_room" : "cockpit door",
+                                        "new_state" : "open",
+                                        "description" : "You hear a loud click from the front of the plane."
+                                    },
+                                    {
+                                        "trigger_type":"flavor_text",
+                                        "description": "...You turn the shower back off."
+                                    }
+                                ]
+                             }
+                            
+                            
                         }
+                        
                     }
                 },
                 "panel":{
@@ -165,6 +266,10 @@
                         "open":{
                             "description" : "The shattered <i>panel</i> is now open, you can see the flashing LEDs of the actual control system behind it.",
                             "examination" : "The control system is pretty complicated, you're not really sure what to do with it."
+                        },
+                        "shorted":{
+                            "description" : "The panel is now soaked.",
+                            "examination" : "Occasionally you can see sparks flying from the panel."
                         }
                     }
                 },
