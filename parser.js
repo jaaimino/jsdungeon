@@ -1,11 +1,13 @@
 
-var reg= {
 
+
+var reg= {
  move: /(?:move|enter|go|skedaddle|sally forth|proceed|exit(?: through)?) +(.*)/i,
  talk : /(?:talk|chat)(?: to)? +(.*)/i,
  examine : /(?:examine|check|scrutinize|look|inspect) +(.*)/i,
  take : /(?:take|grab|snatch|get|pick up) +(.*)/i,
- use : /(?:search|use|combine|try|give|open) +(.+?)(?: +(?:on|with|and|for|to|a) +(.+?))?$/i,
+ use : /(?:search|use|combine|try|give) +(.+?)(?: +(?:on|with|and|for|to|a) +(.+?))?$/i,
+ context:/(?:open) +(.+?)(?: +(?:with|and|for|to|a) +(.+?))?$/i,
  look : /(?:look|review|survey)/i,
  inventory : /inventory/i,
  help : /help/i,
@@ -51,6 +53,12 @@ function parseInput(text){
     if(reg.use.test(text)){
         var match = reg.use.exec(text);
         use(match[1],match[2]);
+        return;
+    }
+    
+    if(reg.context.test(text)){
+        var match = reg.context.exec(text);
+        check_context(match[1],match[2]);
         return;
     }
     

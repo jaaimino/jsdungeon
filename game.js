@@ -138,19 +138,8 @@ function leave_room(currentExit,direction){
         if(currentExit.on_enter.description)
             output(currentExit.on_enter.description); //check for and display flavor text
         if(currentExit.on_enter.triggers){
-            var triggers = currentExit.on_enter.triggers;
-            for(var i=0;i<triggers.length;i++){
-                var shouldReturn = false;
-                process_trigger(triggers[i]);
-                if(triggers[i].trigger_blocking && triggers[i].trigger_blocking === "true")
-                    shouldReturn = true;
-                if(triggers[i].single_trigger && triggers[i].single_trigger === "true"){
-                    triggers.splice(i, 1);
-                    i-=1;
-                }
-                if(shouldReturn)
-                    return;
-            }
+            looptriggers(currentExit.on_enter.triggers);
+            
         }
     }
     getCurrentDungeon().currentRoom = getCurrentDungeon().rooms[getCurrentRoom().exits[direction].destination];
@@ -227,7 +216,7 @@ function use_type(type, item_use,item_on, currentArea){
             trigger_action(item_use, item_on, triggers, use_currentState);
         }
         else {
-            output("You see nothing in the direction of {0} that you can do anything with {1}.".format(item_on, item_use));
+            output("You can't do anything to {0} with {1}.".format(item_on, item_use));
         }
     }
     else {
@@ -306,12 +295,10 @@ function examine(item) {
         var currentState = getCurrentState(item, "exits", getCurrentRoom());
         var currentExit = getCurrentRoom().exits[item].states[currentState];
 
-        if (currentExit.examination) {
-            output(currentExit.examination);
-        }
-        else {
-            output("It is certainly an exit to this room.");
-        }
+        
+        lookatthing(currentExit);
+        
+
     }
     else {
         output("There's nothing in this room like that!");
@@ -319,12 +306,31 @@ function examine(item) {
 }
 
 function lookatthing(currentThing){
-    if (currentThing.examination) {
+    
+    if(currentThing.on_examine){
+        var noprint = true;
+        if(currentThing.on_examine.description){
+            output(currentThing.on_examine.description);
+            noprint = false;
+        }
+        if(currentThing.on_examine.triggers){
+            looptriggers(currentThing.on_examine.triggers);
+            noprint = false;
+        }
+        if(noprint){
+            output("There doesn't seem to be anything interesting about {0}...".format(currentThing));
+        }
+        
+    }
+    //leaving this in for legacy purposes todo:revamp all adventures to use new version DON'T MENTION THIS STYLE IN THE DOCUMENTATION
+    else if (currentThing.examination) {
         output(currentThing.examination);
+
     }
     else {
-        output("There doesn't seem to be anything interesting about that...");
+        output("There doesn't seem to be anything interesting about {0}...".format(currentThing));
     }
+    
 }
 
 function talk(person){
@@ -340,14 +346,8 @@ function talk(person){
         }
         if(check_exist(currentPerson.on_talk,"triggers")){
             notalk=false;
-            var triggers = currentPerson.on_talk.triggers;
-            for(var i = 0; i<triggers.length;i++){
-                process_trigger(triggers[i]);
-                if(triggers[i].single_trigger && triggers[i].single_trigger === "true"){
-                    triggers.splice(i, 1);
-                    i-=1;
-                }
-            }
+            looptriggers(currentPerson.on_talk.triggers);
+            
         }
         if(notalk){
             output("There was nothing much to say.");
@@ -374,6 +374,11 @@ function help() {
         "<i>inventory</i> - checks your current items <br>" +
         "<i>help</i> - displays this message! <br>"
         );
+}
+
+
+function error(item){
+    output("{0} doesn't exist here!".format(item));
 }
 
 /* Various getters below */

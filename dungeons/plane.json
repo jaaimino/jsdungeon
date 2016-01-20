@@ -19,7 +19,24 @@
                     "states" : {
                         "default" : {
                             "description" : "Your <i>window</i> is to the left of where you are seated.",
-                            "examination" : "On a closer look, something doesn't seem quite right. The flight plan shouldn't be leading you over water, much less an ocean, but all you can see in all directions is the deep blue sea.<p>...</p> Maybe you should go talk to the pilot."
+                            "on_examine" : 
+                            {
+                                "description":"On a closer look, something doesn't seem quite right. The flight plan shouldn't be leading you over water, much less an ocean, but all you can see in all directions is the deep blue sea.<p>...</p> Maybe you should go talk to the pilot.",
+                                "triggers":
+                                    [
+                                        {
+                                            "trigger_type":"state_change",
+                                            "target_type":"exits",
+                                            "target":"right",
+                                            "new_state":"getup",
+                                            "single_trigger":"true",
+                                            "description" : "You unbuckle your seatbelt."
+                                        }
+                                    ]
+                                
+                                
+                            }
+                            
                         }
                     }
                 }
@@ -29,8 +46,14 @@
                     "destination" : "aisle",
                     "current_state" : "default",
                     "states" : {
-                        "default" : {
+                       "default" : {
+                            "description" : "To your <i>right</i> is the aisle. No reason to get up right now though.",
+                            "examination" : "You're pretty comfy in your seat.",
+                            "open" : "false"
+                        },
+                        "getup" : {
                             "description" : "To your <i>right</i> is the aisle.",
+                            "open" : "true",
                             "on_enter" : {
                                 "description": "The rumbling of turbulence catches you off guard as you stand up, and you stumble out into the aisle. <br> You get up and brush yourself off and take stock of the plane."
                             }
@@ -219,15 +242,6 @@
                                         "description" : "The open panel goes on the fritz."
                                     },
                                     {
-                                        "trigger_type" : "state_change",
-                                        "target_type" : "exits",
-                                        "target" : "door",
-                                        "target_room" : "cockpit door",
-                                        "single_trigger": "true",
-                                        "new_state" : "open",
-                                        "description" : "You hear a loud click from the front of the plane."
-                                    },
-                                    {
                                         "trigger_type":"flavor_text",
                                         "description": "...You turn the shower back off."
                                     }
@@ -265,11 +279,37 @@
                         },
                         "open":{
                             "description" : "The shattered <i>panel</i> is now open, you can see the flashing LEDs of the actual control system behind it.",
-                            "examination" : "The control system is pretty complicated, you're not really sure what to do with it."
+                            "examination" : "The control system is pretty complicated, you're not really sure what to do with it.",
+                            "on_use" : {
+                                "triggers":[
+                                    {
+                                        "trigger_type" : "flavor_text",
+                                        "description" : "The whole thing is a mess, you halfheartedly yank on a few wires, but nothing seems to happen."
+                                    }
+                                    
+                                    ]
+                                
+                            }
+                            
+                            
                         },
                         "shorted":{
                             "description" : "The panel is now soaked.",
-                            "examination" : "Occasionally you can see sparks flying from the panel."
+                            "examination" : "Occasionally you can see sparks flying from the panel.",
+                            "on_use":{
+                                "triggers":[
+                                    {
+                                        "trigger_type" : "state_change",
+                                        "target_type" : "exits",
+                                        "target" : "door",
+                                        "target_room" : "cockpit door",
+                                        "single_trigger": "true",
+                                        "new_state" : "open",
+                                        "description" : "This time you just bang on it. You hear a loud click from the front of the plane. Hacking!"
+                                    }
+                                    
+                                    ]
+                            }
                         }
                     }
                 },
