@@ -192,7 +192,19 @@
                         "locked":{
                             "description" : "The <i>door</i> to the cockpit is in front of you.",
                             "examination" : "You try it, but it seems to be locked from the inside.",
-                            "open" : "false"
+                            "open" : "false",
+                            "on_use":{
+                                "triggers":
+                                [
+                                    {
+                                        "trigger_type":"flavor_text",
+                                        "requires":"fire extinguisher",
+                                        "requires_state":"default",
+                                        "description":"You slam the fire extinguisher against the door, but it doesn't give an inch. Maybe you should see if there's something weaker to smash."
+                                    }
+                                    
+                                ]
+                            }
                             
                         },
                         "open":{
