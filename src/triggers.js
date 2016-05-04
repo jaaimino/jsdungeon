@@ -1,107 +1,107 @@
 /* File for handling triggers (This is going to get messy) */
-function process_trigger(trigger){
+jsdungeon.process_trigger = function(trigger){
     if(trigger.trigger_type === "state_change"){
-        trigger_change_state(trigger);
+        jsdungeon.trigger_change_state(trigger);
     }
     else if(trigger.trigger_type === "flavor_text"){
-        trigger_flavor_text(trigger);
+        jsdungeon.trigger_flavor_text(trigger);
     }
     else if(trigger.trigger_type === "lose_game"){
-        trigger_lose_game(trigger);
+        jsdungeon.trigger_lose_game(trigger);
     }
     else if(trigger.trigger_type === "win_game"){
-        trigger_win_game(trigger);
+        jsdungeon.trigger_win_game(trigger);
     }
     else if(trigger.trigger_type === "add_item"){
-        trigger_add_item(trigger);
+        jsdungeon.trigger_add_item(trigger);
     }
     else if(trigger.trigger_type === "remove_item"){
-        trigger_remove_item(trigger);
+        jsdungeon.trigger_remove_item(trigger);
     }
     else{
         console.log("malformed trigger");
     }
 }
 
-function getTargetGroup(trigger){
+jsdungeon.getTargetGroup = function(trigger){
     if(trigger.target_type === "objects"){
         if(trigger.target_room){
-            return getObjects(trigger.target_room);
+            return jsdungeon.getObjects(trigger.target_room);
         } else {
-            return getObjects();
+            return jsdungeon.getObjects();
         }
     }
     if(trigger.target_type === "items"){
-        return getItems();
+        return jsdungeon.getItems();
     }
     if(trigger.target_type === "exits"){
         if(trigger.target_room){
-            return getExits(trigger.target_room);
+            return jsdungeon.getExits(trigger.target_room);
         } else {
-            return getExits();
+            return jsdungeon.getExits();
         }
     }
 }
 
-function trigger_flavor_text(trigger){
+jsdungeon.trigger_flavor_text = function(trigger){
     if(trigger.text){
-        output(trigger.text);
+        jsdungeon.output(trigger.text);
     }
     else if(trigger.description){
-        output(trigger.description);
+        jsdungeon.output(trigger.description);
     }
 }
 
-function trigger_change_state(trigger){
-    var targetGroup = getTargetGroup(trigger);
+jsdungeon.trigger_change_state = function(trigger){
+    var targetGroup = jsdungeon.getTargetGroup(trigger);
     if(trigger.target_state){
         if(trigger.target_state === targetGroup[trigger.target].current_state){
-            changestate(trigger);
+            jsdungeon.changestate(trigger);
         }
     }
     else{
-        changestate(trigger);
+        jsdungeon.changestate(trigger);
     }
 }
-function changestate(trigger){
-    var targetGroup = getTargetGroup(trigger);
+jsdungeon.changestate = function(trigger){
+    var targetGroup = jsdungeon.getTargetGroup(trigger);
     targetGroup[trigger.target].current_state = trigger.new_state;
     if(trigger.description){
-        output(trigger.description);
+        jsdungeon.output(trigger.description);
     }
 }
 
 
-function trigger_add_item(trigger){
+jsdungeon.trigger_add_item = function(trigger){
     var item = trigger.target_item;
-    getCurrentDungeon().player.inventory.push(item);
+    jsdungeon.getCurrentDungeon().player.inventory.push(item);
     if(trigger.description){
-        output(trigger.description);
+        jsdungeon.output(trigger.description);
     }
 }
 
-function trigger_remove_item(trigger){
+jsdungeon.trigger_remove_item = function(trigger){
     var item = trigger.target_item;
-    getCurrentDungeon().player.inventory.remove(item);
+    jsdungeon.getCurrentDungeon().player.inventory.remove(item);
     if(trigger.description){
-        output(trigger.description);
+        jsdungeon.output(trigger.description);
     }
 }
 
-function trigger_lose_game(trigger){
+jsdungeon.trigger_lose_game = function(trigger){
     if(trigger.description){
-        output("{0} Choose a dungeon and start a new game below.".format(trigger.description));
+        jsdungeon.output("{0} Choose a dungeon and start a new game below.".format(trigger.description));
     } else {
-        output("You have died. Choose a dungeon and start a new game below.");
+        jsdungeon.output("You have died. Choose a dungeon and start a new game below.");
     }
-    endGame();
+    jsdungeon.endGame();
 }
 
-function trigger_win_game(trigger){
+jsdungeon.trigger_win_game = function(trigger){
     if(trigger.description){
-        output("{0} Choose a dungeon and start a new game below.".format(trigger.description));
+        jsdungeon.output("{0} Choose a dungeon and start a new game below.".format(trigger.description));
     } else {
-        output("Congratulations! You've completed the dungeon. Start a new game below.");
+        jsdungeon.output("Congratulations! You've completed the dungeon. Start a new game below.");
     }
-    endGame();
+    jsdungeon.endGame();
 }

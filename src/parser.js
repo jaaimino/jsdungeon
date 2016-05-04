@@ -1,7 +1,7 @@
 /**
  * Parser for overall game interactions!
  **/
-var reg= {
+jsdungeon.reg= {
  move: /(?:move|enter|go|skedaddle|sally forth|proceed|exit(?: through)?) +(.*)/i,
  talk : /(?:talk|chat)(?: to)? +(.*)/i,
  examine : /(?:examine|check|scrutinize|look|inspect) +(.*)/i,
@@ -16,80 +16,80 @@ var reg= {
 }
     
 
-function parseInput(text){
+jsdungeon.parseInput = function (text){
     
-    if(reg.move.test(text)){
+    if(jsdungeon.reg.move.test(text)){
         
-        var match = reg.move.exec(text);
-        move(match[1]);
-        
-        return;
-    }
-    
-
-    
-    if(reg.talk.test(text)){
-        var match = reg.talk.exec(text);
-        talk(match[1]);
+        var match = jsdungeon.reg.move.exec(text);
+        jsdungeon.move(match[1]);
         
         return;
     }
     
 
     
-    if(reg.examine.test(text)){
-        var match = reg.examine.exec(text);
-        examine(match[1]);
+    if(jsdungeon.reg.talk.test(text)){
+        var match = jsdungeon.reg.talk.exec(text);
+        jsdungeon.talk(match[1]);
         
         return;
     }
     
-    if(reg.take.test(text)){
-        var match = reg.take.exec(text);
-        take(match[1]);
-        
-        return;
-    }
-    if(reg.use.test(text)){
-        var match = reg.use.exec(text);
-        use(match[1],match[2]);
-        return;
-    }
+
     
-    if(reg.context.test(text)){
-        var match = reg.context.exec(text);
-        check_context(match[1],match[2]);
-        return;
-    }
-    
-    
-    if(reg.look.test(text)){
-        look();
+    if(jsdungeon.reg.examine.test(text)){
+        var match = jsdungeon.reg.examine.exec(text);
+        jsdungeon.examine(match[1]);
         
         return;
     }
     
-    if(reg.inventory.test(text)){
-        inventory();
+    if(jsdungeon.reg.take.test(text)){
+        var match = jsdungeon.reg.take.exec(text);
+        jsdungeon.take(match[1]);
+        
+        return;
+    }
+    if(jsdungeon.reg.use.test(text)){
+        var match = jsdungeon.reg.use.exec(text);
+        jsdungeon.use(match[1],match[2]);
+        return;
+    }
+    
+    if(jsdungeon.reg.context.test(text)){
+        var match = jsdungeon.reg.context.exec(text);
+        jsdungeon.check_context(match[1],match[2]);
+        return;
+    }
+    
+    
+    if(jsdungeon.reg.look.test(text)){
+        jsdungeon.look();
+        
+        return;
+    }
+    
+    if(jsdungeon.reg.inventory.test(text)){
+        jsdungeon.inventory();
         
         
         return;
     }
-    if(reg.help.test(text)){
-        help();
+    if(jsdungeon.reg.help.test(text)){
+        jsdungeon.help();
         
         return;
     }
     
     
-    if(!reg.whitespace.test(text)){
+    if(!jsdungeon.reg.whitespace.test(text)){
         return;
     }
     
     
     
     /*global output*/
-     output("I'm not sure how to {0}! (Type help to see commands)".format(text));    
+     jsdungeon.output("I'm not sure how to {0}! (Type help to see commands)".format(text));    
     
     
    

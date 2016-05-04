@@ -1,39 +1,39 @@
-var outputString = "";
+jsdungeon.outputString = "";
 
-function interact(input) {
-    outputString = "";
+jsdungeon.interact = function(input) {
+    jsdungeon.outputString = "";
     try {
-        if(isGameOver()){
-            output("Game is over. Please start a new one.");
-            return outputString;
+        if(jsdungeon.isGameOver()){
+            jsdungeon.output("Game is over. Please start a new one.");
+            return jsdungeon.outputString;
         }
-        if(getCurrentDungeon() === null){
-            output("Please start a dungeon.");
-            return outputString;
+        if(jsdungeon.getCurrentDungeon() === null){
+            jsdungeon.output("Please start a dungeon.");
+            return jsdungeon.outputString;
         }
-        gameloop(input);
+        jsdungeon.gameloop(input);
     }
     catch(err) {
         console.log(err);
-        output("Uh oh! There was an error!");
-        return outputString;
+        jsdungeon.output("Uh oh! There was an error!");
+        return jsdungeon.outputString;
     }
-    return outputString;
+    return jsdungeon.outputString;
 }
 
-function output(value) {
-    outputString += "<p class='entry'>" + value + "</p>";
+jsdungeon.output = function(value) {
+    jsdungeon.outputString += "<p class='entry'>" + value + "</p>";
 }
 
-function output_break(value) {
-    outputString += "<p class='break'/>";
+jsdungeon.output_break = function(value) {
+    jsdungeon.outputString += "<p class='break'/>";
 }
 
-function clearOutput(){
-    outputString = "";
+jsdungeon.clearOutput = function(){
+    jsdungeon.outputString = "";
 }
 
-function loadJSON(file, callback) {
+jsdungeon.loadJSON = function(file, callback) {
 
     var xobj = new XMLHttpRequest();
     xobj.overrideMimeType("application/json");

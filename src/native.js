@@ -32,7 +32,7 @@ Array.prototype.removeAll = function(element) {
   }
 };
 
-function setBackgroungImage(image) {
+jsdungeon.setBackgroungImage = function(image) {
     var urlString = 'url(' + image + ')';
     document.body.style.backgroundImage =  urlString;
 }

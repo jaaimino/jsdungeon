@@ -40,8 +40,8 @@ var filename = "";
   function receivedText() {
    dungeonjson = fr.result;
    var dungeon = JSON.parse(fr.result);
-   console.log(startGame(dungeon));
-   console.log(interact("use car"));
+   console.log(jsdungeon.startGame(dungeon));
+   console.log(jsdungeon.interact("use car"));
   }
 
   function saveFile(){
