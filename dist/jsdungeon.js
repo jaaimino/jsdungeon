@@ -643,9 +643,11 @@ jsdungeon.reg= {
 
 jsdungeon.parseInput = function (text){
     
+    
     if(jsdungeon.reg.move.test(text)){
         
         var match = jsdungeon.reg.move.exec(text);
+        match = jsdungeon.castLower(match);
         jsdungeon.move(match[1]);
         
         return;
@@ -655,6 +657,7 @@ jsdungeon.parseInput = function (text){
     
     if(jsdungeon.reg.talk.test(text)){
         var match = jsdungeon.reg.talk.exec(text);
+        match = jsdungeon.castLower(match);
         jsdungeon.talk(match[1]);
         
         return;
@@ -664,6 +667,7 @@ jsdungeon.parseInput = function (text){
     
     if(jsdungeon.reg.examine.test(text)){
         var match = jsdungeon.reg.examine.exec(text);
+        match = jsdungeon.castLower(match);
         jsdungeon.examine(match[1]);
         
         return;
@@ -671,24 +675,28 @@ jsdungeon.parseInput = function (text){
     
     if(jsdungeon.reg.take.test(text)){
         var match = jsdungeon.reg.take.exec(text);
+        match = jsdungeon.castLower(match);
         jsdungeon.take(match[1]);
         
         return;
     }
     if(jsdungeon.reg.use.test(text)){
         var match = jsdungeon.reg.use.exec(text);
+        match = jsdungeon.castLower(match);
         jsdungeon.use(match[1],match[2]);
         return;
     }
     
     if(jsdungeon.reg.context.test(text)){
         var match = jsdungeon.reg.context.exec(text);
+        match = jsdungeon.castLower(match);
         jsdungeon.check_context(match[1],match[2]);
         return;
     }
     
     
     if(jsdungeon.reg.look.test(text)){
+        
         jsdungeon.look();
         
         return;
@@ -718,6 +726,16 @@ jsdungeon.parseInput = function (text){
     
     
    
+}
+
+jsdungeon.castLower = function(match){
+    console.log(match);
+    for(var i = 0; i<match.length; i++){
+        if(match[i] !== undefined){
+            match[i] = match[i].toLowerCase();
+        }
+    }
+    return match;
 }
 jsdungeon.saveGame = function(dungeonName, currentDungeon){
     currentDungeon.currentPlayer = jsdungeon.getCurrentPlayer();
