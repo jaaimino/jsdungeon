@@ -4,34 +4,11 @@
  * @link https://github.com/jaaimino/jsdungeon#readme
  * @license ISC
  */
-var select = document.getElementById("adventureSelect"); 
-loadJSON("dungeons.json", function(response){
-   var response_json = JSON.parse(response);
-   var dungeons = response_json.dungeons;
-   for (var i=0;i<dungeons.length;i++) {
-    var opt = dungeons[i];
-    var el = document.createElement("option");
-        el.textContent = opt.name;
-        el.value = opt.filename;
-        select.appendChild(el);
-    }
-});
+jsdungeon = {};
 
-function chooseAdventure(){
-    try{
-        var select = document.getElementById("adventureSelect");
-        var filename = select.options[select.selectedIndex].value;
-        loadJSON(filename, function(response){
-           var new_response_json = JSON.parse(response);
-           startGame(new_response_json);
-           return false;
-        });
-        return false;
-    } catch(err){
-        console.log(err);
-        return false;
-    }
-}
+/* Global variables :( */
+var game_over = false;
+var currentDungeon = null;
 /* Global variables :( */
 var game_over = false;
 var currentDungeon = null;
@@ -40,14 +17,6 @@ function startGame(dungeon) {
     //Do some setup
     game_over = false;
     currentDungeon = dungeon;
-    if(currentDungeon.background){
-        setBackgroungImage(currentDungeon.background);
-    } else {
-        setBackgroungImage("img/dungeon.jpg");
-    }
-    document.getElementById("page-title").innerHTML = getCurrentDungeon().name;
-    var page_title_inner = "<b>{0}</b>".format(getCurrentDungeon().name);
-    document.getElementById("page-title-inner").innerHTML = page_title_inner;
     //If we don't have a current room, we're starting a new save
     if(!getCurrentDungeon().currentRoom){
         getCurrentDungeon().currentRoom = getCurrentDungeon().rooms[getCurrentDungeon().start_room];
@@ -75,6 +44,7 @@ function startGame(dungeon) {
         clearOutput();
         outputRoom();
     }
+    return outputString;
 }
 
 function loadGameButton() {
@@ -567,56 +537,39 @@ function check_context(item, other){
         error(item);
     }
 }
-function sendInput() {
+var outputString = "";
+
+function interact(input) {
+    outputString = "";
     try {
         if(isGameOver()){
             output("Game is over. Please start a new one.");
-            clearInputBox();
-            scrollToBottom();
-            return false;
+            return outputString;
         }
         if(getCurrentDungeon() === null){
-            output("Please start a dungeon below.");
-            clearInputBox();
-            scrollToBottom();
-            return false;
+            output("Please start a dungeon.");
+            return outputString;
         }
-        gameloop(getInput());
-        clearInputBox();
-        scrollToBottom();
+        gameloop(input);
     }
     catch(err) {
         console.log(err);
         output("Uh oh! There was an error!");
-        clearInputBox();
-        return false;
+        return outputString;
     }
-    return false;
-}
-
-function getInput() {
-    return document.getElementById("inputBox").value;
-}
-
-function scrollToBottom() {
-    var element = document.getElementById("output");
-    element.scrollTop = element.scrollHeight;
-}
-
-function clearInputBox() {
-    document.getElementById("inputBox").value = "";
+    return outputString;
 }
 
 function output(value) {
-    document.getElementById("output").innerHTML += "<p class='entry'>" + value + "</p>";
+    outputString += "<p class='entry'>" + value + "</p>";
 }
 
 function output_break(value) {
-    document.getElementById("output").innerHTML += "<p class='break'/>";
+    outputString += "<p class='break'/>";
 }
 
 function clearOutput(){
-    document.getElementById("output").innerHTML = "";
+    outputString = "";
 }
 
 function loadJSON(file, callback) {
@@ -670,10 +623,9 @@ function setBackgroungImage(image) {
     var urlString = 'url(' + image + ')';
     document.body.style.backgroundImage =  urlString;
 }
-
-
-
-
+/**
+ * Parser for overall game interactions!
+ **/
 var reg= {
  move: /(?:move|enter|go|skedaddle|sally forth|proceed|exit(?: through)?) +(.*)/i,
  talk : /(?:talk|chat)(?: to)? +(.*)/i,

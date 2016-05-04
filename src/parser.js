@@ -1,6 +1,6 @@
-
-
-
+/**
+ * Parser for overall game interactions!
+ **/
 var reg= {
  move: /(?:move|enter|go|skedaddle|sally forth|proceed|exit(?: through)?) +(.*)/i,
  talk : /(?:talk|chat)(?: to)? +(.*)/i,

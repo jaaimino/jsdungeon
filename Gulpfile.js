@@ -28,7 +28,10 @@ var banner = ['/**',
 
 // Concatenate & Minify JS
 gulp.task('scripts', function() {
-    return gulp.src('src/*.js')
+    return gulp.src([
+        './src/jsdungeon.js', //Always load jsdungeon file first
+        'src/**/*.js'
+        ])
         .pipe(concat('jsdungeon.js'))
         .pipe(header(banner, { pkg : pkg } ))
         .pipe(gulp.dest('dist'))
@@ -40,8 +43,7 @@ gulp.task('scripts', function() {
 
 // Watch Files For Changes
 gulp.task('watch', function() {
-    gulp.watch('*.js', ['lint', 'scripts']);
-    gulp.watch('scss/*.scss', ['sass']);
+    gulp.watch('*.js', ['scripts']);
 });
 
 gulp.task('connect', function() {
@@ -49,5 +51,5 @@ gulp.task('connect', function() {
 });
 
 // Default Task
-gulp.task('default', ['lint', 'sass', 'scripts']);
-//gulp.task('default', ['lint', 'sass', 'scripts', 'watch']);
+gulp.task('default', ['lint', 'scripts']);
+//gulp.task('default', ['lint', scripts', 'watch']);

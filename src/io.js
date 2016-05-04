@@ -1,53 +1,36 @@
-function sendInput() {
+var outputString = "";
+
+function interact(input) {
+    outputString = "";
     try {
         if(isGameOver()){
             output("Game is over. Please start a new one.");
-            clearInputBox();
-            scrollToBottom();
-            return false;
+            return outputString;
         }
         if(getCurrentDungeon() === null){
-            output("Please start a dungeon below.");
-            clearInputBox();
-            scrollToBottom();
-            return false;
+            output("Please start a dungeon.");
+            return outputString;
         }
-        gameloop(getInput());
-        clearInputBox();
-        scrollToBottom();
+        gameloop(input);
     }
     catch(err) {
         console.log(err);
         output("Uh oh! There was an error!");
-        clearInputBox();
-        return false;
+        return outputString;
     }
-    return false;
-}
-
-function getInput() {
-    return document.getElementById("inputBox").value;
-}
-
-function scrollToBottom() {
-    var element = document.getElementById("output");
-    element.scrollTop = element.scrollHeight;
-}
-
-function clearInputBox() {
-    document.getElementById("inputBox").value = "";
+    return outputString;
 }
 
 function output(value) {
-    document.getElementById("output").innerHTML += "<p class='entry'>" + value + "</p>";
+    outputString += "<p class='entry'>" + value + "</p>";
 }
 
 function output_break(value) {
-    document.getElementById("output").innerHTML += "<p class='break'/>";
+    outputString += "<p class='break'/>";
 }
 
 function clearOutput(){
-    document.getElementById("output").innerHTML = "";
+    outputString = "";
 }
 
 function loadJSON(file, callback) {

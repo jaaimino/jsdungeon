@@ -1,27 +1,68 @@
 <html>
-
 <head>
-    <link rel="stylesheet" href="css/global.css">
-    <title id="page-title">Adventure</title>
-    <!-- this should probably change based on the naem of the dungeon people make-->
+	<script src="dist/jsdungeon.js"></script>
 </head>
-
 <body>
-    <h1 id="page-title-inner" class="page-title">Adventure</h1>
-    <div class="output-box">
-        <p id="output">Choose an adventure below to start!</p>
-        <form id="inputForm" onsubmit="return sendInput()">
-            <input id="inputBox" autocomplete="off" type="text">
-            <input id="inputButton" type="submit">
-        </form>
-        <form id="chooseAdventureForm" onsubmit="return chooseAdventure()">
-            <select id="adventureSelect">
-            </select>
-            <input id="" type="submit" value="Start">
-            <button onclick="return saveGameButton()">Save</button>
-            <button onclick="return loadGameButton()">Load</button>
-        </form>
-    </div>
+<input type="file" id="fileinput"/>
+<input type='button' id='btnLoad' value='Open' onclick='handleFileSelect();'>
+<input type='button' id='btnLoad' value='Save' onclick='saveFile();'>
+<div id="editor"></div>
+<script>
+var dungeonjson = "";
+var filename = "";
+  function handleFileSelect()
+  {               
+    if (!window.File || !window.FileReader || !window.FileList || !window.Blob) {
+      alert('The File APIs are not fully supported in this browser.');
+      return;
+    }   
+
+    input = document.getElementById('fileinput');
+    if (!input) {
+      alert("Um, couldn't find the fileinput element.");
+    }
+    else if (!input.files) {
+      alert("This browser doesn't seem to support the `files` property of file inputs.");
+    }
+    else if (!input.files[0]) {
+      alert("Please select a file before clicking 'Load'");               
+    }
+    else {
+      file = input.files[0];
+      filename = file.name;
+      fr = new FileReader();
+      fr.onload = receivedText;
+      fr.readAsText(file);
+      //fr.readAsDataURL(file);
+    }
+  }
+
+  function receivedText() {
+   dungeonjson = fr.result;
+   var dungeon = JSON.parse(fr.result);
+   console.log(startGame(dungeon));
+   console.log(interact("use car"));
+  }
+
+  function saveFile(){
+  	download(filename, dungeonjson);
+  }
+
+  function download(filename, text) {
+    var pom = document.createElement('a');
+    pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    pom.setAttribute('download', filename);
+
+    if (document.createEvent) {
+        var event = document.createEvent('MouseEvents');
+        event.initEvent('click', true, true);
+        pom.dispatchEvent(event);
+    }
+    else {
+        pom.click();
+    }
+}
+	
+</script>
 </body>
-<script src="dist/all.min.js"></script>
 </html>
