@@ -1,0 +1,29 @@
+{
+  "name": "jsdungeon",
+  "version": "1.1.0",
+  "description": "JSdungeon is a text-based adventure game engine. You can create your own dungeons by configuring them in JSON. Examples are in the repository, and you're free to take a modify them for your own use.",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://jaaimino@github.com/jaaimino/jsdungeon.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jaaimino/jsdungeon/issues"
+  },
+  "homepage": "https://github.com/jaaimino/jsdungeon#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-connect": "^4.0.0",
+    "gulp-header": "^1.7.1",
+    "gulp-jshint": "^2.0.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.5.3",
+    "jshint": "^2.9.2"
+  }
+}
