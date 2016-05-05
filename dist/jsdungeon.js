@@ -150,12 +150,12 @@ jsdungeon.leave_room = function(currentExit,direction){
 
 jsdungeon.inventory = function() {
     if (jsdungeon.currentDungeon.currentPlayer.inventory.length > 0) {
-        jsdungeon.outputString = "";
+        var inventoryString = "";
         for (var i = 0; i < jsdungeon.currentDungeon.currentPlayer.inventory.length - 1; i++) {
-            jsdungeon.outputString += "<i>" + jsdungeon.currentDungeon.currentPlayer.inventory[i] + "</i>" + ", ";
+            inventoryString += "<i>" + jsdungeon.currentDungeon.currentPlayer.inventory[i] + "</i>" + ", ";
         }
-        jsdungeon.outputString += "<i>" + jsdungeon.currentDungeon.currentPlayer.inventory[jsdungeon.currentDungeon.currentPlayer.inventory.length - 1] + "</i>";
-        jsdungeon.output("inventory: {0}".format(jsdungeon.outputString));
+        inventoryString += "<i>" + jsdungeon.currentDungeon.currentPlayer.inventory[jsdungeon.currentDungeon.currentPlayer.inventory.length - 1] + "</i>";
+        jsdungeon.output("inventory: {0}".format(inventoryString));
     }
     else {
         jsdungeon.output("Your inventory is empty!");
