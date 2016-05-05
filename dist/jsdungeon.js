@@ -81,13 +81,12 @@ jsdungeon.outputRoom = function() {
     if(jsdungeon.getCurrentRoom().name){
         jsdungeon.output("<span class='room-name'>{0}</span>".format(jsdungeon.getCurrentRoom().name));
     }
-    jsdungeon.outputString = "";// this was originally uninitialized, not sure if that affects anything
-    jsdungeon.outputString += jsdungeon.getCurrentRoom().description + " ";
+    jsdungeon.output(jsdungeon.getCurrentRoom().description + " ");
     for (var key in jsdungeon.getCurrentRoom().objects) {
         if (jsdungeon.getCurrentRoom().objects.hasOwnProperty(key)) {
             var objectState = jsdungeon.getCurrentRoom().objects[key].current_state;
             if(jsdungeon.getCurrentRoom().objects[key].states[objectState].description){//checking for description allows for easy linking/hiding of things without descriptions.
-                jsdungeon.outputString += jsdungeon.getCurrentRoom().objects[key].states[objectState].description + " ";
+                jsdungeon.output(jsdungeon.getCurrentRoom().objects[key].states[objectState].description + " ");
             }
         }
     }
@@ -96,7 +95,7 @@ jsdungeon.outputRoom = function() {
             var item = jsdungeon.getCurrentRoom().items[i];
             var itemState = jsdungeon.getCurrentDungeon().items[item].current_state;
             if(jsdungeon.getCurrentDungeon().items[item].states[itemState].description){
-                jsdungeon.outputString += jsdungeon.getCurrentDungeon().items[item].states[itemState].description + " ";
+                jsdungeon.output(jsdungeon.getCurrentDungeon().items[item].states[itemState].description + " ");
             }
         }
     }
@@ -104,11 +103,10 @@ jsdungeon.outputRoom = function() {
         if (jsdungeon.getCurrentRoom().exits.hasOwnProperty(key)) {
             var roomState = jsdungeon.getCurrentRoom().exits[key].current_state;
             if(jsdungeon.getCurrentRoom().exits[key].states[roomState].description){//made this one optional so we can have hidden doors until a trigger happens.
-                jsdungeon.outputString += jsdungeon.getCurrentRoom().exits[key].states[roomState].description + " ";
+                jsdungeon.output(jsdungeon.getCurrentRoom().exits[key].states[roomState].description + " ");
             }
         }
     }
-    jsdungeon.output(jsdungeon.outputString);
 }
 
 /* Interaction Stuff */
@@ -729,7 +727,6 @@ jsdungeon.parseInput = function (text){
 }
 
 jsdungeon.castLower = function(match){
-    console.log(match);
     for(var i = 0; i<match.length; i++){
         if(match[i] !== undefined){
             match[i] = match[i].toLowerCase();
