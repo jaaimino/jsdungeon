@@ -36,28 +36,6 @@ jsdungeon.startGame = function(dungeon) {
     return jsdungeon.outputString;
 }
 
-jsdungeon.loadGameButton = function() {
-    var select = document.getElementById("adventureSelect");
-    var dungeonName = select.options[select.selectedIndex].text;
-    var save = jsdungeon.loadGame(dungeonName);
-    if (save !== null) {
-        jsdungeon.startGame(save);
-        jsdungeon.output("<i>Game loaded for {0}</i>".format(dungeonName));
-    }
-    else {
-        jsdungeon.output("Couldn't load save for dungeon " + dungeonName);
-    }
-    return false;
-}
-
-jsdungeon.saveGameButton = function() {
-    var select = document.getElementById("adventureSelect");
-    var dungeonName = select.options[select.selectedIndex].text;
-    jsdungeon.saveGame(dungeonName, jsdungeon.getCurrentDungeon());
-    jsdungeon.output("<i>Saved game for {0}</i>".format(dungeonName));
-    return false;
-}
-
 jsdungeon.gameloop = function(text) {
     jsdungeon.parseInput(text);
 }
@@ -67,35 +45,45 @@ jsdungeon.look = function() {
 }
 
 jsdungeon.outputRoom = function() {
+    var string = "";
     if(jsdungeon.getCurrentRoom().name){
         jsdungeon.output("<span class='room-name'>{0}</span>".format(jsdungeon.getCurrentRoom().name));
     }
+
+    //Print room description
     jsdungeon.output(jsdungeon.getCurrentRoom().description + " ");
+
+    //Print out all objects current description for their respective states
     for (var key in jsdungeon.getCurrentRoom().objects) {
         if (jsdungeon.getCurrentRoom().objects.hasOwnProperty(key)) {
             var objectState = jsdungeon.getCurrentRoom().objects[key].current_state;
             if(jsdungeon.getCurrentRoom().objects[key].states[objectState].description){//checking for description allows for easy linking/hiding of things without descriptions.
-                jsdungeon.output(jsdungeon.getCurrentRoom().objects[key].states[objectState].description + " ");
+                string += jsdungeon.getCurrentRoom().objects[key].states[objectState].description + " ";
             }
         }
     }
+
+    //Print out all items current description for their respective states
     if (jsdungeon.getCurrentRoom().items) {
         for (var i = 0; i < jsdungeon.getCurrentRoom().items.length; i++) {
             var item = jsdungeon.getCurrentRoom().items[i];
             var itemState = jsdungeon.getCurrentDungeon().items[item].current_state;
             if(jsdungeon.getCurrentDungeon().items[item].states[itemState].description){
-                jsdungeon.output(jsdungeon.getCurrentDungeon().items[item].states[itemState].description + " ");
+                string += jsdungeon.getCurrentDungeon().items[item].states[itemState].description + " ";
             }
         }
     }
+
+    //Print out all exits current description for their respective states
     for (var key in jsdungeon.getCurrentRoom().exits) {
         if (jsdungeon.getCurrentRoom().exits.hasOwnProperty(key)) {
             var roomState = jsdungeon.getCurrentRoom().exits[key].current_state;
             if(jsdungeon.getCurrentRoom().exits[key].states[roomState].description){//made this one optional so we can have hidden doors until a trigger happens.
-                jsdungeon.output(jsdungeon.getCurrentRoom().exits[key].states[roomState].description + " ");
+                string += jsdungeon.getCurrentRoom().exits[key].states[roomState].description + " ";
             }
         }
     }
+    jsdungeon.output(string)
 }
 
 /* Interaction Stuff */

@@ -78,6 +78,7 @@ jsdungeon.look = function() {
 }
 
 jsdungeon.outputRoom = function() {
+    var string = "";
     if(jsdungeon.getCurrentRoom().name){
         jsdungeon.output("<span class='room-name'>{0}</span>".format(jsdungeon.getCurrentRoom().name));
     }
@@ -86,7 +87,7 @@ jsdungeon.outputRoom = function() {
         if (jsdungeon.getCurrentRoom().objects.hasOwnProperty(key)) {
             var objectState = jsdungeon.getCurrentRoom().objects[key].current_state;
             if(jsdungeon.getCurrentRoom().objects[key].states[objectState].description){//checking for description allows for easy linking/hiding of things without descriptions.
-                jsdungeon.output(jsdungeon.getCurrentRoom().objects[key].states[objectState].description + " ");
+                string += jsdungeon.getCurrentRoom().objects[key].states[objectState].description + " ";
             }
         }
     }
@@ -95,7 +96,7 @@ jsdungeon.outputRoom = function() {
             var item = jsdungeon.getCurrentRoom().items[i];
             var itemState = jsdungeon.getCurrentDungeon().items[item].current_state;
             if(jsdungeon.getCurrentDungeon().items[item].states[itemState].description){
-                jsdungeon.output(jsdungeon.getCurrentDungeon().items[item].states[itemState].description + " ");
+                string += jsdungeon.getCurrentDungeon().items[item].states[itemState].description + " ";
             }
         }
     }
@@ -103,10 +104,11 @@ jsdungeon.outputRoom = function() {
         if (jsdungeon.getCurrentRoom().exits.hasOwnProperty(key)) {
             var roomState = jsdungeon.getCurrentRoom().exits[key].current_state;
             if(jsdungeon.getCurrentRoom().exits[key].states[roomState].description){//made this one optional so we can have hidden doors until a trigger happens.
-                jsdungeon.output(jsdungeon.getCurrentRoom().exits[key].states[roomState].description + " ");
+                string += jsdungeon.getCurrentRoom().exits[key].states[roomState].description + " ";
             }
         }
     }
+    jsdungeon.output(string)
 }
 
 /* Interaction Stuff */
