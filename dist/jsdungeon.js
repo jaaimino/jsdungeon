@@ -5,7 +5,14 @@
  * @license ISC
  */
 jsdungeon = {};
-
+jsdungeon.trigger_types = [
+  "state_change",
+  "flavor_text",
+  "lose_game",
+  "win_game",
+  "add_item",
+  "remove_item"
+];
 /* Global variables :( */
 var game_over = false;
 var currentDungeon = null;
@@ -47,28 +54,6 @@ jsdungeon.startGame = function(dungeon) {
     return jsdungeon.outputString;
 }
 
-jsdungeon.loadGameButton = function() {
-    var select = document.getElementById("adventureSelect");
-    var dungeonName = select.options[select.selectedIndex].text;
-    var save = jsdungeon.loadGame(dungeonName);
-    if (save !== null) {
-        jsdungeon.startGame(save);
-        jsdungeon.output("<i>Game loaded for {0}</i>".format(dungeonName));
-    }
-    else {
-        jsdungeon.output("Couldn't load save for dungeon " + dungeonName);
-    }
-    return false;
-}
-
-jsdungeon.saveGameButton = function() {
-    var select = document.getElementById("adventureSelect");
-    var dungeonName = select.options[select.selectedIndex].text;
-    jsdungeon.saveGame(dungeonName, jsdungeon.getCurrentDungeon());
-    jsdungeon.output("<i>Saved game for {0}</i>".format(dungeonName));
-    return false;
-}
-
 jsdungeon.gameloop = function(text) {
     jsdungeon.parseInput(text);
 }
@@ -82,7 +67,11 @@ jsdungeon.outputRoom = function() {
     if(jsdungeon.getCurrentRoom().name){
         jsdungeon.output("<span class='room-name'>{0}</span>".format(jsdungeon.getCurrentRoom().name));
     }
+
+    //Print room description
     jsdungeon.output(jsdungeon.getCurrentRoom().description + " ");
+
+    //Print out all objects current description for their respective states
     for (var key in jsdungeon.getCurrentRoom().objects) {
         if (jsdungeon.getCurrentRoom().objects.hasOwnProperty(key)) {
             var objectState = jsdungeon.getCurrentRoom().objects[key].current_state;
@@ -91,6 +80,8 @@ jsdungeon.outputRoom = function() {
             }
         }
     }
+
+    //Print out all items current description for their respective states
     if (jsdungeon.getCurrentRoom().items) {
         for (var i = 0; i < jsdungeon.getCurrentRoom().items.length; i++) {
             var item = jsdungeon.getCurrentRoom().items[i];
@@ -100,6 +91,8 @@ jsdungeon.outputRoom = function() {
             }
         }
     }
+
+    //Print out all exits current description for their respective states
     for (var key in jsdungeon.getCurrentRoom().exits) {
         if (jsdungeon.getCurrentRoom().exits.hasOwnProperty(key)) {
             var roomState = jsdungeon.getCurrentRoom().exits[key].current_state;
