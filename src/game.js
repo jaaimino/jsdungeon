@@ -261,21 +261,21 @@ jsdungeon.examine = function(item) {
         var currentState = jsdungeon.getCurrentState(item, "objects", jsdungeon.getCurrentRoom());
         var currentObject = jsdungeon.getCurrentRoom().objects[item].states[currentState];
         //jsdungeon.output("You look at {0}".format(item));
-        jsdungeon.lookatthing(currentObject);
+        jsdungeon.lookatthing(item, currentObject);
     }
     else if (jsdungeon.currentDungeon.currentPlayer.inventory.indexOf(item) != -1 || jsdungeon.getCurrentRoom().items && jsdungeon.getCurrentRoom().items.indexOf(item) != -1) {
         var currentState = jsdungeon.getCurrentState(item, "items", jsdungeon.getCurrentDungeon());
         var currentItem = jsdungeon.getCurrentDungeon().items[item].states[currentState];
 
         //jsdungeon.output("You look at {0}".format(item));
-        jsdungeon.lookatthing(currentItem);
+        jsdungeon.lookatthing(item, currentItem);
     }
     else if (jsdungeon.check_exist(jsdungeon.getCurrentRoom().exits,item)) {
         var currentState = jsdungeon.getCurrentState(item, "exits", jsdungeon.getCurrentRoom());
         var currentExit = jsdungeon.getCurrentRoom().exits[item].states[currentState];
 
         
-        jsdungeon.lookatthing(currentExit);
+        jsdungeon.lookatthing(item, currentExit);
         
 
     }
@@ -284,7 +284,7 @@ jsdungeon.examine = function(item) {
     }
 }
 
-jsdungeon.lookatthing = function(currentThing){
+jsdungeon.lookatthing = function(item, currentThing){
     
     if(currentThing.on_examine){
         var noprint = true;
@@ -297,7 +297,7 @@ jsdungeon.lookatthing = function(currentThing){
             noprint = false;
         }
         if(noprint){
-            jsdungeon.output("There doesn't seem to be anything interesting about {0}...".format(currentThing));
+            jsdungeon.output("There doesn't seem to be anything interesting about {0}...".format(item));
         }
         
     }
@@ -307,7 +307,7 @@ jsdungeon.lookatthing = function(currentThing){
 
     }
     else {
-        jsdungeon.output("There doesn't seem to be anything interesting about {0}...".format(currentThing));
+        jsdungeon.output("There doesn't seem to be anything interesting about {0}...".format(item));
     }
     
 }
